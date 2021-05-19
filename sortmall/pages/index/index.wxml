@@ -1,1 +1,32 @@
-<view>hello</view>
+<view>{{message}}</view>
+<!-- 一：列表渲染 -->
+<!-- 固定写法1：wx:key="index"中的index作为下标变量名,item.task中的item作为数组中每一项 -->
+<!-- <view wx:for="{{list}}"  wx:key="index" >{{item.task}}</view> -->
+
+<!-- 固定写法2： wx:for-item="item" 指定数组每一项，wx:for-index="index"指定当前下标-->
+<!-- <view wx:for="{{list}}"  wx:for-item="item" wx:for-index="index" wx:key="index">{{item.task}}</view> -->
+
+<!-- 固定写法3：与写法2相同 -->
+<view wx:for="{{list}}"  wx:for-item="itemName" wx:for-index="indexName" wx:key="indexName">{{itemName.task}}</view>
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+
+<!-- 二：条件渲染 -->
+<view wx:if="{{show}}">显示</view>
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+
+<!-- 三：事件处理 -->
+<!-- bindtap是绑定事件处理函数，通过data传递参数，处理函数tapView在index.js文件中添加 -->
+<view data-id="123" data-age="11" bindtap="tapView">点击事件</view>
+
+<!-- 四：冒泡处理  catchtap会阻止冒泡-->
+<view bindtap="handtap1">
+    outer view
+    <view catchtap="handtap2">
+        meddle view
+        <view bindtap="handtap3">
+            inner view
+        </view>
+    </view>
+</view>
