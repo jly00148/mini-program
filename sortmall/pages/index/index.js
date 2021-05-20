@@ -33,6 +33,18 @@ Page({
   },
   
   handtap3(){
+    // this是page实例与下相同
+    console.log(this)
       console.log('handtap3')
-  }  
+  },
+  handleUpdate(){
+    // console.log(this) this是page实例与上相同
+    
+    // this.setData就是react中的setState
+    this.setData({
+      message:'在吗'
+    },()=>{
+      console.log('update done')
+    })
+  }
 })

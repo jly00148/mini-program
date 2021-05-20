@@ -22,11 +22,13 @@
 
 <!-- 四：冒泡处理  catchtap会阻止冒泡-->
 <view bindtap="handtap1">
-    outer view
+    outer view 1
     <view catchtap="handtap2">
-        meddle view
+        meddle view 2
         <view bindtap="handtap3">
-            inner view
+            inner view 3
         </view>
     </view>
 </view>
+
+<button bindtap="handleUpdate">更新</button>
