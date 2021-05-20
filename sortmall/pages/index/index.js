@@ -7,8 +7,12 @@ Page({
   data: {
     message:"hello 你好",
     list:[
-      {id:1,task:'learn vue'},
-      {id:2,task:'learn react'}
+      {
+        id:1,task:'learn vue'
+      },
+      {
+        id:2,task:'learn react'
+      }
     ],
     show:true
   },
@@ -39,8 +43,8 @@ Page({
   },
   handleUpdate(){
     // console.log(this) this是page实例与上相同
-    
-    // this.setData就是react中的setState
+
+    // this.setData就是react中的setState,setDate用于从逻辑层发送到视图层(异步)，同时改变对应的this.data的值(同步)
     this.setData({
       message:'在吗'
     },()=>{

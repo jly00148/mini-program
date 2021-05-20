@@ -6,3 +6,9 @@
     3).app.wxss,非必需要有的文件，作用是小程序公共样式表,相当于css
   3. app.json中pages是页面的结构，每个页面包括4个文件类型组成：js、wxml、json、wxss,分别作用为：页面逻辑、结构、配置以及页面样式表，其中json和wxss为非必需文件
   为了方便开发者减少配置项，描述的四个页面必需具有相同的路径和文件名
+  4.全局配置：
+    1).pagePath:页面的路径，必填，必需在page中先定义，类型为string
+    2).text：tab上的按钮文字，必填，类型为string
+    3).iconPath：图片的路径，大小为40kb,建议尺寸为81*81px，不支持网络图片，当position为top时，不显示icon
+    4).selectedIconPath：选中的图片的路径，大小为40kb,建议尺寸为81*81px，不支持网络图片，当position为top时，不显示icon
+    5).iconfont引入：打开iconfont官网，选择图标添加入库->添加至项目->编辑后下载
