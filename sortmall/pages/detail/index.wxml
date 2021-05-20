@@ -1,2 +1,2 @@
 <!--pages/detail/index.wxml-->
-<text>pages/detail/index.wxml</text>
+<button bindtap="go2lastPage">返回上一页</button>

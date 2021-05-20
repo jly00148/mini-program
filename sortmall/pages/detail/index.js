@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options) options接收参数的对象
+    console.log(options) //options接收参数的对象
   },
 
   /**
@@ -62,5 +62,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  go2lastPage(){
+    // 返回上一页
+      wx.navigateBack({
+        delta: 1,
+      })
   }
 })

@@ -50,5 +50,25 @@ Page({
     },()=>{
       // console.log('update done')
     })
-  }
+  },
+  go2cart(){
+  
+      // 用wx的api形式跳转页面
+      wx.switchTab({
+        url: '/pages/cart/index',
+        // url: '../cart/index',
+      })
+  },
+  go2detail(){
+    // 不允许跳转到tabBar，跳转到应用内某个页面并且关闭当前页面
+    wx.redirectTo({
+      url: '/pages/detail/index?name=jly&age=18',
+    })
+  },
+  go2detail2(){
+    // 与redirectTo不同，区别在于不允许跳转到tabBar，同样跳转到应用内某个页面但是保留不关闭当前页面，
+    wx.navigateTo({
+      url: '/pages/detail/index?name=jly&age=18',
+    })
+  }  
 })

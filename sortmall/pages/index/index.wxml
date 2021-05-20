@@ -42,3 +42,9 @@
 <!-- 跳转到tabBar页面(app.json文件中已注册为tabBar) 需要添加属性open-type="switchTab" -->
 <!-- <navigator url="../../pages/cart/index" open-type="switchTab">去购物车</navigator> -->
 <navigator url="/pages/cart/index" open-type="switchTab">去购物车</navigator>
+
+<!-- -------------------------------------------------------------------------- -->
+<button bindtap="go2cart">去购物车</button>
+
+<button bindtap="go2detail">去详情页</button>
+<button bindtap="go2detail2">去详情页2</button>
