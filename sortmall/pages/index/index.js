@@ -48,7 +48,7 @@ Page({
     this.setData({
       message:'在吗'
     },()=>{
-      console.log('update done')
+      // console.log('update done')
     })
   }
 })

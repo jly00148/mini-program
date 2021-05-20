@@ -32,3 +32,13 @@
 </view>
 
 <button bindtap="handleUpdate">更新</button>
+
+<!-- 一般跳转 -->
+<!-- <navigator url="../../pages/detail/index">去详情页</navigator> 传递参数在detail页面接收参数-->
+<navigator url="/pages/detail/index?name=jly">去详情页</navigator>
+
+<!-- -------------------------------------------------------------------------- -->
+
+<!-- 跳转到tabBar页面(app.json文件中已注册为tabBar) 需要添加属性open-type="switchTab" -->
+<!-- <navigator url="../../pages/cart/index" open-type="switchTab">去购物车</navigator> -->
+<navigator url="/pages/cart/index" open-type="switchTab">去购物车</navigator>
