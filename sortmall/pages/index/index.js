@@ -14,7 +14,8 @@ Page({
         id:2,task:'learn react'
       }
     ],
-    show:true
+    show:true,
+    tabs:["tab1","tab2","tab3"]
   },
 
   // 方法:
@@ -70,5 +71,8 @@ Page({
     wx.navigateTo({
       url: '/pages/detail/index?name=jly&age=18',
     })
-  }  
+  },
+  handTabItemChange(ev){
+    // console.log(ev.detail) 在ev.detail上获取子组件(Tab)传来的值
+  }
 })

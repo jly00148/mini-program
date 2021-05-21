@@ -1,0 +1,9 @@
+<!-- 遍历循环父组件传来的数组，添加下标，每个绑定handleTabItem方法，将每个绑定的值等于小标,点击每个然后将data绑定的值传递到父组件,如果父组件需要的话 -->
+<view 
+  wx:for="{{Tabs}}" 
+  wx:key="index"
+  bindtap="handleTabItem"
+  data-id="{{index}}"
+  >
+  {{item}}
+</view>
