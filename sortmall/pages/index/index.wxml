@@ -49,5 +49,5 @@
 <button bindtap="go2detail">去详情页</button>
 <button bindtap="go2detail2">去详情页2</button>
 
-<!-- 引入组件后使用组件,父组件将数组传递给子组件 -->
+<!-- 引入组件后使用组件,父组件将数组传递给子组件, bindTabItemChange绑定子组件自定义的方法-->
 <Tab tabs="{{tabs}}" bindTabItemChange="handTabItemChange"></Tab>
