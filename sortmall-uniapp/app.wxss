@@ -1,0 +1,20 @@
+@import './styles/iconfont.wxss';
+
+/* 
+  初始化样式
+ */
+ page,view,image{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+
+ /* 定义主题颜色和默认字体大小 */
+ page{
+   --themeColor:#999;
+   /*  rpx是微信小程序中css的尺寸单位 */
+   font-size: 32rpx;
+   background-color: #fafafa;
+ }
+
+ /* 定义图片的宽度的为父元素的100% */
