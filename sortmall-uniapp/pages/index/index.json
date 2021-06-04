@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "SearchInput":"../../components/searchInput/searchInput"
-  },
-  "navigationBarBackgroundColor": "#f0f"
-}

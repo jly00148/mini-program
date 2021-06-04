@@ -1,6 +1,0 @@
-<view class="search_input">
-  <!-- open-type="navigate"中的navigate对应wxnavigateTo活着wx.navigateToMiniProgram的功能 -->
-  <navigator url="/pages/search/index" open-type="navigate" class="navi">
-    搜索
-  </navigator>
-</view>
