@@ -1,0 +1,16 @@
+{
+  "id": "2585291",
+  "name": "uni-app",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3670096",
+      "name": "购物车",
+      "font_class": "tubiaolunkuo-",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    }
+  ]
+}
