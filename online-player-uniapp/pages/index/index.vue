@@ -1,8 +1,16 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/tabbar/logo.png"></image>
-		<view class="text-area">
-			<text class="title animated" hover-class="flash">{{title}},uniapp</text>
+	<view>
+		<!-- 搜索框 -->
+		<view class="flex align-center search">
+			
+			<view class="search-box flex align-center">
+				<!-- 放大镜icon -->
+				<text class="iconfont icon-sousuo1"></text>
+				<!-- placeHolder -->
+				<text class="text">搜索今日新闻...</text>
+			</view>
+		
+			<text class="flex align-center">分类</text>
 		</view>
 	</view>
 </template>
@@ -31,29 +39,5 @@
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>

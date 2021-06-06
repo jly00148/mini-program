@@ -1,0 +1,12 @@
+.search{
+	padding-bottom: 5px;
+	background-color: #F6F7F8;
+}
+.search-box{
+	border-radius:30px;
+	background-color: white;
+}
+.text{
+	font-size: 14px;
+	line-height: 20px;
+}

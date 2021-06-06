@@ -2,9 +2,11 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{	
+			// path路径不能加根路径
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app在线点播",
+				// h5端配置搜索框，微信小程序会不兼容，需要另外写
 				"app-plus":{
 					"titleNView":{
 						"searchInput":{
@@ -41,7 +43,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "在线点播",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#F6F7F8",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar":{
