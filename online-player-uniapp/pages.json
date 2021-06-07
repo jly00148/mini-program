@@ -43,7 +43,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "在线点播",
-		"navigationBarBackgroundColor": "#999999",
+		"navigationBarBackgroundColor": "#F7F6FB",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar":{

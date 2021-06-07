@@ -15,6 +15,35 @@
 			<text  class="search-btn">搜索</text>
 		</view>
 		<!-- #endif -->
+		
+		
+		<!-- 屏幕宽度设置为750rpx,仿小程序的话用ps测量像素的话在Photoshop中的图像->图像大小->宽度设置为750 -->
+		<!-- 轮播图组件,其中circular是循环播放，重新回第一张图片 -->
+		<view>
+			<swiper 
+			:indicator-dots="true" 
+			:autoplay="true" :interval="3000" 
+			:duration="1000" 
+			circular
+			>
+				<swiper-item>
+					<view class="swiper-item">
+						<image src="../../static/swperImg/ad1.png" mode="scaleToFill"></image>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item">
+						<image src="../../static/swperImg/ad2.jpg" mode="scaleToFill"></image>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item">
+						<image src="../../static/swperImg/ad3.jpg" mode="scaleToFill"></image>
+					</view>
+				</swiper-item>
+				
+			</swiper>
+		</view>
 	</view>
 </template>
 
