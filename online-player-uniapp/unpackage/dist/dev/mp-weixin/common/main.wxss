@@ -5298,16 +5298,33 @@ to {
 
 /* 引入free样式库 */
 .search{
+	width: 100%;
+	height: 25px;
 	padding-bottom: 5px;
-	background-color: #F6F7F8;
+	background-color: #999999;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 .search-box{
+	width: 85%;
 	border-radius:30px;
 	background-color: white;
 }
-.text{
-	font-size: 14px;
-	line-height: 20px;
+text{
+	font-size: 12px;
+	line-height: 12px;
+	padding-left: 5px;
+}
+.search-btn{
+	font-size: 12px;
+	line-height: 25px;
 }
 
 /* 引入全局样式库 */

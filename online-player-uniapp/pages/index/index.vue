@@ -1,17 +1,20 @@
 <template>
 	<view>
 		<!-- 搜索框 -->
-		<view class="flex align-center search">
+		<!-- 兼容微信小程序，只有微信小程序才执行 -->
+		<!-- #ifdef MP -->
+		<view class="search">
 			
-			<view class="search-box flex align-center">
+			<view class="search-box">
 				<!-- 放大镜icon -->
 				<text class="iconfont icon-sousuo1"></text>
 				<!-- placeHolder -->
-				<text class="text">搜索今日新闻...</text>
+				<text>搜索今日新闻...</text>
 			</view>
 		
-			<text class="flex align-center">分类</text>
+			<text  class="search-btn">搜索</text>
 		</view>
+		<!-- #endif -->
 	</view>
 </template>
 

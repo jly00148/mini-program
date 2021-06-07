@@ -8,7 +8,7 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "在线点播",
-    "navigationBarBackgroundColor": "#F6F7F8",
+    "navigationBarBackgroundColor": "#999999",
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {

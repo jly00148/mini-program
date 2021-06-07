@@ -1,1 +1,1 @@
-<view><view class="flex align-center search"><view class="search-box flex align-center"><text class="iconfont icon-sousuo1"></text><text class="text">搜索今日新闻...</text></view><text class="flex align-center">分类</text></view></view>
+<view><view class="search"><view class="search-box"><text class="iconfont icon-sousuo1"></text><text>搜索今日新闻...</text></view><text class="search-btn">搜索</text></view></view>
