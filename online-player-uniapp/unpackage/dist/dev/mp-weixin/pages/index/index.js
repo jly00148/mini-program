@@ -133,67 +133,90 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Card = function Card() {__webpack_require__.e(/*! require.ensure | components/card */ "components/card").then((function () {return resolve(__webpack_require__(/*! @/components/card.vue */ 29));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    Card: Card },
+
   data: function data() {
     return {
-      title: 'Hello' };
+      current: 0,
+      swipers: [
+      { title: "新闻1",
+        url: '../../static/swperImg/ad1.png' },
+
+      {
+        title: "新闻2",
+        url: '../../static/swperImg/ad2.jpg' },
+
+      {
+        title: "新闻3",
+        url: '../../static/swperImg/ad3.jpg' }] };
+
+
+
+
 
   },
   onLoad: function onLoad() {
 
   },
-  methods: {},
+  methods: {
+    changeSwiper: function changeSwiper(e) {
+      // console.log(e) 一个对象，对象下有detail对象，detail有个current属性值，代表当前轮播图图片
 
+      // 赋值给current，就拿到轮播图每个图片的current
+      this.current = e.detail.current;
+    } },
 
   // uni-app官网->生命周期->页面生命周期函数
   onNavigationBarSearchInputChanged: function onNavigationBarSearchInputChanged() {

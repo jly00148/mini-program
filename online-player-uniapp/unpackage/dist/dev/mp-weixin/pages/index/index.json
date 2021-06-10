@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "uni-app在线点播",
-  "usingComponents": {}
+  "usingComponents": {
+    "card": "/components/card"
+  }
 }

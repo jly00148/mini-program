@@ -1,0 +1,1 @@
+<view class="card flex"><view class="reco"><text>{{title}}</text></view><slot></slot><block wx:if="{{showFresh}}"><view data-event-opts="{{[['tap',[['$emit',['$0'],['refresh']]]]]}}" class="change-card" bindtap="__e"><text class="iconfont icon-shuaxin ">换一批</text></view></block></view>

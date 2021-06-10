@@ -1,3 +1,4 @@
+	/* 搜索框 */
 .search{
 	width: 100%;
 	height: 50rpx;
@@ -29,8 +30,34 @@ swiper{
 	margin-top: 70rpx;
 	height: 300rpx;
 	background-color: #F7F6FB;
-	padding: 20rpx 30rpx;
+	padding-left: 20rpx;
+	padding-right: 20rpx;
 }
-swiper .swiper-item{
-	border-radius: 20rpx;
+swiper swiper-item{
+	position: relative;
+}
+.title{
+	position: absolute;
+	left: 50rpx;
+	bottom: 50rpx;
+}
+
+/* 卡片组 */
+.card{
+	margin-top: 10rpx;
+	padding-left: 20rpx;
+	padding-right: 20rpx;
+	background-color: #F7F6FB;
+}
+.reco text{
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.icon-shuaxin{
+	font-weight: bold;
+	color:#E27E89;
+}
+.change-card{
+	display: flex;
+	justify-content: center;
 }
