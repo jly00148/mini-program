@@ -41,7 +41,13 @@
 		</view>
 		
 		<!-- 卡片组件 -->
-		<Card title="为你推荐"></Card>
+		<Card title="为你推荐">
+			<view class="list">
+				<view class="list-item" :key="i">
+					
+				</view>
+			</view>	
+		</Card>
 	</view>
 </template>
 
@@ -94,5 +100,17 @@
 </script>
 
 <style>
-
+	.list{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.list-item{
+		margin-left: 15rpx;
+		margin-right: 15rpx;
+		border-radius: 5rpx;
+		min-height: 400rpx;
+		width: 325rpx;
+		border:0.1rpx solid #000000;
+		margin-top: 5rpx;
+	}
 </style>

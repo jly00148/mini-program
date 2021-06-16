@@ -1,0 +1,18 @@
+
+.list{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.list-item{
+	margin-left: 15rpx;
+	margin-right: 15rpx;
+	border-radius: 5rpx;
+	min-height: 400rpx;
+	width: 325rpx;
+	border:0.1rpx solid #000000;
+	margin-top: 5rpx;
+}
+

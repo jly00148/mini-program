@@ -5,8 +5,7 @@
   },
   "setting": {
     "urlCheck": false,
-    "minified": true,
-    "checkSiteMap":false
+    "minified": true
   },
   "compileType": "miniprogram",
   "libVersion": "",
