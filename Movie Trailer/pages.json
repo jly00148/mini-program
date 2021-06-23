@@ -3,7 +3,11 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "IMAX电影预告"
+				"navigationBarTitleText": "IMAX电影预告",
+				"app-plus":{
+					"titleNView":false //禁用原生导航栏(导航栏部分会被去掉，但是不能去掉微信导航栏)
+					// 需要注意的是h5端节点没有配置默认使用app-plus下的配置，如果配置了h5节点则会覆盖掉app-plus的配置
+				}
 			}
 		},
 		{
@@ -32,20 +36,20 @@
 		"list":[
 			{
 				"pagePath":"pages/index/index",
-				"iconPath":"static/swiper/found.png",
-				"selectedIconPath":"static/swiper/found-copy.png",
+				"iconPath":"static/tabBar/found.png",
+				"selectedIconPath":"static/tabBar/found-copy.png",
 				"text":"发现"
 			},
 			{
 				"pagePath":"pages/search/search",
-				"iconPath":"static/swiper/search.png",
-				"selectedIconPath":"static/swiper/search-copy.png",
+				"iconPath":"static/tabBar/search.png",
+				"selectedIconPath":"static/tabBar/search-copy.png",
 				"text":"搜索"
 			},
 			{
 				"pagePath":"pages/my/my",
-				"iconPath":"static/swiper/my.png",
-				"selectedIconPath":"static/swiper/my-copy.png",
+				"iconPath":"static/tabBar/my.png",
+				"selectedIconPath":"static/tabBar/my-copy.png",
 				"text":"我的"
 			}
 		]
