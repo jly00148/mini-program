@@ -36,7 +36,15 @@
 			}
 		},
 		onLoad() {
-
+			console.log('aa')
+			uni.request({
+				url:'http://127.0.0.1:8080/carousel/list',
+				method:'GET',
+				success:(res)=>{
+					console.log(res.data)
+				}
+			})
+			
 		},
 		methods: {
 

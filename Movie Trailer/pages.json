@@ -5,7 +5,7 @@
 			"style": {
 				"navigationBarTitleText": "IMAX电影预告",
 				"app-plus":{
-					"titleNView":false //禁用原生导航栏(导航栏部分会被去掉，但是不能去掉微信导航栏)
+					"titleNView":false //禁用原生顶部导航栏(导航栏部分会被去掉，但是不能去掉微信导航栏)
 					// 需要注意的是h5端节点没有配置默认使用app-plus下的配置，如果配置了h5节点则会覆盖掉app-plus的配置
 				}
 			}
