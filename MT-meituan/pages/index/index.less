@@ -1,0 +1,83 @@
+@width:35upx;
+@height:35upx;
+@top:10upx;
+@size:30upx;
+
+.search-view{
+	margin-top: @top;
+	font-size: @size;
+	display: flex;
+	align-items:center;/*垂直居中*/
+}
+.search-view image{
+	width:@width;
+	height:@height;
+}
+.search-box{
+	width: 100%;
+	padding-top: @top;
+}
+.search{
+	height: 60upx;
+	display: flex;
+	align-items: center;
+	border-radius: 30upx;
+	border: 0.1upx solid #FFD100;
+	background-color: #F0F0EC;
+}
+.search-box image{
+	width:@width;
+	height:@height;
+}
+.search-box input{
+	padding-left: @top;
+	font-size: @size;
+}
+
+// 轮播图
+swiper{
+	height: 320upx !important;
+}
+.swiper-item{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: 320upx;
+}
+.swiper-view{
+	padding-bottom: 10upx;
+	border-bottom: 0.1upx solid #FFD100;
+}
+.conteng-img{
+	width: calc((100% / 5)-12px) !important;
+	margin: 1%;
+	padding: 2%;
+	position: relative;
+	text-align: center;
+}
+.conteng-img text{
+	padding-top: 20upx;
+	font-size: 30upx;
+}
+.uploadimg{
+	width: 80upx;
+	height: 80upx;
+	border-radius: 50upx;
+	display: block;
+	margin: 0 auto;
+}
+
+.indicate{
+	display: flex;
+	justify-content: center;
+}
+
+.indicate-item{
+	width: 30upx;
+	height: 10upx;
+	background-color: #F0F0EC;
+	margin: 5upx;
+}
+.active{
+	background-color: #FFD100;
+}

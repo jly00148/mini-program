@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "MT-TAKEOUT",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search": "/pages/index/components/search",
+    "preference": "/pages/index/components/preference",
+    "delicary": "/pages/index/components/delicary",
+    "title": "/pages/index/components/title",
+    "takeout": "/pages/index/components/takeout"
+  }
+}
