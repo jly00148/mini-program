@@ -4,7 +4,7 @@
 			<Search></Search>
 		</view>
 		<view>
-			<Preference></Preference>
+			<Preference :preferData='preferData'></Preference>
 		</view>
 		<view>
 			<Delicary></Delicary>
@@ -36,14 +36,28 @@
 		},
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				preferData:[]
+			}
+		},
+
+		methods: {
+			preference(){
+				uni.request({
+					url:'https://meituan.thexxdd.cn/api/forshop/getprefer',
+					method:'GET'
+				})
+				.then(res=>{
+					// 返回的目标数组data在res数组中
+					this.preferData = res[1].data
+				})
+				.catch(err=>{
+					console.log(err)
+				})
 			}
 		},
 		onLoad() {
-
-		},
-		methods: {
-
+			this.preference()
 		}
 	}
 </script>
