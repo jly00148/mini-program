@@ -7,10 +7,10 @@
 			<Preference :preferData='preferData'></Preference>
 		</view>
 		<view>
-			<Delicary></Delicary>
+			<Title></Title>
 		</view>
 		<view>
-			<Title></Title>
+			<Delicary></Delicary>
 		</view>
 		<view>
 			<Takeout></Takeout>
@@ -73,7 +73,7 @@
 
 <style scoped>
 	.home-container{
-		margin: 2upx 10upx;
+		padding: 25upx;
 	}
 		
 </style>

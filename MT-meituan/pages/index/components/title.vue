@@ -1,11 +1,16 @@
 <template>
-	<view>
-		标题
+	<view class="prefer-title">
+		附近商家
 	</view>
 </template>
 
 <script>
 </script>
 
-<style>
+<style scoped>
+	.prefer-title{
+		font-size: 35upx;
+		height: 50upx;
+		line-height: 50upx;
+	}
 </style>
