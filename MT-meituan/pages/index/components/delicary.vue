@@ -156,6 +156,7 @@
 			multiple(){
 				if(this.drop){
 					this.drop = false;
+					this.mask = false;
 				}else{
 					this.drop = true;
 					this.mask = true;
@@ -166,6 +167,7 @@
 			choice(){
 				if(this.sortmen){
 					this.sortmen = false;
+					this.mask = false;
 				}else{
 					this.sortmen = true;
 					this.mask = true;
@@ -195,9 +197,10 @@
 	/* 筛选区 */
 	.delica-view image{width: 30upx; height: 30upx; display: block;
 		}
-	.delica-view{font-size: 30upx; display: flex; align-items: center;
-	margin-left: 25upx;
-	margin-right: 25upx;
+	.delica-view{
+	width: 702upx;
+	font-size: 30upx; display: flex; align-items: center;
+	margin: 0 auto;
 	color: #666666;
 	height: 70upx;
 	background-color: #F1F1F1;
@@ -220,7 +223,7 @@
 		border-radius: 10upx;
 	}
 	.sortliteltle text{
-		padding: 0 15upx;
+		padding: 0 25upx;
 		display: block;
 		font-size: 1%;
 		height: 70upx;
@@ -269,7 +272,7 @@
 	text-align: center;}
 	.sortlist-bottom text:nth-child(1){border-right: 1upx solid #e4e4e4;}
 	.sortlist-bottom text:nth-child(2){background: #ffd348;}
-	.mask{background: rgba(0,0,0,0.3); position: fixed; top: 0; left: 0; right: 0; bottom: 0;}
+	.mask{background: rgba(0,0,0,0.3); position: fixed; top: 0; left: 0; right: 0; bottom: 0;z-index: 1;}
 	/* 商家特色加样式 */
 	.scractive{background: #fef6df !important; color: #f29909 !important;}
 

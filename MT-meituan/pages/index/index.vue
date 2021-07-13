@@ -7,7 +7,7 @@
 			<Preference :preferData='preferData'></Preference>
 		</view>
 		<view>
-			<Title></Title>
+				<Title></Title>
 		</view>
 		<view>
 			<view id="boxFixed" :class="{'is_Fixed' : isFixed}" @click="poll">
@@ -71,18 +71,21 @@
 			
 			// 回到顶部
 			poll(){
+				const backToTop = this.getTop;
 				wx.pageScrollTo({
 					// 不同手机this.getTop不同，必需动态添加getTop
-					scrollTop:this.getTop,
-					duration:100
+					scrollTop:backToTop,
+					duration:200
 				})
+			},
+			watchScroll(){
+				
 			}
 		},
 		
 		// 监听页面滚动的距离:微信小程序提供接口
 		onPageScroll(e){
 			this.reac = e.scrollTop;
-
 		},
 		
 		mounted(){
@@ -101,6 +104,7 @@
 		// 计算属性侦听器：时刻监听数据变化，现在监听组件置顶和不置顶
 		watch:{
 			reac(){
+				
 				if(this.reac > this.getTop){
 					// 置顶
 					this.isFixed = true;
@@ -117,12 +121,16 @@
 	.home-container{
 		padding: 25upx;
 	}
+	#boxFixed{
+		width: 702upx;
+		margin: 0 auto;
+	}
 	.is_Fixed{
 		position: fixed;
 		top: 88upx;
 		left: 0upx;
 		right: 0upx;
-		bottom: 73upx;
+		z-index: 99;
 	}
 
 </style>
