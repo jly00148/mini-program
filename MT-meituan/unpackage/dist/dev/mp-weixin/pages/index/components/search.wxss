@@ -1,6 +1,6 @@
 /* scoped：css只限制在当前组件使用，避免其他组件相同class，造成影响 */
 .search-view.data-v-8b3e5b4a {
-  margin-top: 10rpx;
+  margin-top: 15rpx;
   font-size: 30rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -16,7 +16,7 @@
 }
 .search-box.data-v-8b3e5b4a {
   width: 100%;
-  padding-top: 10rpx;
+  padding-top: 15rpx;
 }
 .search.data-v-8b3e5b4a {
   height: 60rpx;
@@ -26,15 +26,16 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  border-radius: 15rpx;
+  border-radius: 30rpx;
   border: 0.1rpx solid #FFD100;
+  background-color: #F0F0EC;
 }
 .search-box image.data-v-8b3e5b4a {
   width: 35rpx;
   height: 35rpx;
 }
 .search-box input.data-v-8b3e5b4a {
-  padding-left: 10rpx;
+  padding-left: 15rpx;
   font-size: 30rpx;
 }
 swiper.data-v-8b3e5b4a {
@@ -46,17 +47,14 @@ swiper.data-v-8b3e5b4a {
   display: flex;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
   height: 320rpx;
 }
 .swiper-view.data-v-8b3e5b4a {
-  padding-bottom: 50rpx;
-  position: relative;
+  padding-bottom: 10rpx;
+  border-bottom: 0.1rpx solid #FFD100;
 }
 .conteng-img.data-v-8b3e5b4a {
   width: calc((100% / 5)-12px) !important;
@@ -76,9 +74,21 @@ swiper.data-v-8b3e5b4a {
   display: block;
   margin: 0 auto;
 }
-.uni-swiper-dots-horizontal.data-v-8b3e5b4a {
-  background-color: red;
-  position: absolute;
-  bottom: 0;
+.indicate.data-v-8b3e5b4a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.indicate-item.data-v-8b3e5b4a {
+  width: 30rpx;
+  height: 10rpx;
+  background-color: #F0F0EC;
+  margin: 5rpx;
+}
+.active.data-v-8b3e5b4a {
+  background-color: #FFD100;
 }
 

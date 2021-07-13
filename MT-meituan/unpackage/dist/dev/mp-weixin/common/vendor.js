@@ -8088,6 +8088,78 @@ function normalizeComponent (
 }
 
 
+/***/ }),
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/*!******************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/api.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {// 封装接口
+var allApi = function allApi(url, method) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: url,
+      method: method }).
+
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};
+module.exports = allApi;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 18 */
+/*!**********************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/request.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// 公共路径
+var publicUrl = 'https://meituan.thexxdd.cn/';
+
+// 为你优选路径
+var preferenceUrl = publicUrl + 'api/forshop/getprefer';
+
+// 导出路径
+module.exports = {
+  preferenceUrl: preferenceUrl };
+
+/***/ }),
+/* 19 */
+/*!*********************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/errmsg.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {// 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };
+
+module.exports = { errMsg: errMsg };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
 /***/ })
 ]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

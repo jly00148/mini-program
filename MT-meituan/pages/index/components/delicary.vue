@@ -57,7 +57,6 @@
 			</view>
 		</view>
 		<view class="mask" v-if="mask" @click="hideMask">
-			sdfffffffffffffffffffffffff
 		</view>
 	</view>
 </template>
@@ -153,7 +152,7 @@
 			}
 		},
 		methods:{
-			// 点击综合排序标题显示隐藏综合排序
+			// 点击最左方的综合排序显示或者隐藏蒙版
 			multiple(){
 				if(this.drop){
 					this.drop = false;
@@ -163,6 +162,7 @@
 					this.sortmen = false;
 				}
 			},
+			// 点击最有方筛选显示或者隐藏蒙版
 			choice(){
 				if(this.sortmen){
 					this.sortmen = false;
@@ -173,15 +173,19 @@
 				}
 
 			},
+			// 点击蒙版隐藏蒙版
 			hideMask(){
 				this.mask = false;
 				this.drop = false;
 				this.sortmen = false;
 			},
+			// 选好综合排序后自动隐藏蒙版
 			sortClick(index,name){
 				// 综合排序替换
 				this.synthesize = name;
 				this.num = index;
+				this.drop = false;
+				this.mask = false;
 			}
 		}
 	}
@@ -192,18 +196,21 @@
 	.delica-view image{width: 30upx; height: 30upx; display: block;
 		}
 	.delica-view{font-size: 30upx; display: flex; align-items: center;
+	margin-left: 25upx;
+	margin-right: 25upx;
 	color: #666666;
 	height: 70upx;
-	padding: 0 25upx;
-	background: #FFFFFF;
+	background-color: #F1F1F1;
 	} 
-	.delica-list{display: flex; align-items: center;}
+	.delica-list{display: flex; align-items: center;width: 180upx;
+	}
 	.delica-right{justify-content: flex-end; flex-grow: 5;}
 	.delica-grow{flex-grow: 1;}
 	.prefer-posi{position: absolute; left: 0; right: 0;
 		width: 100%;
 		z-index: 99;}
 	/* 排序 */
+
 	.sortlist{
 		background: #ffffff;
 		position: relative;
@@ -213,15 +220,16 @@
 		border-radius: 10upx;
 	}
 	.sortliteltle text{
-	padding: 0 15upx;
-	display: block;
-	font-size: 30upx;
-	height: 70upx;
-	line-height: 70upx;
-	border-top: 1rpx solid #ededed;}
+		padding: 0 15upx;
+		display: block;
+		font-size: 1%;
+		height: 70upx;
+		line-height: 70upx;
+		border-top: 1rpx solid #ededed;
+	}
 	.activeb {
-			color: #f89903 !important;
-		}
+		color: #f89903 !important;
+	}
 	/* 选择 */
 	/*相对定位*/
 	.sortlist-view{height: 700upx; overflow: hidden;
