@@ -200,7 +200,8 @@
 				// 调用api返回按照条件排序的数据
 				allApi(nearbyTakeOutRank,'POST',data)
 				.then(result=>{
-					// 返回数据成功后应该将数据传递到父组件重新
+					// 	存储到vuex数据仓库(store/store.js)
+					this.$store.commit('screenmuta',result[1].data)
 				})
 				.catch(err=>{
 					console.log(err)

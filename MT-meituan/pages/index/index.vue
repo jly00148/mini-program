@@ -15,8 +15,9 @@
 			</view>
 		</view>
 		<view>
-				<Takeout class="takeout" :takeShopDate='takeShopDate'></Takeout>
+				<Takeout class="takeout" :takeShopDate='takeShopDate'>{{count}}</Takeout>
 		</view>
+
 	</view>
 </template>
 
@@ -30,6 +31,7 @@
 	
 	// 引入接口
 	import allApi from '../../api/api.js';
+	
 	// 引入请求路径
 	import { 
 		preferenceUrl,
@@ -38,6 +40,9 @@
 	
 	// 引入调用成功、失败和loading等接口
 	import { errMsg } from '../../api/errmsg.js';
+	
+	// 引入vuex的mapState;
+	import { mapState } from 'vuex';
 	
 	export default {
 		components:{
@@ -130,6 +135,14 @@
 					// 不置顶
 					 this.isFixed = false;
 				}
+			}
+		},
+
+		computed:{
+			...mapState(['screendata']),
+			// 使count与组件有依赖才会执行：组件中{{count}}
+			count(){
+				this.takeShopDate = this.screendata.screenarr;
 			}
 		}
 	}
