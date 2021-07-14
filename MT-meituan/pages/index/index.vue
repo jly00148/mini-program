@@ -15,7 +15,7 @@
 			</view>
 		</view>
 		<view>
-				<Takeout class="takeout"></Takeout>
+				<Takeout class="takeout" :takeShopDate='takeShopDate'></Takeout>
 		</view>
 	</view>
 </template>
@@ -31,7 +31,10 @@
 	// 引入接口
 	import allApi from '../../api/api.js';
 	// 引入请求路径
-	import { preferenceUrl } from '../../api/request.js';
+	import { 
+		preferenceUrl,
+		nearbyTakeOut
+	} from '../../api/request.js';
 	
 	// 引入调用成功、失败和loading等接口
 	import { errMsg } from '../../api/errmsg.js';
@@ -51,21 +54,41 @@
 				isFixed:false,
 				isFixed:false,
 				// 初始化默认渲染空数组
-				preferData:[]
+				preferData:[],
+				takeShopDate:[]
 			}
 		},
 
 		methods: {
-			// 为你优选调用接口初始化数据
+			// 为你优选调用接口初始化数据(之前写preference方法，现在用promise.all)
 			preference(){
-				allApi(preferenceUrl,'GET')
+				// allApi(preferenceUrl,'GET')
+				// .then(result=>{
+				// 	// 返回的目标数组data在result数组中
+				// 	this.preferData = result[1].data;
+				// })
+				// .catch(err=>{
+				// 	errMsg.errlist('服务端错误，请稍后再试!!!!!!!!')
+				// 	console.log(err)
+				// })
+				
+				// ---------------------------------------------------------
+				
+				Promise.all(
+				[	
+					// // 为你优选调用接口初始化数据
+					allApi(preferenceUrl,'GET'),
+					// 附近商家接口初始化数据
+					allApi(nearbyTakeOut,'GET')
+					]
+				)
 				.then(result=>{
-					// 返回的目标数组data在result数组中
-					this.preferData = result[1].data;
+					// console.log(result)
+					this.preferData = result[0][1].data;
+					this.takeShopDate = result[1][1].data;
 				})
 				.catch(err=>{
-					errMsg.errlist('服务端错误，请稍后再试！')
-					console.log(err)
+					console.log(err);
 				})
 			},
 			
@@ -78,9 +101,6 @@
 					duration:200
 				})
 			},
-			watchScroll(){
-				
-			}
 		},
 		
 		// 监听页面滚动的距离:微信小程序提供接口
@@ -96,7 +116,6 @@
 			query.select('#boxFixed').boundingClientRect();
 			query.selectViewport().scrollOffset();
 			query.exec(res=>{
-				// console.log('res::',res)
 				this.getTop = res[0].top;
 			})
 		},
@@ -104,7 +123,6 @@
 		// 计算属性侦听器：时刻监听数据变化，现在监听组件置顶和不置顶
 		watch:{
 			reac(){
-				
 				if(this.reac > this.getTop){
 					// 置顶
 					this.isFixed = true;

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<block v-for="(item,index) in takeshop" :key="index">
+		<block v-for="(item,index) in takeShopDate" :key="index">
 			<view class="content-view">
 				<view class="content-img">
 					<image :src="item.logo" mode="aspectFill"></image>
@@ -28,75 +28,77 @@
 
 <script>
 	export default {
+		props:{
+			takeShopDate:Array
+		},
 		data(){
 			return {
-				takeshop:[
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					},
-					{
-						'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-						'shop':'酸菜鱼',
-						'duration':20,
-						'delivering':13,
-						'physical':4,
-						'capita':20,
-						'types':'川菜'
-					}
-					
-					
-				]
+				// takeshop:this.takeshop
+				// takeshop:[
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// },
+					// {
+					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
+					// 	'shop':'酸菜鱼',
+					// 	'duration':20,
+					// 	'delivering':13,
+					// 	'physical':4,
+					// 	'capita':20,
+					// 	'types':'川菜'
+					// }
+				// ]
 			}
 		}
 	}

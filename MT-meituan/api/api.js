@@ -1,9 +1,10 @@
  // 封装接口
- const allApi = function(url,method){
+ const allApi = function(url,method,data){
 	 return new Promise((resolve,reject)=>{
 		 uni.request({
 		 	url:url,
-			method:method
+			method:method,
+			data:data
 		 })
 		 .then(res=>{
 			 resolve(res)
@@ -13,4 +14,4 @@
 		 })
 	 })
  }
- module.exports=allApi
+ module.exports = allApi

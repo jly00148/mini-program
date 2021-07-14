@@ -22,7 +22,7 @@
 		<view class="sortlist sortliteltle" v-if="drop">
 			<block v-for="(item,index) in sortlist" :key="index">
 				<!-- sortClick(item.name,index)传递参数 -->
-				<text :class="{activeb:index == num}" @click="sortClick(index,item.name)">{{item.name}}</text>
+				<text :class="{activeb:index == num}" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
 			</block>
 		</view>
 		
@@ -62,6 +62,10 @@
 </template>
 
 <script>
+	// 引入api接口和请求地址
+	import allApi from '../../../api/api.js';
+	import { nearbyTakeOutRank } from '../../../api/request.js';
+	
 	export default{
 		data(){
 			return {
@@ -73,28 +77,27 @@
 				sortlist:[	
 					{
 						"name":"综合排序",
-						"screen":"__id",
+						"screen":"_id",
 						"nums":1
 					},
-					
 					{
-						"name":"按价格最低",
-						"screen":"__id",
+						"name":"起送价最低",
+						"screen":"delivering",
 						"nums":1
 					},
 					{
 						"name":"配送费最低",
-						"screen":"__id",
+						"screen":"physical",
 						"nums":1
 					},
 					{
 						"name":"人均高到低",
-						"screen":"__id",
-						"nums":1
+						"screen":"capita",
+						"nums":-1
 					},
 					{
 						"name":"人均低到高",
-						"screen":"__id",
+						"screen":"capita",
 						"nums":1
 					}					
 				],
@@ -181,13 +184,27 @@
 				this.drop = false;
 				this.sortmen = false;
 			},
-			// 选好综合排序后自动隐藏蒙版
-			sortClick(index,name){
+			
+			// 选好综合排序后自动隐藏蒙版(screen,nums是商家排序需要的参数)
+			sortClick(index,name,screen,nums){
 				// 综合排序替换
 				this.synthesize = name;
 				this.num = index;
 				this.drop = false;
 				this.mask = false;
+				
+				const data = {
+					screen,
+					nums
+				}
+				// 调用api返回按照条件排序的数据
+				allApi(nearbyTakeOutRank,'POST',data)
+				.then(result=>{
+					// 返回数据成功后应该将数据传递到父组件重新
+				})
+				.catch(err=>{
+					console.log(err)
+				})
 			}
 		}
 	}
