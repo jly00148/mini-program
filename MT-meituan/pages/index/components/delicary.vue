@@ -34,7 +34,7 @@
 					<view class="sortlist-title">{{item.title}}</view>
 					<view class="sortlist-flex">
 						<block v-for="(itemdata,indexs) in item.datas" :key="indexs">
-							<text class="Choice" :class="{scractive: itemdata.id === 1}" @click="choiceClick(itemdata.id,indexs)">{{itemdata.name}}</text>
+							<text class="Choice" :class="{scractive: itemdata.id === 1}" @click="choiceClick(itemdata.id,indexs,itemdata.sign)">{{itemdata.name}}</text>
 						</block>
 					</view>
 				</view>
@@ -46,15 +46,17 @@
 					<view class="sortlist-title">{{item.title}}</view>
 					<view class="sortlist-flex">
 						<block v-for="(itemdata,indexs) in item.datas" :key="indexs">
-							<text class="Choice" :class="{scractive:indexs === pnum}" @click="personClick(indexs,pnum)">{{itemdata.name}}</text>
+							<text class="Choice" :class="{scractive:indexs === pnum}" @click="personClick(indexs,pnum,itemdata.per)">{{itemdata.name}}</text>
 						</block>
 					</view>
 				</view>
 			</block>
-			<!-- 置顶 -->
+			
+			<!-- 清空和完成选择 -->
 			<view class="sortlist-bottom">
 				<text @click="clearAllSelect()">清空</text>
-				<text>完成</text>
+				<!-- submitBtn：布尔值true是可以发送请求，反之禁止发送请求 -->
+				<text @click="submitBtn && complete()" class="bgColor" :class="{btnSelectedColor:submitBtn}">完成{{judegeSelected}}</text>
 			</view>
 		</view>
 		<view class="mask" v-if="mask" @click="hideMask">
@@ -65,7 +67,8 @@
 <script>
 	// 引入api接口和请求地址
 	import allApi from '../../../api/api.js';
-	import { nearbyTakeOutRank } from '../../../api/request.js';
+	import errMsg from '../../../api/errmsg.js';
+	import { nearbyTakeOutRank,multipleurl } from '../../../api/request.js';
 	
 	export default{
 		data(){
@@ -76,6 +79,9 @@
 				synthesize:'综合排序',
 				num:0,
 				pnum:-1,
+				multiObj:{},
+				// submitBtn值为false为禁止
+				submitBtn:false,
 				sortlist:[	
 					{
 						"name":"综合排序",
@@ -130,7 +136,7 @@
 				// 人均价筛选
 				person:[
 					{
-						"title":"人均价",
+						"title":"人均价格",
 						"datas":[
 							{
 							"name":"20元以下",
@@ -199,6 +205,7 @@
 					screen,
 					nums
 				}
+				
 				// 调用api返回按照条件排序的数据
 				allApi(nearbyTakeOutRank,'POST',data)
 				.then(result=>{
@@ -210,32 +217,80 @@
 				})
 			},
 			
-			// 商家特色多选
-			choiceClick(id,indexs){
-				// console.log(id,indexs)
+			// 多选商家特色
+			choiceClick(id,indexs,sign){
 				// console.log(this.screendata[0].datas[id].id)
 				if(id === 1){
+					// 让其不选中
 					this.screendata[0].datas[indexs].id = 0;
+					
+					// 选中后又选择选择取消选中
+					this.$delete(this.multiObj,sign);
 				}else{
+					
+					// 让其选中
 					this.screendata[0].datas[indexs].id = 1;
+					
+					// this.$set()：往传递数据对象里添加属性，添加后的对象是例如：
+					// {
+						// "a":a,
+						// "b":b,
+					// }
+					
+					// 选中
+					this.$set(this.multiObj,sign,sign);
 				}
 			},
 			
-			// 人均价
-			personClick(indexs,pnum){
+			// 选择人均价
+			personClick(indexs,pnum,per){
 				if(indexs === pnum){
+					// 不选中
 					this.pnum = -1;
+					
+					// 从对象里删除
+					this.$delete(this.multiObj,'capita');
 				}else{
+					// 选中
 					this.pnum = indexs;
+					// 添加到对象
+					this.$set(this.multiObj,'capita',per);
 				}
 			},
 			
-			// 清空
+			// 清空选择
 			clearAllSelect(){
+				// console.log('点击清空',this.multiObj)
 					for(var i = 0;i<this.screendata[0].datas.length;i++){
 						this.screendata[0].datas[i].id = 0;
 					}
 				this.pnum = -1;
+			},
+			
+			// 选择完后点击完成发送请求
+			complete(){
+				allApi(multipleurl,'POST',this.multiObj)
+				.then(result=>{
+						this.$store.commit('screenmuta',result[1].data)
+				})
+				.catch(err=>{
+					errMsg.errlist('服务器错误，请稍后再试！');
+				})
+				this.sortmen = false;
+				this.mask = false;
+			}
+		},
+		computed:{
+			judegeSelected(){
+				// 判断是对象是否为空
+				// 对象为空
+				if(JSON.stringify(this.multiObj) == '{}'){
+					this.submitBtn = false;
+				}else{
+				// 对象不为空
+					this.submitBtn = true;
+				}
+				
 			}
 		}
 	}
@@ -318,8 +373,8 @@
 	.sortlist-bottom text{flex-grow: 1; height: 80upx;
 	line-height: 80upx;
 	text-align: center;}
-	.sortlist-bottom text:nth-child(1){border-right: 1upx solid #e4e4e4;}
-	.sortlist-bottom text:nth-child(2){background: #ffd348;}
+	.bgColor{background: #F1F1F1;}
+	.btnSelectedColor{background: #FFD100!important;}
 	.mask{background: rgba(0,0,0,0.3); position: fixed; top: 0; left: 0; right: 0; bottom: 0;z-index: 1;}
 	/* 商家特色加样式 */
 	.scractive{background: #fef6df !important; color: #f29909 !important;}

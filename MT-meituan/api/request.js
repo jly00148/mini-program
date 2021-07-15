@@ -10,9 +10,15 @@ const nearbyTakeOut = publicUrl + 'api/forshop/wxshop';
 // 点击综合排序要求排序附近商家
 const nearbyTakeOutRank = publicUrl+'api/forshop/starting';	
 
+// 筛选多选
+const multipleurl = publicUrl + 'api/forshop/multiple';
+
+
+
 // 导出路径
 module.exports = {
 	preferenceUrl,
 	nearbyTakeOut,
-	nearbyTakeOutRank
+	nearbyTakeOutRank,
+	multipleurl
 }

@@ -1,7 +1,10 @@
 <template>
 	<view>
 		<block v-for="(item,index) in takeShopDate" :key="index">
-			<view class="content-view">
+			<view v-if="takeShopDate[0].hasOwnProperty('notice')">
+				<view>乐手</view>
+			</view>
+			<view v-else class="content-view">
 				<view class="content-img">
 					<image :src="item.logo" mode="aspectFill"></image>
 				</view>
@@ -102,6 +105,7 @@
 			}
 		}
 	}
+	
 </script>
 
 <style scoped>

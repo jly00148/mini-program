@@ -80,11 +80,12 @@
 				// ---------------------------------------------------------
 				
 				Promise.all(
-				[	
-					// // 为你优选调用接口初始化数据
-					allApi(preferenceUrl,'GET'),
-					// 附近商家接口初始化数据
-					allApi(nearbyTakeOut,'GET')
+					[	
+						// // 为你优选调用接口初始化数据
+						allApi(preferenceUrl,'GET'),
+						
+						// 附近商家接口初始化数据
+						allApi(nearbyTakeOut,'GET')
 					]
 				)
 				.then(result=>{
@@ -93,7 +94,7 @@
 					this.takeShopDate = result[1][1].data;
 				})
 				.catch(err=>{
-					console.log(err);
+					errMsg.errlist('服务端错误，请稍后再试')
 				})
 			},
 			

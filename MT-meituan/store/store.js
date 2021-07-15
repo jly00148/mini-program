@@ -10,7 +10,7 @@ const screendata = {
 
 // 数据仓库
 const state = {
-	screendata
+	screendata,
 }
 
 const store = new Vuex.Store({
@@ -18,9 +18,16 @@ const store = new Vuex.Store({
 	// 同步存储
 	mutations:{
 		screenmuta(state,listdata){
-			// console.log(listdata)
-			state.screendata = {
-				screenarr:listdata
+			// // console.log(listdata)
+			if(typeof listdata === 'string'){
+				listdata = [{notice:listdata}];
+				state.screendata = {
+					screenarr:listdata
+				}
+			}else{
+				state.screendata = {
+					screenarr:listdata
+				}
 			}
 		}
 	}
