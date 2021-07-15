@@ -34,25 +34,26 @@
 					<view class="sortlist-title">{{item.title}}</view>
 					<view class="sortlist-flex">
 						<block v-for="(itemdata,indexs) in item.datas" :key="indexs">
-							<text class="Choice" :class="{scractive: itemdata.id === 2}">{{itemdata.name}}</text>
+							<text class="Choice" :class="{scractive: itemdata.id === 1}" @click="choiceClick(itemdata.id,indexs)">{{itemdata.name}}</text>
 						</block>
 					</view>
 				</view>
 			</block>
+			
 			<!-- 单选：人均价 -->
 			<block v-for="(item,index) in person" :key="index">
 				<view>
 					<view class="sortlist-title">{{item.title}}</view>
 					<view class="sortlist-flex">
 						<block v-for="(itemdata,indexs) in item.datas" :key="indexs">
-						<text class="Choice">{{itemdata.name}}</text>
+							<text class="Choice" :class="{scractive:indexs === pnum}" @click="personClick(indexs,pnum)">{{itemdata.name}}</text>
 						</block>
 					</view>
 				</view>
 			</block>
 			<!-- 置顶 -->
 			<view class="sortlist-bottom">
-				<text>清空</text>
+				<text @click="clearAllSelect()">清空</text>
 				<text>完成</text>
 			</view>
 		</view>
@@ -74,6 +75,7 @@
 				mask:false,
 				synthesize:'综合排序',
 				num:0,
+				pnum:-1,
 				sortlist:[	
 					{
 						"name":"综合排序",
@@ -108,17 +110,17 @@
 						"title":"商家特色(可多选)",
 						"datas":[
 							{
-								"id":1,
+								"id":0,
 								"sign":'duration',
 								"name":'配送最快'
 							},
 							{
-								"id":1,
+								"id":0,
 								"sign":'deliver',
 								"name":'0元起送'
 							},
 							{
-								"id":1,
+								"id":0,
 								"sign":'physi',
 								"name":'免配送费'
 							}
@@ -206,6 +208,34 @@
 				.catch(err=>{
 					console.log(err)
 				})
+			},
+			
+			// 商家特色多选
+			choiceClick(id,indexs){
+				// console.log(id,indexs)
+				// console.log(this.screendata[0].datas[id].id)
+				if(id === 1){
+					this.screendata[0].datas[indexs].id = 0;
+				}else{
+					this.screendata[0].datas[indexs].id = 1;
+				}
+			},
+			
+			// 人均价
+			personClick(indexs,pnum){
+				if(indexs === pnum){
+					this.pnum = -1;
+				}else{
+					this.pnum = indexs;
+				}
+			},
+			
+			// 清空
+			clearAllSelect(){
+					for(var i = 0;i<this.screendata[0].datas.length;i++){
+						this.screendata[0].datas[i].id = 0;
+					}
+				this.pnum = -1;
 			}
 		}
 	}
