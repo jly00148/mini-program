@@ -1,10 +1,11 @@
 <template>
 	<view>
+		<view v-show="showEmpty" class="emptyMsg">
+			<text>搜索为空</text>
+			<image src="../../../static/coen/empty.png" mode="aspectFill"></image>
+		</view>
 		<block v-for="(item,index) in takeShopDate" :key="index">
-			<view v-if="takeShopDate[0].hasOwnProperty('notice')">
-				<view>乐手</view>
-			</view>
-			<view v-else class="content-view">
+			<view v-show="showResult" class="content-view">
 				<view class="content-img">
 					<image :src="item.logo" mode="aspectFill"></image>
 				</view>
@@ -102,10 +103,23 @@
 					// 	'types':'川菜'
 					// }
 				// ]
+				showEmpty:false,
+				showResult:false
+			}
+		},
+		watch:{
+			takeShopDate:function(){
+				if(this.takeShopDate[0].hasOwnProperty('notice')){
+					this.showEmpty = true;
+					this.showResult = false;
+				}else{
+					this.showEmpty = false;
+					this.showResult = true;
+				}
 			}
 		}
 	}
-	
+
 </script>
 
 <style scoped>

@@ -34,3 +34,13 @@ line-height: 50upx;}
 .conteng-starting text{width: 130upx;}
 .conteng-starting image{width: 24upx; height: 24upx;
 padding-right: 10upx;}
+.emptyMsg{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 70upx;
+}
+.emptyMsg image{
+	width: 100upx;
+	height: 100upx;
+}
