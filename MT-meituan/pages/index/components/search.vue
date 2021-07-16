@@ -8,8 +8,8 @@
 		</view>
 		
 		<!-- 搜索 -->
-		<view class="search-box ">
-			<view class="search" @click="seaRch()">
+		<view class="search-box">
+			<view class="search" @click="goSearchPage()">
 				<image src="../../../static/coen/sousuo.svg" mode="widthFix" class="search-img"></image>
 				<input type="text" placeholder="椒盐牛排" />
 			</view>
@@ -149,12 +149,23 @@
 				this.num = e.detail.current
 				// console.log(e.detail.current) 轮播图循环播放打印的页码
 				
+			},
+			
+			// 跳转到search搜索页面
+			goSearchPage(){
+				// 跳转页面
+				uni.navigateTo({
+					url:'/pages/search/search'
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="less" scoped>
+	.search{
+		background-color: red;
+	}
 	/* scoped：css只限制在当前组件使用，避免其他组件相同class，造成影响 */
 	@import url('../index.less');
 </style>

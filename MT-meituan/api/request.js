@@ -13,12 +13,14 @@ const nearbyTakeOutRank = publicUrl+'api/forshop/starting';
 // 筛选多选
 const multipleurl = publicUrl + 'api/forshop/multiple';
 
-
+// 搜索：
+const srarchUrl = publicUrl + 'api/forshop/search';
 
 // 导出路径
 module.exports = {
 	preferenceUrl,
 	nearbyTakeOut,
 	nearbyTakeOutRank,
-	multipleurl
+	multipleurl,
+	srarchUrl
 }

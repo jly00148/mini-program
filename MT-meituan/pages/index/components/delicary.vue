@@ -200,6 +200,7 @@
 				this.num = index;
 				this.drop = false;
 				this.mask = false;
+				this.sortmen = false;
 				
 				const data = {
 					screen,
@@ -260,7 +261,13 @@
 			
 			// 清空选择
 			clearAllSelect(){
-				// console.log('点击清空',this.multiObj)
+				this.$delete(this.multiObj,'capita');
+				this.$delete(this.multiObj,'deliver');
+				this.$delete(this.multiObj,'duration');
+				this.$delete(this.multiObj,'physi');
+				
+				this.sortClick(0,"综合排序","_id",1)
+				
 					for(var i = 0;i<this.screendata[0].datas.length;i++){
 						this.screendata[0].datas[i].id = 0;
 					}
