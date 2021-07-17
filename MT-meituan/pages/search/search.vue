@@ -24,8 +24,8 @@
 			</view>
 			<!-- tab -->
 			<view class="menu-block">
-				<block>
-					<view></view>
+				<block v-for="(items,index) in searchHistory" :key="index">
+					<view>{{items}}</view>
 				</block>
 			</view>
 		</view>
@@ -40,7 +40,7 @@
 				<image src="../../static/coen/empty.png" mode="aspectFill"></image>
 			</view>
 			<block v-for="(items,index) in searchResult" :key="index">
-				<view class="content-view"  v-show="showResult">
+				<view class="content-view"  v-show="!showEmptyResult">
 					<view class="content-img">
 						<image :src="items.logo" mode="aspectFill"></image>
 					</view>
@@ -76,48 +76,72 @@
 		data() {
 			return {
 				searchdata:'',
+				searchHistory:[],
 				searchResult:[],
-				showEmptyResult:false,
-				showResult:false,
+				showEmptyResult:false
 			}
 		},
 		methods: {
 			// 一：点击右边搜索触发搜索
 			searchBtn(){
-				//获取搜索框输入的关键字：this.searchdata
+				//获取搜索框输入的关键字：this.searchdata 双向数据绑定
 				this.searchData(this.searchdata)
 			},
 			
 			// 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
 			onKeyInput(e){
 				//  获取搜索框输入的关键字：e.detail.value
-				this.searchData(this.searchdata)
+				this.searchData(e.detail.value)
 			},
 			
 			searchData(keyWord){
+				// 同步存储
+				this.handleStorage(keyWord)
+				
 				var data = {
 					searchdata:keyWord
 				}
-				
 				allApi(srarchUrl,'POST',data)
 				.then(result=>{
-					console.log(result)
 					if(typeof result[1].data === 'string'){
 						this.showEmptyResult = true;
-						this.showResult = false;
 					}else{
 						this.showEmptyResult = false;
-						this.showResult = true;
 						this.searchResult = result[1].data;
 					}
-					
 				})
 				.catch(err=>{
 					console.log(err)
 				})
+			},
+			handleStorage(storageWord){
+				// 获取local storege中存储的数组，没有的话设置为空数组
+				let locaArr = uni.getStorageSync('search_key') || [];
+				
+				// 让获取的数组等于this.searchHistory，输入搜索即可出现搜索历史记录
+				this.searchHistory = locaArr;
+				
+				// 将搜索的关键字存入数组
+				locaArr.unshift(storageWord);
+				
+				// 数组去重
+				for(var i = 0;i<locaArr;i++){
+					for(var j = i+1;j<locaArr.length;j++){
+						
+					}
+				}
+				
+				// 数组存入本地storage
+				uni.setStorageSync('search_key',locaArr);
 			}
+		},
+		mounted(){
+			// 页面一加载即从本地获取搜索存入的关键字
+			this.searchHistory = uni.getStorageSync('search_key') || [];
 		}
 	}
+	
+
 </script>
 
 <style>

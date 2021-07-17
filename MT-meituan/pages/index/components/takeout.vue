@@ -5,7 +5,7 @@
 			<image src="../../../static/coen/empty.png" mode="aspectFill"></image>
 		</view>
 		<block v-for="(item,index) in takeShopDate" :key="index">
-			<view v-show="showResult" class="content-view">
+			<view v-show="!showEmpty" class="content-view">
 				<view class="content-img">
 					<image :src="item.logo" mode="aspectFill"></image>
 				</view>
@@ -104,17 +104,14 @@
 					// }
 				// ]
 				showEmpty:false,
-				showResult:false
 			}
 		},
 		watch:{
 			takeShopDate:function(){
 				if(this.takeShopDate[0].hasOwnProperty('notice')){
 					this.showEmpty = true;
-					this.showResult = false;
 				}else{
 					this.showEmpty = false;
-					this.showResult = true;
 				}
 			}
 		}
