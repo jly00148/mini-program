@@ -1,8 +1,7 @@
 <template>
 	<view>
 		<view v-show="showEmpty" class="emptyMsg">
-			<text>搜索为空</text>
-			<image src="../../../static/coen/empty.png" mode="aspectFill"></image>
+			<Tip :tipText="tipText"></Tip>
 		</view>
 		<block v-for="(item,index) in takeShopDate" :key="index">
 			<view v-show="!showEmpty" class="content-view">
@@ -31,12 +30,19 @@
 </template>
 
 <script>
+	import Tip from '../../../tips/tips.vue';
+	
 	export default {
+		components:{
+			Tip:Tip
+		},
 		props:{
 			takeShopDate:Array
 		},
 		data(){
 			return {
+				tipText:'',
+				showEmpty:false
 				// takeshop:this.takeshop
 				// takeshop:[
 					// {
@@ -103,13 +109,13 @@
 					// 	'types':'川菜'
 					// }
 				// ]
-				showEmpty:false,
 			}
 		},
 		watch:{
 			takeShopDate:function(){
 				if(this.takeShopDate[0].hasOwnProperty('notice')){
 					this.showEmpty = true;
+					this.tipText = '搜索为空'
 				}else{
 					this.showEmpty = false;
 				}
