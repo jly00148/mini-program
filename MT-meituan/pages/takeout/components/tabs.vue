@@ -11,14 +11,25 @@
 		data() {
 			return {
 				num:0,
+				_index:0,
 				order: ['点菜','评价','商家']
 			}
 		},
 		methods:{
 			menubtn(index){
-				this.num = index;
-				// 子组件调试父组件方法 ：parent;
-				// this.$parent.fatherMethod(index)
+				// 重复点击，防重复调用父组件方法
+				if(this._index == index){
+					return;
+				}else{
+				// 非重复点击
+					this.num = index;
+					
+					// 保存index值,方便点击判断
+					this._index = index;
+					
+					// 子组件调试父组件方法 ：parent;
+					this.$parent.$parent.fatherMethod(index);
+				}
 			}
 		}
 	}

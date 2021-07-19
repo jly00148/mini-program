@@ -4,12 +4,12 @@
 		<Introduce></Introduce>
 		<!-- tab切换 -->
 		<Tabs></Tabs>
-		<!-- 商品下单 -->
-		<Ordering></Ordering>
+		<!-- 点菜 -->
+		<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]"></Ordering>
 		<!-- 用户评论 -->
-		<Assess></Assess>
+		<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]"></Assess>
 		<!-- 商家详情 -->
-		<Details></Details>
+		<Details :class="[hideOrShow === 2 ? 'show' : 'hide' ]"></Details>
 	</view>
 </template>
 
@@ -30,15 +30,22 @@
 		},
 		data() {
 			return {
-				
+				hideOrShow:0
 			}
 		},
 		methods: {
-
+			fatherMethod(index){
+				this.hideOrShow = index;
+			}
 		}
 	}
 </script>
 
 <style>
-
+	.show{
+		display: block;
+	}
+	.hide{
+		display: none;
+	}
 </style>
