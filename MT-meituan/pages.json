@@ -34,6 +34,15 @@
             }
             
         }	
+        ,{
+            "path" : "pages/takeout/takeout",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "下单",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	
 	"globalStyle": {
