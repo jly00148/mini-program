@@ -10,6 +10,7 @@ import store from 'store/store.js';
 Vue.prototype.$store = store;
 
 const app = new Vue({
-    ...App
+    ...App,
+	store:store
 })
 app.$mount()

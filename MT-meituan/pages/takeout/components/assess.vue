@@ -33,6 +33,9 @@
 
 <script>
 	export default{
+		props:{
+			messagedata:Array
+		},
 		data(){
 			return {
 				enptylist:true,
@@ -43,10 +46,31 @@
 					}
 				],
 				leaveword:[
-					{
-						
-					}
+
 				]
+			}
+		},
+		watch:{
+			messagedata(newValue,oldVlue){
+				let leaveword = newValue.map(item=>{
+					return item.messagedata
+				})
+				this.leaveword = leaveword;
+				
+				// 1.评论分类标签去重复和去空标签
+				// 2.取出评论分类标签放在一个数组里
+				let messageWord = newValue.map(item=>{
+					return item.classmessage
+				})
+				
+				// 标签去重
+				let newarr = Array.from(new Set(messageWord))
+				
+				// 标签去空值
+				var newArr = newarr.filter(item=>item)
+				
+				// 数组合并
+				var arr = ['全部',...newArr]
 			}
 		},
 		methods:{

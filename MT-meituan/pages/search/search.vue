@@ -155,6 +155,8 @@
 				this.searchHistory = [];
 				// 同时清除本地缓存
 				uni.removeStorageSync('search_key');
+				
+				this.showEmptyResult = false;
 			},
 			
 			// 点击搜索记录再次搜索
