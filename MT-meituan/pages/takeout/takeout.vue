@@ -35,9 +35,9 @@
 		data() {
 			return {
 				hideOrShow:0,
-				busidata:0,
-				orderingdata:0,
-				messagedata:0
+				busidata:[],
+				orderingdata:[],
+				messagedata:[]
 			}
 		},
 		methods: {
@@ -54,12 +54,12 @@
 				
 				Promise.all([allApi(shopUrl,'POST',data),allApi(getdishesUrl,'POST',data),allApi(commentUrl,'POST',disdata)])
 				.then(result=>{
-					console.log(result)
 					// 商家介绍
-					this.busidata = result[0].data[0]
+					this.busidata = result[0][1].data
 					// 商品数据
-					this.orderingdata = result[1].data
+					this.orderingdata = result[1][1].data
 					// 评论
+					console.log(result)
 					this.messagedata = result[2][1].data
 				})
 				.catch(err=>{

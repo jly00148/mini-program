@@ -1,3 +1,4 @@
+<!-- 评论 -->
 <template>
 	<view class="message-view">
 		<!-- 分类 -->
@@ -41,36 +42,36 @@
 				enptylist:true,
 				num:0,
 				tabmessage:[
-					{
-						
-					}
 				],
 				leaveword:[
-
 				]
 			}
 		},
 		watch:{
 			messagedata(newValue,oldVlue){
+				// 一：处理评论
 				let leaveword = newValue.map(item=>{
 					return item.messagedata
 				})
 				this.leaveword = leaveword;
 				
-				// 1.评论分类标签去重复和去空标签
-				// 2.取出评论分类标签放在一个数组里
+				// --------------------------------------------------------------------------------
+				
+				// 二：处理标签(标签去重和去空值)：
+				// 1.提取标签
 				let messageWord = newValue.map(item=>{
 					return item.classmessage
 				})
 				
-				// 标签去重
+				// 2.标签去重(比如两个相同的标签：味道不错)
 				let newarr = Array.from(new Set(messageWord))
+				console.log(newarr)
 				
-				// 标签去空值
+				// 3.标签去空值(比如评论为感叹号或者句号而分不出好评差评的的时候回返回空字符串，不去除空标签的话会显示在评论区)
 				var newArr = newarr.filter(item=>item)
 				
-				// 数组合并
-				var arr = ['全部',...newArr]
+				// 4.数组合并(评价分类：速度快、味道...)
+				this.tabmessage = ['全部',...newArr]
 			}
 		},
 		methods:{
