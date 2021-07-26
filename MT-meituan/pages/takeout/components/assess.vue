@@ -2,7 +2,7 @@
 <template>
 	<view class="message-view">
 		<!-- 分类 -->
-		<view v-if="enptylist">
+		<view v-if="!showAndHide">
 			<view class="menu-block">
 				<block v-for="(item,index) in tabmessage" :key="index">
 					<view :class="{activetext: index == num}" @click="menubtn(index,item)">{{item}}</view>
@@ -27,13 +27,17 @@
 				</view>
 			</block>
 		</view>
-		<!-- 没有评论的情况 -->
-		<view class="claenpty" v-if="!enptylist">该商家还没有商品评论哦!</view>
+		<Tips v-if="showAndHide" :tipText="tipText"></Tips>
 	</view>
 </template>
 
 <script>
+	import Tips from '../../../tips/tips.vue';
+	
 	export default{
+		components:{
+			Tips:Tips
+		},
 		props:{
 			messagedata:Array,
 			sonComponentClassIndex:Number
@@ -41,15 +45,20 @@
 		data(){
 			return {
 				num:0,
-				enptylist:true,
 				tabmessage:[
 				],
 				leaveword:[
-				]
+				],
+				showAndHide:false,
+				tipText:'没有评论'
 			}
 		},
 		watch:{
 			messagedata(newValue,oldVlue){
+				// 没有评论
+				if(newValue.length == 0){
+					this.showAndHide = true;
+				}
 				// 一：处理评论
 				let leaveword = newValue.map(item=>{
 					return item.messagedata

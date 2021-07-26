@@ -46,14 +46,19 @@
 				this.hideOrShow = index;
 			},
 			takeFn(){
-				let data = {
-					openid:'5dfcf328da83f620e4077112'
-				},
-				disdata = {
-					merchantid:'5dfcf328da83f620e4077112'
-				}
+				let data = {},
+				disdata = {}
 				
-				Promise.all([allApi(shopUrl,'POST',data),allApi(getdishesUrl,'POST',data),allApi(commentUrl,'POST',disdata)])
+				data.openid='5dfcf328da83f620e4077112'
+				disdata.merchantid='5dfcf328da83f620e4077112'
+				
+				Promise.all(
+					[
+						allApi(shopUrl,'POST',data),
+						allApi(getdishesUrl,'POST',data),
+						allApi(commentUrl,'POST',disdata)
+					]
+				)
 				.then(result=>{
 					// 商家介绍
 					this.busidata = result[0][1].data
@@ -84,7 +89,6 @@
 				.catch(err=>{
 					console.log(err)
 				})
-				
 			}
 		},
 		mounted() {

@@ -1,9 +1,11 @@
 <template>
 	<view>
-		<view class="text">
-			{{tipText}}
+		<view class="tips">
+			<view>
+				{{tipText}}
+			</view>
+			<image src="../static/coen/meoyopu.png" mode="aspectFill"></image>
 		</view>
-		<image src="../static/coen/meoyopu.png" mode="aspectFill"></image>
 	</view>
 </template>
 
@@ -16,8 +18,10 @@
 </script>
 
 <style>
-	.text{
-		text-align: center;
+	.tips{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	image{
 		width: 200upx;
