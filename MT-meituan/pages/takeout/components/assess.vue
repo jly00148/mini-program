@@ -35,12 +35,13 @@
 <script>
 	export default{
 		props:{
-			messagedata:Array
+			messagedata:Array,
+			sonComponentClassIndex:Number
 		},
 		data(){
 			return {
-				enptylist:true,
 				num:0,
+				enptylist:true,
 				tabmessage:[
 				],
 				leaveword:[
@@ -65,18 +66,21 @@
 				
 				// 2.标签去重(比如两个相同的标签：味道不错)
 				let newarr = Array.from(new Set(messageWord))
-				console.log(newarr)
 				
 				// 3.标签去空值(比如评论为感叹号或者句号而分不出好评差评的的时候回返回空字符串，不去除空标签的话会显示在评论区)
 				var newArr = newarr.filter(item=>item)
-				
-				// 4.数组合并(评价分类：速度快、味道...)
-				this.tabmessage = ['全部',...newArr]
+
+				if(this.sonComponentClassIndex == 0){
+					// 4.数组合并(评价分类：速度快、味道...)
+					this.tabmessage = ['全部',...newArr]
+				}
 			}
 		},
 		methods:{
-			menubtn(){
-				
+			// 点击评论分类切换css和发送请求
+			menubtn(index,item){
+				this.num = index;
+				this.$parent.$parent.assessClassMethod(index,item)
 			}
 		}
 	}
