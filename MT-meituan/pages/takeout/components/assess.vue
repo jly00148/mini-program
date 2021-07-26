@@ -69,7 +69,8 @@
 				
 				// 3.标签去空值(比如评论为感叹号或者句号而分不出好评差评的的时候回返回空字符串，不去除空标签的话会显示在评论区)
 				var newArr = newarr.filter(item=>item)
-
+				
+				// 这一步说明：页面初始化加载完成后就会全部显示标签的分类的，当点其他标签时并不会覆盖this.tabmessage,达到更改评论分页即可
 				if(this.sonComponentClassIndex == 0){
 					// 4.数组合并(评价分类：速度快、味道...)
 					this.tabmessage = ['全部',...newArr]
