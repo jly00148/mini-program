@@ -31,12 +31,12 @@
 										<text>月售10</text>
 									</view>
 									<view class="conteng-price">
-										<view class="conteng-shi">¥{{item.Price}}</view>
-										<view class="conteng-hua">¥{{item.Discount}}</view>
+										<view class="conteng-shi">¥{{item.Discount}}</view>
+										<view class="conteng-hua">¥{{item.Price}}</view>
 										<view class="ordering-price">
-											<image src="../../../static/coen/jianhao.png" mode="widthFix" @click="reduce()"></image>
-												<text class="amounting">{{amounting}}</text>
-											<image src="../../../static/coen/jiahao.png" mode="widthFix" @click="add(item.Price)"></image>
+											<image src="../../../static/coen/jianhao.png" mode="widthFix" @click="reduce(item.amount,index,-1)"></image>
+												<text class="amounting">{{item.amount}}</text>
+											<image src="../../../static/coen/jiahao.png" mode="widthFix" @click="add(item.amount,index,1)"></image>
 										</view>
 									</view>
 								</view>
@@ -60,11 +60,11 @@
 				<view class="total-left">
 					<view class="Cost-mony">
 						<text class="Total-price">¥</text>
-						<text class="Delivery">另需配送费元</text>
+						<text class="Delivery">另需配送费{{this.delivering}}元</text>
 					</view> 
 				</view>
 				<view class="total-right">
-					<text>30元起送</text>
+					<text>{{this.capita}}元起送</text>
 					<text>还差元</text>
 				</view>
 			</view>
@@ -75,18 +75,24 @@
 <script>
 	export default{
 		props:{
-			orderingdata:Array
+			orderingdata:Array,
+			busidata:Array
 		},
 		 data(){
 			 return {
+				 // 左边分类
 				orderList:[],
+				// 点击左边分类后右边展示的数据
 				newRightArr:[],
-				num:0,
+				// 初始化使其显示分类的盖浇饭部分
 				leftItemChange:'盖浇饭',
-				// 防重复点击
+				// 初始化使其第一项(点菜)添加css
+				num:0,
+				// 左边分类防重复点击
 				clickState:0,
-				// 总价格
-				amounting:null
+				delivering:null,
+				physical:null,
+				capita:null,
 			 }
 		 },
 		 methods:{
@@ -111,36 +117,109 @@
 			},
 			rightItemChange(item){
 				var newRightarr = [];
+				// nums值是点击加号或者减号产生的份数
+				var nums = 0;
 				for(var i = 0;i<this.orderingdata.length;i++){
+					this.orderingdata[i].objdis.amount = nums;
+					// 点击左边并且把item参数(盖浇饭小吃等)传进来和this.orderingdata[i].optidata是否相等去重相关多余的(左边)
 					if(this.orderingdata[i].optidata == item){
 						newRightarr.push(this.orderingdata[i].objdis)
 					}
 				}
-				
 				this.newRightArr = newRightarr;
 			},
-			add(price){
-				this.amounting = price
-			}
-		 },
-		 watch:{
-			// 用户进入页面默认展示第一个tab键上(盖浇饭),并且展示第一个tab键下的内容
-			orderingdata(newValue){
+			// 点击+号增加份数
+			add(amount,index,state){
+				this.addOrReduce(amount,index,state)
+				// 方法一：更改this.newRightArr[index].amount中的amount值;
+				// 限制购买10份：
+				// amount < 10 ? amount++ : amount = 10;
+				// this.newRightArr[index].amount = amount;
+				// var findArr = this.newRightArr.map(item=>{
+				// 	return item;
+				// })
+				// 注意点：必需要有一个新数组赋值给this.newRightArr，直接在this.newRightArr中更改无效
+				// this.newRightArr = findArr;
+				
+				// ----------------------------------------------------------------------------------------------------------
+				
+				// 方法二：需要在add中传递参数amount和input值
+				// 	let findArr = this.newRightArr.filter(item=>{
+				// 		if(item.input == input){
+				// 			if(amount < 0){
+				// 				return item.amount = 0;
+				// 			}else{
+				// 				return item.amount = amount+1;
+				// 			}
+				// 		}
+				// 	})
+				// 	this.newRightArr = findArr;
+			},
+			// 点击-号减少份数(与点击增加相同，可以封装一个函数：addOrReduce)
+			reduce(amount,index,state){
+				this.addOrReduce(amount,index,state)
+				// 防重复点击：
+				// if(amount == this.clickReduce){
+				// 	return;
+				// }else{
+				// 	this.clickReduce = amount;
+				// }
+				// // 判断份数是否为0
+				// amount <= 0 ? amount = 0  : amount--;
+				// this.newRightArr[index].amount = amount;
+				// var findArr = this.newRightArr.map(item=>{
+				// 	return item;
+				// })
+				// this.newRightArr = findArr;
+				
+			},
+			addOrReduce(amount,index,state){
+				/*
+				*state=1 点击的是增加
+				*state：-1 点击的是减少
+				*/
+			   
+				if(state == 1){
+					amount++;
+				}else{
+					amount < 1 ? amount = 0 :amount--;
+				}
+
+				this.newRightArr[index].amount = amount;
+				var findArr = this.newRightArr.map(item=>{
+					return item;
+				})
+				this.newRightArr = findArr;
+			},
+			// 点击左边和页面初始化共通调用函数
+			clickOrInitLoad(newValue){
 				let classifdata = newValue.map(item=>{
+					// 将数组中的对象下的optidata属性对象返回成一个新数组
 					return item.optidata;
 				})
 				
 				// 左边分类去重
 				this.orderList = Array.from(new Set(classifdata))
 				
-				// 调用rightItemChange函数使其默认展示盖浇饭的数据
+				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
 				this.rightItemChange(this.leftItemChange)
 			}
-				
-			
+		 },
+		 watch:{
+			// 用户进入页面默认展示第一个tab键上(盖浇饭),并且展示第一个tab键下的内容
+			orderingdata(newValue){
+				this.clickOrInitLoad(newValue)
+			},
+			busidata(newValue){
+				const {delivering,physical,capita} = newValue[0];
+				this.delivering = delivering;
+				this.physical = physical;
+				this.capita = capita;
+			}
 		 },
 		 mounted() {
-			 
+			 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
+			 this.clickOrInitLoad(this.orderingdata)
 		 }
 	}
 </script>

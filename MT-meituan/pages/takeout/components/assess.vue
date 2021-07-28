@@ -90,7 +90,7 @@
 			// 点击评论分类切换css和发送请求
 			menubtn(index,item){
 				this.num = index;
-				this.$parent.$parent.assessClassMethod(index,item)
+				this.$parent.$parent.$parent.assessClassMethod(index,item)
 			}
 		}
 	}

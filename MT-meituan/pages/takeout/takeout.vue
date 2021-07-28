@@ -6,7 +6,7 @@
 		<Tabs class="tabs"></Tabs>
 		<!-- 点菜 -->
 		<view class="ordering-sceate">
-			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata"></Ordering>
+			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata" :busidata="busidata"></Ordering>
 			<!-- 评论 -->
 			<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]" :messagedata="messagedata" :sonComponentClassIndex="sonComponentClassIndex"></Assess>
 			<!-- 商家详情 -->
@@ -48,9 +48,9 @@
 				this.hideOrShow = index;
 			},
 			takeFn(){
-				let data = {},
-				disdata = {}
+				let data = {},disdata = {}
 				
+				// 令data对象和disdata对象添加一个属性参数
 				data.openid='5dfcf328da83f620e4077112'
 				disdata.merchantid='5dfcf328da83f620e4077112'
 				
@@ -63,11 +63,11 @@
 				)
 				.then(result=>{
 					// 商家介绍
-					this.busidata = result[0][1].data
+					this.busidata = result[0][1].data;
 					// 商品数据
-					this.orderingdata = result[1][1].data
+					this.orderingdata = result[1][1].data;
 					// 评论(包括分类标签和评论)
-					this.messagedata = result[2][1].data
+					this.messagedata = result[2][1].data;
 				})
 				.catch(err=>{
 					console.log(err)
