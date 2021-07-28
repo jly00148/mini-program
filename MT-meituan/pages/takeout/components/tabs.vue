@@ -36,8 +36,14 @@
 </script>
 
 <style scoped>
-	.ordering{margin: 20upx;
+	.ordering{
 	display: flex;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 199upx;
+	z-index: 999;
+	background-color: #f1f1f1;
 	}
 	.ordering text{
 	margin-right: 60upx;

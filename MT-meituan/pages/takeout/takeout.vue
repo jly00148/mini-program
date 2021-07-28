@@ -3,13 +3,15 @@
 		<!-- 商家介绍 -->
 		<Introduce></Introduce>
 		<!-- tab切换 -->
-		<Tabs></Tabs>
+		<Tabs class="tabs"></Tabs>
 		<!-- 点菜 -->
-		<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]"></Ordering>
-		<!-- 评论 -->
-		<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]" :messagedata="messagedata" :sonComponentClassIndex="sonComponentClassIndex"></Assess>
-		<!-- 商家详情 -->
-		<Details :class="[hideOrShow === 2 ? 'show' : 'hide' ]" ></Details>
+		<view class="ordering-sceate">
+			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata"></Ordering>
+			<!-- 评论 -->
+			<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]" :messagedata="messagedata" :sonComponentClassIndex="sonComponentClassIndex"></Assess>
+			<!-- 商家详情 -->
+			<Details :class="[hideOrShow === 2 ? 'show' : 'hide' ]" ></Details>
+		</view>
 	</view>
 </template>
 
@@ -97,11 +99,16 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.show{
 		display: block;
+		height: 1500upx;
 	}
 	.hide{
 		display: none;
+	}
+	.ordering-sceate{
+		position: relative;
+		top: 175upx;
 	}
 </style>

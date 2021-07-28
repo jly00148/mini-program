@@ -11,35 +11,35 @@
 			
 			<!-- 右边 -->
 			<view class="ordering-right">
-				<text class="ordering-right-title">盖浇饭</text>
+				<text class="ordering-right-title">{{leftItemChange}}</text>
 				<view>
-					<block v-for="(item,index) in classifarr" :key="index">
+					<block v-for="(item,index) in newRightArr" :key="index">
 						<view class="content-view">
 							<!-- 左边商品图片 -->
 							<view class="content-img">
-								<image mode="aspectFill" src="http://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png"></image>
+								<image mode="aspectFill" :src="item.image"></image>
 							</view> 
 							<!-- 右边商品 -->
-							<view class="content-title">
-								<text class="conteng-take"></text>
-								<view class="conteng-monthly">
-									<block>
-									<text></text>
-									</block>
-								</view>
-								<view class="conteng-starting">
-									<text>月售10</text>
-								</view>
-								<view class="conteng-price">
-									<view class="conteng-shi">¥10</view>
-									<view class="conteng-hua">¥20</view>
-									<view class="ordering-price">
-										<image @click="reDuce()" v-if="showOrderOrNot" src="../../../static/coen/jianhao.png" mode="widthFix"></image>
-										<text class="amounting">{{portion}}</text>
-										<image @click="pLus()" src="../../../static/coen/jiahao.png" mode="widthFix"></image>
+								<view class="content-title">
+									<text class="conteng-take">{{item.input}}</text>
+									<view class="conteng-monthly">
+										<block v-for="(tagItem,index) in item.tags" key="index">
+											<text>{{tagItem}}</text>
+										</block>
+									</view>
+									<view class="conteng-starting">
+										<text>月售10</text>
+									</view>
+									<view class="conteng-price">
+										<view class="conteng-shi">¥{{item.Price}}</view>
+										<view class="conteng-hua">¥{{item.Discount}}</view>
+										<view class="ordering-price">
+											<image src="../../../static/coen/jianhao.png" mode="widthFix" @click="reduce()"></image>
+												<text class="amounting">{{amounting}}</text>
+											<image src="../../../static/coen/jiahao.png" mode="widthFix" @click="add(item.Price)"></image>
+										</view>
 									</view>
 								</view>
-							</view>
 						</view>
 					</block>
 				</view>
@@ -50,21 +50,21 @@
 		<view class="total">
 			<!-- 骑手 -->
 			<view class="qishou">
-				<image v-show="!showOrderOrNot" src="../../../static/coen/weigou.png" mode="widthFix"></image>
-				<image v-show="showOrderOrNot" src="../../../static/coen/yigou.png" mode="widthFix"></image>
+				<image src="../../../static/coen/weigou.png" mode="widthFix"></image>
+				<image src="../../../static/coen/yigou.png" mode="widthFix"></image>
 			</view>
 			<!-- 多少量 -->
-			<view class="Numbering">{{portion}}</view>
+			<view class="Numbering"></view>
 			<!-- 金额 -->
 			<view class="total-dis">
 				<view class="total-left">
 					<view class="Cost-mony">
-						<text class="Total-price">¥{{allPrice}}</text>
-						<text class="Delivery">另需配送费{{delivery}}元</text>
+						<text class="Total-price">¥</text>
+						<text class="Delivery">另需配送费元</text>
 					</view> 
 				</view>
 				<view class="total-right">
-					<text>30元起送</text>，
+					<text>30元起送</text>
 					<text>还差元</text>
 				</view>
 			</view>
@@ -74,50 +74,73 @@
 
 <script>
 	export default{
+		props:{
+			orderingdata:Array
+		},
 		 data(){
 			 return {
-				orderList:['盖浇饭','小吃','鸡鸭','小炒'],
+				orderList:[],
+				newRightArr:[],
 				num:0,
-				portion:0,
-				price:10,
-				delivery:2,
-				showOrderOrNot:false,
-				classifarr:[
-					{
-						
-					}
-				]
+				leftItemChange:'盖浇饭',
+				// 防重复点击
+				clickState:0,
+				// 总价格
+				amounting:null
 			 }
 		 },
 		 methods:{
-			 clickOrderList(item,index){
-				 this.num = index;
-			 },
-			 reDuce(){
-				 this.portion = this.portion - 1;
-				 if(this.portion <= 0){
-					 this.portion = 0;
-					 this.delivery = 0;
-					 this.showOrderOrNot = false;
-				 }
-			 },
-			 pLus(){
-				 this.portion = this.portion + 1;
-				 this.delivery = 2;
-				 this.showOrderOrNot = true;
-				 if(this.portion > 99){
-					 this.portion = 99;
-				 }
-			 }
+			clickOrderList(item,index){
+				// 防重复点击
+				if(index == this.clickState){
+					return;
+				}else{
+					this.clickState = index;
+				}
+				
+				// 点击切换左边的分类添加样式
+				this.num = index;
+				
+				// 右边切换相应的分类(比如盖浇饭、小吃等等词条)
+				this.leftItemChange = item;
+				
+				// 将词条传递给rightItemChange函数，方便watch监听数据变化后立即有个默认的数据展示，
+				// 没有用mounted原因是mounted在watch执行之前，获取不到watch监听的数据，所以在watch监听数据变化后
+				// 立即调用rightItemChange函数
+				this.rightItemChange(item);
+			},
+			rightItemChange(item){
+				var newRightarr = [];
+				for(var i = 0;i<this.orderingdata.length;i++){
+					if(this.orderingdata[i].optidata == item){
+						newRightarr.push(this.orderingdata[i].objdis)
+					}
+				}
+				
+				this.newRightArr = newRightarr;
+			},
+			add(price){
+				this.amounting = price
+			}
 		 },
-		 computed:{
-			 allPrice(){
-				return this.portion * this.price;
-			 }
+		 watch:{
+			// 用户进入页面默认展示第一个tab键上(盖浇饭),并且展示第一个tab键下的内容
+			orderingdata(newValue){
+				let classifdata = newValue.map(item=>{
+					return item.optidata;
+				})
+				
+				// 左边分类去重
+				this.orderList = Array.from(new Set(classifdata))
+				
+				// 调用rightItemChange函数使其默认展示盖浇饭的数据
+				this.rightItemChange(this.leftItemChange)
+			}
+				
+			
 		 },
 		 mounted() {
-			 // 因为初始化页面订单份数为0，因此加载完页面没有点击加号或者减号进而并不会触发让其delivery为0
-		 	this.reDuce()
+			 
 		 }
 	}
 </script>
@@ -128,6 +151,7 @@
 	.ordering-left{width: 190upx; background: #F0F0F0;
 	overflow-y: auto;
 	height: 100%;
+
 	}
 	.ordering-left text{
 	color: #a8a8a8;

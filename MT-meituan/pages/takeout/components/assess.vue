@@ -50,7 +50,7 @@
 				leaveword:[
 				],
 				showAndHide:false,
-				tipText:'没有评论'
+				tipText:'暂时没有人对此商家评论'
 			}
 		},
 		watch:{

@@ -30,6 +30,11 @@
 	background: linear-gradient(to top, #ffe566 30%, #ffd300 100%);
 	border-bottom-left-radius: 20upx;
 	border-bottom-right-radius: 20upx;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 89upx;
+	z-index: 99;
 	
 	}
 	/* 1 */
