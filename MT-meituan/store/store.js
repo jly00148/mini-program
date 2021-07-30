@@ -5,12 +5,14 @@ Vue.use(Vuex);
 
 const screendata = {
 	// 存储筛选出来的数据
-	screenarr:[{}]
+	screenarr:[{}],
+	busidataarr:[{}]
+	
 }
 
 // 数据仓库
 const state = {
-	screendata,
+	screendata
 }
 
 const store = new Vuex.Store({
@@ -28,6 +30,11 @@ const store = new Vuex.Store({
 				state.screendata = {
 					screenarr:listdata
 				}
+			}
+		},
+		busidata(state,busidatalist){
+			state.screendata = {
+				busidataarr:busidatalist
 			}
 		}
 	}

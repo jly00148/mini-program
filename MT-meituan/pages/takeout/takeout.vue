@@ -6,7 +6,7 @@
 		<Tabs class="tabs"></Tabs>
 		<!-- 点菜 -->
 		<view class="ordering-sceate">
-			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata" :busidata="busidata"></Ordering>
+			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata"></Ordering>
 			<!-- 评论 -->
 			<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]" :messagedata="messagedata" :sonComponentClassIndex="sonComponentClassIndex"></Assess>
 			<!-- 商家详情 -->
@@ -37,7 +37,6 @@
 		data() {
 			return {
 				hideOrShow:0,
-				busidata:[],
 				orderingdata:[],
 				messagedata:[],
 				sonComponentClassIndex:0
@@ -63,7 +62,11 @@
 				)
 				.then(result=>{
 					// 商家介绍
-					this.busidata = result[0][1].data;
+					// this.busidata = result[0][1].data;
+					
+					// 不用父传子组件传递数据传，采用vuex
+					this.$store.commit('busidata',result[0][1].data)
+					
 					// 商品数据
 					this.orderingdata = result[1][1].data;
 					// 评论(包括分类标签和评论)

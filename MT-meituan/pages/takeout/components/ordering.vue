@@ -59,7 +59,7 @@
 			<view class="total-dis">
 				<view class="total-left">
 					<view class="Cost-mony">
-						<text class="Total-price">¥</text>
+						<text class="Total-price">¥{{count}}</text>
 						<text class="Delivery">另需配送费{{this.delivering}}元</text>
 					</view> 
 				</view>
@@ -73,6 +73,7 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex';
 	export default{
 		props:{
 			orderingdata:Array,
@@ -93,9 +94,12 @@
 				delivering:null,
 				physical:null,
 				capita:null,
+				// 计算总价
+				count:0
 			 }
 		 },
 		 methods:{
+			 // 点击上边相应切换点菜。评价等商家
 			clickOrderList(item,index){
 				// 防重复点击
 				if(index == this.clickState){
@@ -115,6 +119,7 @@
 				// 立即调用rightItemChange函数
 				this.rightItemChange(item);
 			},
+			// 点击左边相应切换右边
 			rightItemChange(item){
 				var newRightarr = [];
 				// nums值是点击加号或者减号产生的份数
@@ -173,6 +178,7 @@
 				// this.newRightArr = findArr;
 				
 			},
+			// 封装点击增加和减少函数
 			addOrReduce(amount,index,state){
 				/*
 				*state=1 点击的是增加
@@ -182,7 +188,8 @@
 				if(state == 1){
 					amount++;
 				}else{
-					amount < 1 ? amount = 0 :amount--;
+					// 减少数量不能小于0
+					amount < 1 ? amount = 0 : amount--;
 				}
 
 				this.newRightArr[index].amount = amount;
@@ -203,6 +210,11 @@
 				
 				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
 				this.rightItemChange(this.leftItemChange)
+			},
+			initBottomData(delivering,physical,capita){
+				this.delivering = delivering;
+				this.physical = physical;
+				this.capita = capita;
 			}
 		 },
 		 watch:{
@@ -210,20 +222,31 @@
 			orderingdata(newValue){
 				this.clickOrInitLoad(newValue)
 			},
+			// 总价计算区域中的配送费，起送价、原价
 			busidata(newValue){
-				const {delivering,physical,capita} = newValue[0];
-				this.delivering = delivering;
-				this.physical = physical;
-				this.capita = capita;
+				const { delivering,physical,capita } = newValue[0];
+				
+				// 暂存一下数组newValue[0],为什么要暂存？因为mounted在watch之前执行，暂存数组留着mounted使用，否则mounted拿不到数据(如果不适用定时器的话)
+				this.initBottomData(delivering,physical,capita)
 			}
 		 },
+
+		 computed:{
+			 ...mapState(['screendata'])
+		 },
+		 // 
 		 mounted() {
 			 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
-			 this.clickOrInitLoad(this.orderingdata)
+			 this.clickOrInitLoad(this.orderingdata);
+			 
+			 // 为什么要使用setTimeout定时器？令其要让mounted在watch在mounted之前调用，watch暂存数据后,mounted才可以拿到暂存的数据
+			 setTimeout(()=>{
+				const { delivering,physical,capita } = this.screendata.busidataarr[0];
+				this.initBottomData(delivering,physical,capita)
+			 },10)
 		 }
 	}
 </script>
-
 <style scoped>
 	.ordering-fls{display: flex; justify-content: space-between;}
 	/* 左边商品分类 */
