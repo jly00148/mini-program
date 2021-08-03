@@ -34,9 +34,34 @@
 										<view class="conteng-shi">¥{{item.Discount}}</view>
 										<view class="conteng-hua">¥{{item.Price}}</view>
 										<view class="ordering-price">
-											<image src="../../../static/coen/jianhao.png" mode="widthFix" @click="reduce(item.amount,index,-1)"></image>
+											<image 
+												src="../../../static/coen/jianhao.png" 
+												mode="widthFix" 
+												@click="reduce(
+													item.amount,
+													index,
+													item.id,
+													-1,
+													item.Discount,
+													item.image,
+													item.input
+												)"
+											>
+											</image>
 												<text class="amounting">{{item.amount}}</text>
-											<image src="../../../static/coen/jiahao.png" mode="widthFix" @click="add(item.amount,index,1)"></image>
+											<image 
+											src="../../../static/coen/jiahao.png" 
+											mode="widthFix" 
+											@click="add(
+												item.amount,
+												index,
+												item.id,
+												1,
+												item.Discount,
+												item.image,
+												item.input
+											)"
+											></image>
 										</view>
 									</view>
 								</view>
@@ -59,12 +84,12 @@
 			<view class="total-dis">
 				<view class="total-left">
 					<view class="Cost-mony">
-						<text class="Total-price">¥{{count}}</text>
-						<text class="Delivery">另需配送费{{this.delivering}}元</text>
+						<text class="Total-price">¥{{eachCounts}}</text>
+						<text class="Delivery">另需配送费{{delivering}}元</text>
 					</view> 
 				</view>
 				<view class="total-right">
-					<text>{{this.capita}}元起送</text>
+					<text>{{capita}}元起送</text>
 					<text>还差元</text>
 				</view>
 			</view>
@@ -74,10 +99,11 @@
 
 <script>
 	import { mapState } from 'vuex';
+	
 	export default{
 		props:{
 			orderingdata:Array,
-			busidata:Array
+			// busidata:Array
 		},
 		 data(){
 			 return {
@@ -89,29 +115,26 @@
 				leftItemChange:'盖浇饭',
 				// 初始化使其第一项(点菜)添加css
 				num:0,
-				// 左边分类防重复点击
-				clickState:0,
 				delivering:null,
 				physical:null,
 				capita:null,
-				// 计算总价
-				count:0
+				
+				// 每一份价格(初始值为0)
+				eachCounts:0,
+				
+				// 点击添加或者减少把数组存入数组
+				allOrderPrice:[],
+					
 			 }
 		 },
 		 methods:{
 			 // 点击上边相应切换点菜。评价等商家
 			clickOrderList(item,index){
-				// 防重复点击
-				if(index == this.clickState){
-					return;
-				}else{
-					this.clickState = index;
-				}
 				
-				// 点击切换左边的分类添加样式
+				// 点击切换左边(点菜、评论以及商家)的分类添加样式
 				this.num = index;
 				
-				// 右边切换相应的分类(比如盖浇饭、小吃等等词条)
+				// 右边切换相应的分类(比如盖浇饭、小吃等等小词条)
 				this.leftItemChange = item;
 				
 				// 将词条传递给rightItemChange函数，方便watch监听数据变化后立即有个默认的数据展示，
@@ -122,10 +145,13 @@
 			// 点击左边相应切换右边
 			rightItemChange(item){
 				var newRightarr = [];
-				// nums值是点击加号或者减号产生的份数
+				
+				// nums值是点击加号或者减号产生的份数,给数组this.orderingdata中的每个对象添加一个属性amount,值为nums,0意味初始化点餐份数为0
 				var nums = 0;
+				
 				for(var i = 0;i<this.orderingdata.length;i++){
 					this.orderingdata[i].objdis.amount = nums;
+					this.orderingdata[i].objdis.id = this.orderingdata[i]._id;
 					// 点击左边并且把item参数(盖浇饭小吃等)传进来和this.orderingdata[i].optidata是否相等去重相关多余的(左边)
 					if(this.orderingdata[i].optidata == item){
 						newRightarr.push(this.orderingdata[i].objdis)
@@ -134,8 +160,26 @@
 				this.newRightArr = newRightarr;
 			},
 			// 点击+号增加份数
-			add(amount,index,state){
-				this.addOrReduce(amount,index,state)
+
+			// 点击左边和页面初始化共通调用函数
+			clickOrInitLoad(newValue){
+				let classifdata = newValue.map(item=>{
+					// 将数组中的对象下的optidata属性对象返回成一个新数组
+					return item.optidata;
+				})
+				// 左边分类去重
+				this.orderList = Array.from(new Set(classifdata))
+				
+				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
+				this.rightItemChange(this.leftItemChange)
+			},
+			initBottomData(delivering,physical,capita){
+				this.delivering = delivering;
+				this.physical = physical;
+				this.capita = capita;
+			},
+			add(amount,index,id,state,price,image,input){
+				this.addOrReduce(amount,index,id,state,price,image,input)
 				// 方法一：更改this.newRightArr[index].amount中的amount值;
 				// 限制购买10份：
 				// amount < 10 ? amount++ : amount = 10;
@@ -161,8 +205,8 @@
 				// 	this.newRightArr = findArr;
 			},
 			// 点击-号减少份数(与点击增加相同，可以封装一个函数：addOrReduce)
-			reduce(amount,index,state){
-				this.addOrReduce(amount,index,state)
+			reduce(amount,index,id,state,price,image,input){
+				this.addOrReduce(amount,index,id,state,price,image,input)
 				// 防重复点击：
 				// if(amount == this.clickReduce){
 				// 	return;
@@ -179,42 +223,86 @@
 				
 			},
 			// 封装点击增加和减少函数
-			addOrReduce(amount,index,state){
+			addOrReduce(amount,index,id,state,price,image,input){
 				/*
 				*state=1 点击的是增加
 				*state：-1 点击的是减少
 				*/
 			   
+			   // 点的是加号
 				if(state == 1){
 					amount++;
-				}else{
-					// 减少数量不能小于0
-					amount < 1 ? amount = 0 : amount--;
-				}
+					
+					//份数x单价:
+					// parseFloat() 函数可解析一个字符串(这里传的是数字也可以)，并返回一个浮点数，浮点数有toFixed方法，保留小数点后几位
+					var TotalPrice = parseFloat(amount*price).toFixed(2);
+					
+// =======================================================点击+号把商品的信息存放到对象并且去重push到数组中=======================================
 
-				this.newRightArr[index].amount = amount;
-				var findArr = this.newRightArr.map(item=>{
-					return item;
-				})
-				this.newRightArr = findArr;
-			},
-			// 点击左边和页面初始化共通调用函数
-			clickOrInitLoad(newValue){
-				let classifdata = newValue.map(item=>{
-					// 将数组中的对象下的optidata属性对象返回成一个新数组
-					return item.optidata;
-				})
+					// 定义的空对象：放点击或者删除后生成的数据存入该对象
+					const deleteObjInArr = {
+						TotalPrice,
+						id,
+						amount,
+						image,
+						input,
+						price
+					};
+					
+					this.allOrderPrice.push(deleteObjInArr);
+					
+					let newAllOrderPrice =  this.allOrderPrice.map(item=>{
+						return item.id == id ? deleteObjInArr : item;
+					})
+					this.allOrderPrice = newAllOrderPrice;
+					
+// =====================================================================点击+号结尾================================================================
+
+				}else{
+					/*	备注：
+						*点的是-号
+						*减少数量amount不能小于0
+					*/
+					// 判断amount是否小于0
+					amount < 1 ? amount = 0 : amount--;
+					
+					// 浮点数修正(toFixed(1)参数1代表保留的小数点后1位)
+					var TotalPrice = amount * price
+					
+// =======================================================点击-号把商品的信息存放到对象并且去重push到数组中=======================================
+					
+					// 定义的空对象：放点击或者删除后生成的数据存入该对象
+					const deleteObjInArr = {
+						TotalPrice,
+						id,
+						amount,
+						image,
+						input,
+						price
+					};
+					
+					this.allOrderPrice.push(deleteObjInArr);
+					
+					let newAllOrderPrice =  this.allOrderPrice.map(item=>{
+						return item.id == id ? deleteObjInArr : item;
+					})
+					this.allOrderPrice = newAllOrderPrice;
+// ================================================================点击-号结尾====================================================================
+				}
 				
-				// 左边分类去重
-				this.orderList = Array.from(new Set(classifdata))
-				
-				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
-				this.rightItemChange(this.leftItemChange)
-			},
-			initBottomData(delivering,physical,capita){
-				this.delivering = delivering;
-				this.physical = physical;
-				this.capita = capita;
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++加减公共部分+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+					// 
+					// 点的商家里的第几个商品,将其属性amount并且属性值改为amount经过计算后的赋值
+					this.newRightArr[index].amount = amount;
+					
+					// 变更amount后重新遍历数组返回新的数组findArr
+					var findArr = this.newRightArr.map(item=>{
+						return item;
+					})
+					
+					// 遍历完成后赋值给 this.newRightAr,然后遍历到内容中
+					this.newRightArr = findArr;
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++公共部分+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			}
 		 },
 		 watch:{
@@ -223,27 +311,64 @@
 				this.clickOrInitLoad(newValue)
 			},
 			// 总价计算区域中的配送费，起送价、原价
-			busidata(newValue){
-				const { delivering,physical,capita } = newValue[0];
-				
-				// 暂存一下数组newValue[0],为什么要暂存？因为mounted在watch之前执行，暂存数组留着mounted使用，否则mounted拿不到数据(如果不适用定时器的话)
-				this.initBottomData(delivering,physical,capita)
+			// busidata(newValue){
+			// 	const { delivering,physical,capita } = newValue[0];
+			// 	// 暂存一下数组newValue[0],为什么要暂存？因为mounted在watch之前执行，暂存数组留着mounted使用，否则mounted拿不到数据(如果不适用定时器的话)
+			// 	this.initBottomData(delivering,physical,capita)
+			// }
+			
+			// 监听allOrderPrice
+			allOrderPrice(){
+				// 监听总价
+				 // 数组对象去重：累加器reduce()
+					let testObj = {}
+					let uniqueArr = this.allOrderPrice.reduce((pre,cur)=>{
+						// console.log(pre)
+						// console.log(cur)
+						
+						// 下面中三元判断说明：
+						// 1).? '' 代表testObj对象中能找到index的值，不需要push到数组中的，因此不做任何改变保持原样
+						// 2:testObj[cur.index] = true 代表testObj不能找到index的值，因此需要push到数组中testObj[cur.index] = true &&
+						
+						// 方法一：testObj[cur.id] ? '' :  testObj[cur.id] = true && pre.push(cur)
+						// 方法二：(判断重复也是不变的上次pre，一下是push改变后的pre)
+						if(!testObj[cur.id]){
+							testObj[cur.id]=cur.id;
+							pre.push(cur)
+						}
+						return pre
+		
+					},[])
+					
+					var temp = 0;
+					// 计算商品总价：
+					for(var i = 0;i<uniqueArr.length;i++){
+						// console.log(this.eachCounts)
+						// console.log(uniqueArr[i].TotalPrice)
+						temp = temp + Number(uniqueArr[i].TotalPrice)
+					}
+					
+					this.eachCounts = parseFloat(temp).toFixed(1);
 			}
+			
 		 },
 
 		 computed:{
+			 // ----------------------------------------------------------------------------------------------------------------------------------------
 			 ...mapState(['screendata'])
 		 },
 		 // 
 		 mounted() {
-			 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
-			 this.clickOrInitLoad(this.orderingdata);
-			 
+	
 			 // 为什么要使用setTimeout定时器？令其要让mounted在watch在mounted之前调用，watch暂存数据后,mounted才可以拿到暂存的数据
+			 
 			 setTimeout(()=>{
+				 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
+				 this.clickOrInitLoad(this.orderingdata);
+				 
 				const { delivering,physical,capita } = this.screendata.busidataarr[0];
 				this.initBottomData(delivering,physical,capita)
-			 },10)
+			 },400)
 		 }
 	}
 </script>
