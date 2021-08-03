@@ -79,7 +79,7 @@
 				<image src="../../../static/coen/yigou.png" v-show="!showOrHide" mode="widthFix"></image>
 			</view>
 			<!-- 多少量 -->
-			<view class="Numbering"></view>
+			<view class="Numbering">{{allNums}}</view>
 			<!-- 金额 -->
 			<view class="total-dis">
 				<view class="total-left">
@@ -88,10 +88,13 @@
 						<text class="Delivery">另需配送费{{delivering}}元</text>
 					</view> 
 				</view>
-				<view class="total-right">
-					<text>{{capita}}元起送</text>
-					<text>还差元</text>
+				<view class="total-right" v-show="allMoneys">
+					<text class="capita">{{capita}}元起送，</text>
+					<text>还差{{priceDifer}}元</text>
 				</view>
+				<view class="pay" v-show="!allMoneys">
+					<text>总计:{{payMoney}}元,去支付</text>
+				</view>				
 			</view>
 		</view>
 	</view>
@@ -109,12 +112,16 @@
 			 return {
 				 // 左边分类
 				orderList:[],
+				
 				// 点击左边分类后右边展示的数据
 				newRightArr:[],
+				
 				// 初始化使其显示分类的盖浇饭部分
 				leftItemChange:'盖浇饭',
+				
 				// 初始化使其第一项(点菜)添加css
 				num:0,
+				
 				delivering:null,
 				physical:null,
 				capita:null,
@@ -125,8 +132,16 @@
 				// 点击添加或者减少把数组存入数组
 				allOrderPrice:[],
 				
-				// 切换已购和未购
-				showOrHide:true
+				// 当选择的份数是否为0切换图片
+				showOrHide:true,
+				
+				// 显示的总份数
+				allNums:0,
+				
+				// 切换需要支付的钱或者差价
+				allMoneys:true,
+				
+				payMoney:0
 			 }
 		 },
 		 methods:{
@@ -239,7 +254,7 @@
 					// parseFloat() 函数可解析一个字符串(这里传的是数字也可以)，并返回一个浮点数，浮点数有toFixed方法，保留小数点后几位
 					var TotalPrice = parseFloat(amount*price).toFixed(2);
 					
-// =======================================================点击+号把商品的信息存放到对象并且去重push到数组中=======================================
+// =======================================================点击+号把商品的信息存放到对象并且去重push到数组中======================================
 
 					// 定义的空对象：放点击或者删除后生成的数据存入该对象
 					const deleteObjInArr = {
@@ -258,7 +273,7 @@
 					})
 					this.allOrderPrice = newAllOrderPrice;
 					
-// =====================================================================点击+号结尾================================================================
+// =====================================================================点击+号结尾=============================================================
 
 				}else{
 					/*	备注：
@@ -270,7 +285,7 @@
 					
 					var TotalPrice = amount * price
 					
-// =======================================================点击-号把商品的信息存放到对象并且去重push到数组中=======================================
+// =======================================================点击-号把商品的信息存放到对象并且去重push到数组中======================================
 					
 					// 定义的空对象：放点击或者删除后生成的数据存入该对象
 					const deleteObjInArr = {
@@ -288,10 +303,10 @@
 						return item.id == id ? deleteObjInArr : item;
 					})
 					this.allOrderPrice = newAllOrderPrice;
-// ================================================================点击-号结尾====================================================================
+// ================================================================点击-号结尾===================================================================
 				}
 				
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++加减公共部分+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++加减公共部分++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 					// 
 					// 点的商家里的第几个商品,将其属性amount并且属性值改为amount经过计算后的赋值
 					this.newRightArr[index].amount = amount;
@@ -303,7 +318,7 @@
 					
 					// 遍历完成后赋值给 this.newRightAr,然后遍历到内容中
 					this.newRightArr = findArr;
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++公共部分+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++公共部分++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			}
 		 },
 		 watch:{
@@ -341,32 +356,50 @@
 		
 					},[])
 					
-					// ---------------------------------------------------------------------------------------------------------------------------------
+					// ------------------------------------------------------------------------------------------------------------------------
 					var temp = 0;
-					
+					var allNums = 0;
 					// 计算商品总价：
 					for(var i = 0;i<uniqueArr.length;i++){
 						temp = temp + Number(uniqueArr[i].TotalPrice)
+						allNums = allNums + Number(uniqueArr[i].amount)
 					}
 					
 					// 只赋值最终结果,浮点数修正(toFixed(1)参数1代表保留的小数点后1位)
 					this.eachCounts = parseFloat(temp).toFixed(1);
+					
+					//每种商品选择的份数总和
+					this.allNums = allNums;
+					
 					if(parseFloat(this.eachCounts) == 0){
+						
+						// 当价格为0时，显示不保留的小数点后几位
 						this.eachCounts = 0;
+						
+						// 所有商品选择份数为0时显示的图片
 						this.showOrHide = true;
 					}else{
+						// 所有商品选择份数不为0时显示的图片
 						this.showOrHide = false;
 					}
 			}
-			
 		 },
 
 		 computed:{
+			 priceDifer(){
+				let  allPrice = parseFloat(Number(this.capita) - Number(this.eachCounts)).toFixed(1);
+				if(allPrice <= 0){
+					this.allMoneys = false;
+					this.payMoney = Number(this.eachCounts) + Number(this.delivering);
+				}else{
+					this.allMoneys = true;
+				}
+				return allPrice;
+			 },
 			 ...mapState(['screendata'])
 		 },
 		 // 
 		 mounted() {
-	
 			 // 为什么要使用setTimeout定时器？令其要让mounted在watch在mounted之前调用，watch暂存数据后,mounted才可以拿到暂存的数据
 			 
 			 setTimeout(()=>{
@@ -477,6 +510,8 @@
 	border-bottom-left-radius: 50upx;
 	}
 	.total-right{
+	display: flex;
+	justify-content: flex-start;
 	height: 130upx;
 	line-height: 130upx;
 	font-size: 30upx;
@@ -488,6 +523,17 @@
 	.total-dis{display: flex;
 	height: 130upx;
 	margin: 0 20upx;
+	}
+	.total-right .capita{
+		color: #FFD100;
+	}
+	.pay{
+		border-top-right-radius: 50upx;
+		border-bottom-right-radius: 50upx;
+		background-color: #FFD100;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.qishou{width: 120upx; height: 150upx;
 	position: fixed;
