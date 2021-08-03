@@ -75,8 +75,8 @@
 		<view class="total">
 			<!-- 骑手 -->
 			<view class="qishou">
-				<image src="../../../static/coen/weigou.png" mode="widthFix"></image>
-				<image src="../../../static/coen/yigou.png" mode="widthFix"></image>
+				<image src="../../../static/coen/weigou.png" v-show="showOrHide" mode="widthFix"></image>
+				<image src="../../../static/coen/yigou.png" v-show="!showOrHide" mode="widthFix"></image>
 			</view>
 			<!-- 多少量 -->
 			<view class="Numbering"></view>
@@ -124,7 +124,9 @@
 				
 				// 点击添加或者减少把数组存入数组
 				allOrderPrice:[],
-					
+				
+				// 切换已购和未购
+				showOrHide:true
 			 }
 		 },
 		 methods:{
@@ -266,7 +268,6 @@
 					// 判断amount是否小于0
 					amount < 1 ? amount = 0 : amount--;
 					
-					// 浮点数修正(toFixed(1)参数1代表保留的小数点后1位)
 					var TotalPrice = amount * price
 					
 // =======================================================点击-号把商品的信息存放到对象并且去重push到数组中=======================================
@@ -336,25 +337,31 @@
 							testObj[cur.id]=cur.id;
 							pre.push(cur)
 						}
-						return pre
+						return pre;
 		
 					},[])
 					
+					// ---------------------------------------------------------------------------------------------------------------------------------
 					var temp = 0;
+					
 					// 计算商品总价：
 					for(var i = 0;i<uniqueArr.length;i++){
-						// console.log(this.eachCounts)
-						// console.log(uniqueArr[i].TotalPrice)
 						temp = temp + Number(uniqueArr[i].TotalPrice)
 					}
 					
+					// 只赋值最终结果,浮点数修正(toFixed(1)参数1代表保留的小数点后1位)
 					this.eachCounts = parseFloat(temp).toFixed(1);
+					if(parseFloat(this.eachCounts) == 0){
+						this.eachCounts = 0;
+						this.showOrHide = true;
+					}else{
+						this.showOrHide = false;
+					}
 			}
 			
 		 },
 
 		 computed:{
-			 // ----------------------------------------------------------------------------------------------------------------------------------------
 			 ...mapState(['screendata'])
 		 },
 		 // 
