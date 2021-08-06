@@ -8104,7 +8104,9 @@ _vue.default.use(_vuex.default);
 
 var screendata = {
   // 存储筛选出来的数据
-  screenarr: [] };
+  screenarr: [{}],
+  busidataarr: [{}] };
+
 
 
 // 数据仓库
@@ -8128,6 +8130,11 @@ var store = new _vuex.default.Store({
           screenarr: listdata };
 
       }
+    },
+    busidata: function busidata(state, busidatalist) {
+      state.screendata = {
+        busidataarr: busidatalist };
+
     } } });var _default =
 
 
@@ -9296,12 +9303,29 @@ var preferenceUrl = publicUrl + 'api/forshop/getprefer';
 // 附近商家请求路径
 var nearbyTakeOut = publicUrl + 'api/forshop/wxshop';
 
-// 点击综合排序要求排序附近商家
+// 排序附近商家
 var nearbyTakeOutRank = publicUrl + 'api/forshop/starting';
 
 // 筛选多选
 var multipleurl = publicUrl + 'api/forshop/multiple';
 
+// 搜索：
+var srarchUrl = publicUrl + 'api/forshop/search';
+
+// 评论
+var commentUrl = publicUrl + 'api/message/discuss';
+
+// 商家介绍
+var shopUrl = publicUrl + 'api/forshop/shop';
+
+// 商品数据
+var getdishesUrl = publicUrl + 'api/forshop/getdishes';
+
+// 全部评论或者AI分类评论(区别在于AIPOST请求参数data对象多一个属性值)
+var AllAndAiAssessUrl = publicUrl + 'api/message/discuss';
+
+// 登录
+var wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
 
 
 // 导出路径
@@ -9309,7 +9333,13 @@ module.exports = {
   preferenceUrl: preferenceUrl,
   nearbyTakeOut: nearbyTakeOut,
   nearbyTakeOutRank: nearbyTakeOutRank,
-  multipleurl: multipleurl };
+  multipleurl: multipleurl,
+  srarchUrl: srarchUrl,
+  commentUrl: commentUrl,
+  shopUrl: shopUrl,
+  getdishesUrl: getdishesUrl,
+  AllAndAiAssessUrl: AllAndAiAssessUrl,
+  wxLoginUrl: wxLoginUrl };
 
 /***/ }),
 /* 21 */

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "下单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "introduce": "/pages/takeout/components/introduce",
+    "tabs": "/pages/takeout/components/tabs",
+    "ordering": "/pages/takeout/components/ordering",
+    "assess": "/pages/takeout/components/assess",
+    "details": "/pages/takeout/components/details"
+  }
+}

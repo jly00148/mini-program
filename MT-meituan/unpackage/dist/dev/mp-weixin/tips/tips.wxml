@@ -1,0 +1,1 @@
+<view><view class="tips"><view>{{''+tipText+''}}</view><image class="img" src="../static/coen/meoyopu.png" mode="aspectFill"></image></view></view>

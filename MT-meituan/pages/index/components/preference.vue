@@ -11,9 +11,9 @@
 				<view class="prefer-dis">
 					<block v-for="(item,index) in preferData" :key="index">
 						<view class="prefer-view">
-							<image :src="item.image" mode="aspectFill"></image>
-							<text>{{item.title}}</text>
-							<text>{{item.label}}</text>
+							<image :src="item.image" mode="aspectFill" class="img"></image>
+							<text class="text">{{item.title}}</text>
+							<text class="text">{{item.label}}</text>
 						</view>
 					</block>
 				</view>
@@ -73,10 +73,10 @@
 		height: 300upx; width: 300upx;
 		padding: 0 8upx;
 	}
-	.prefer-view image{
+	.prefer-view .img{
 		width: 300upx; height: 200upx; border-radius: 15upx;
 	}	
-	.prefer-view text{
+	.prefer-view .text{
 		height: 45upx;
 		line-height: 45upx;
 		display: -webkit-box;
@@ -85,13 +85,13 @@
 		overflow: hidden;
 		text-align: center;
 	}
-	.prefer-view text:nth-child(2){
+	.prefer-view .text:nth-child(2){
 		font-size: 30upx;
 		}
-	.prefer-view text:nth-child(3){
+	.prefer-view .text:nth-child(3){
 		font-size: 27upx; color: #9c9c9c;
 		}
-	.prefer-dis view:nth-child(2){
+/* 	.prefer-dis view:nth-child(2){
 		padding: 0 7upx !important;
-		}
+		} */
 </style>

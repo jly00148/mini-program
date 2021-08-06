@@ -1,3 +1,6 @@
+.search.data-v-8b3e5b4a {
+  background-color: red;
+}
 /* scoped：css只限制在当前组件使用，避免其他组件相同class，造成影响 */
 .search-view.data-v-8b3e5b4a {
   margin-top: 15rpx;
@@ -10,7 +13,7 @@
           align-items: center;
   /*垂直居中*/
 }
-.search-view image.data-v-8b3e5b4a {
+.search-view .img.data-v-8b3e5b4a {
   width: 35rpx;
   height: 35rpx;
 }
@@ -28,17 +31,17 @@
           align-items: center;
   border-radius: 30rpx;
   border: 0.1rpx solid #FFD100;
-  background-color: #F0F0EC;
+  background-color: #F1F1F1;
 }
-.search-box image.data-v-8b3e5b4a {
+.search-box .search-img.data-v-8b3e5b4a {
   width: 35rpx;
   height: 35rpx;
 }
-.search-box input.data-v-8b3e5b4a {
+.search-box .input.data-v-8b3e5b4a {
   padding-left: 15rpx;
   font-size: 30rpx;
 }
-swiper.data-v-8b3e5b4a {
+.swiper.data-v-8b3e5b4a {
   height: 320rpx !important;
 }
 .swiper-item.data-v-8b3e5b4a {
@@ -63,7 +66,7 @@ swiper.data-v-8b3e5b4a {
   position: relative;
   text-align: center;
 }
-.conteng-img text.data-v-8b3e5b4a {
+.conteng-img .text.data-v-8b3e5b4a {
   padding-top: 20rpx;
   font-size: 30rpx;
 }
@@ -85,7 +88,7 @@ swiper.data-v-8b3e5b4a {
 .indicate-item.data-v-8b3e5b4a {
   width: 30rpx;
   height: 10rpx;
-  background-color: #F0F0EC;
+  background-color: #F1F1F1;
   margin: 5rpx;
 }
 .active.data-v-8b3e5b4a {

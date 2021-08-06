@@ -2,7 +2,7 @@
 	<view>
 		<!-- 收外卖地址 -->
 		<view class="search-view themeColor">
-			<image src="../../../static/coen/dingwei.svg" mode="w"></image>
+			<image src="../../../static/coen/dingwei.svg" mode="widthFix" class="img"></image>
 			<text class="search-text">深圳市龙华区民治大道</text>
 			<text>></text>
 		</view>
@@ -11,7 +11,7 @@
 		<view class="search-box">
 			<view class="search" @click="goSearchPage()">
 				<image src="../../../static/coen/sousuo.svg" mode="widthFix" class="search-img"></image>
-				<input type="text" placeholder="椒盐牛排" />
+				<input type="text" class="input" placeholder="椒盐牛排" />
 			</view>
 		</view>
 		
@@ -23,6 +23,7 @@
 			:duration="2000"
 			:circular='true'
 			@change="change"
+			class="swiper"
 			>
 				<!-- 用block标签包裹循环数组，相当于template -->
 				<block v-for=" (item,index) in carouselPageItem" :key="index" >
@@ -31,7 +32,7 @@
 							<block v-for=" (listItem,index) in item" :key="index">
 								<view class="conteng-img">
 									<image :src="listItem.img" mode="widthFix" class="uploadimg"></image>
-									<text>{{listItem.title}}</text>
+									<text class="text">{{listItem.title}}</text>
 								</view>
 							</block>
 						</view>

@@ -6,14 +6,14 @@
 				<!-- 综合排序 -->
 				<view class="delica-list delica-grow"  @click="multiple()">
 					<text>{{synthesize}}</text>
-					<image src="../../../static/coen/paixu.png" mode="widthFix"></image>
+					<image src="../../../static/coen/paixu.png" mode="widthFix" class="img"></image>
 				</view>
 				<view class="delica-grow">销量高</view>
 				<view class="delica-grow">速度快</view>
 				<view class="delica-grow">津贴联盟</view>
 				<view class="delica-list delica-right">
 					<text @click="choice()">筛选</text>
-					<image src="../../../static/coen/shaixuan.png" mode="widthFix"></image>
+					<image src="../../../static/coen/shaixuan.png" mode="widthFix" class="img"></image>
 				</view>
 			</view>
 		</view>
@@ -22,7 +22,7 @@
 		<view class="sortlist sortliteltle" v-if="drop">
 			<block v-for="(item,index) in sortlist" :key="index">
 				<!-- sortClick(item.name,index)传递参数 -->
-				<text :class="{activeb:index == num}" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
+				<text :class="{activeb:index == num}" class="text" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
 			</block>
 		</view>
 		
@@ -54,9 +54,9 @@
 			
 			<!-- 清空和完成选择 -->
 			<view class="sortlist-bottom">
-				<text @click="clearAllSelect()">清空</text>
+				<text @click="clearAllSelect()" class="text">清空</text>
 				<!-- submitBtn：布尔值true是可以发送请求，反之禁止发送请求 -->
-				<text @click="submitBtn && complete()" class="bgColor" :class="{btnSelectedColor:submitBtn}">完成{{judegeSelected}}</text>
+				<text @click="submitBtn && complete()" class="bgColor text" :class="{btnSelectedColor:submitBtn}">完成</text>
 			</view>
 		</view>
 		<view class="mask" v-if="mask" @click="hideMask">
@@ -287,17 +287,16 @@
 				this.mask = false;
 			}
 		},
-		computed:{
-			judegeSelected(){
+		watch:{
+			multiObj(targetObj){
 				// 判断是对象是否为空
 				// 对象为空
-				if(JSON.stringify(this.multiObj) == '{}'){
+				if(JSON.stringify(targetObj) == '{}'){
 					this.submitBtn = false;
 				}else{
 				// 对象不为空
 					this.submitBtn = true;
 				}
-				
 			}
 		}
 	}
@@ -305,7 +304,7 @@
 
 <style scoped>
 	/* 筛选区 */
-	.delica-view image{width: 30upx; height: 30upx; display: block;
+	.delica-view .img{width: 30upx; height: 30upx; display: block;
 		}
 	.delica-view{
 	width: 702upx;
@@ -317,9 +316,11 @@
 	} 
 	.delica-list{display: flex; align-items: center;width: 180upx;
 	}
+
 	.delica-right{justify-content: flex-end; flex-grow: 5;}
 	.delica-grow{flex-grow: 1;}
-	.prefer-posi{position: absolute; left: 0; right: 0;
+	.prefer-posi{
+		position: absolute; left: 0; right: 0;
 		width: 100%;
 		z-index: 99;}
 	/* 排序 */
@@ -332,7 +333,7 @@
 		z-index: 99;
 		border-radius: 10upx;
 	}
-	.sortliteltle text{
+	.sortliteltle .text{
 		padding: 0 25upx;
 		display: block;
 		font-size: 1%;
@@ -369,18 +370,22 @@
 		align-items: center;
 		margin-bottom: 30upx;
 	}
-	.sortlist-bottom{background: #ffffff; height: 80upx;
-	border: 1upx solid #e4e4e4;
-	display: flex; justify-content: space-around;
+	.sortlist-bottom{
+	background: #ffffff; height: 80upx;
+	border-top: 1upx solid #e4e4e4;
+	display: flex; 
+	justify-content: space-between;
 	align-items: center;
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	right: 0;}
-	.sortlist-bottom text{flex-grow: 1; height: 80upx;
-	line-height: 80upx;
+	right: 0;
+	}
+	.sortlist-bottom .text{
+	flex-grow: 1; height: 80upx;
+	line-height: 100upx;
 	text-align: center;}
-	.bgColor{background: #F1F1F1;}
+	.bgColor{background: #F1F1F1}
 	.btnSelectedColor{background: #FFD100!important;}
 	.mask{background: rgba(0,0,0,0.3); position: fixed; top: 0; left: 0; right: 0; bottom: 0;z-index: 1;}
 	/* 商家特色加样式 */

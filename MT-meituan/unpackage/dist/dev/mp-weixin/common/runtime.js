@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/index/components/delicary":1,"pages/index/components/preference":1,"pages/index/components/search":1,"pages/index/components/takeout":1,"pages/index/components/title":1};
+/******/ 		var cssChunks = {"pages/index/components/delicary":1,"pages/index/components/preference":1,"pages/index/components/search":1,"pages/index/components/takeout":1,"pages/index/components/title":1,"tips/tips":1,"pages/takeout/components/ordering":1,"pages/takeout/components/assess":1,"pages/takeout/components/details":1,"pages/takeout/components/introduce":1,"pages/takeout/components/tabs":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/index/components/delicary":"pages/index/components/delicary","pages/index/components/preference":"pages/index/components/preference","pages/index/components/search":"pages/index/components/search","pages/index/components/takeout":"pages/index/components/takeout","pages/index/components/title":"pages/index/components/title"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/index/components/delicary":"pages/index/components/delicary","pages/index/components/preference":"pages/index/components/preference","pages/index/components/search":"pages/index/components/search","pages/index/components/takeout":"pages/index/components/takeout","pages/index/components/title":"pages/index/components/title","tips/tips":"tips/tips","pages/takeout/components/ordering":"pages/takeout/components/ordering","pages/takeout/components/assess":"pages/takeout/components/assess","pages/takeout/components/details":"pages/takeout/components/details","pages/takeout/components/introduce":"pages/takeout/components/introduce","pages/takeout/components/tabs":"pages/takeout/components/tabs"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -1,27 +1,25 @@
 <template>
 	<view>
-		<view v-show="showEmpty" class="emptyMsg">
-			<Tip :tipText="tipText"></Tip>
-		</view>
+		<Tip :tipText="tipText" v-show="showEmpty"></Tip>
 		<block v-for="(item,index) in takeShopDate" :key="index">
-			<view v-show="!showEmpty" class="content-view">
-				<view class="content-img">
-					<image :src="item.logo" mode="aspectFill"></image>
+			<view  class="content-view">
+				<view class="content-img" v-show="!showEmpty">
+					<image :src="item.logo" mode="aspectFill" class="img"></image>
 				</view>
-				<view class="content-title">
+				<view class="content-title" v-show="!showEmpty">
 					<text class="conteng-take">{{item.shop}}</text>
 					<view class="conteng-monthly">
 						<text>月售200</text>
 						<text>约{{item.duration}}分钟</text>
 					</view>
 					<view class="conteng-starting">
-						<text>起送¥{{item.delivering}}</text>
-						<text>配送¥{{item.physical}}</text>
-						<text>人均¥{{item.capita}}</text>
+						<text class="text">起送¥{{item.delivering}}</text>
+						<text class="text">配送¥{{item.physical}}</text>
+						<text class="text">人均¥{{item.capita}}</text>
 					</view>
 					<view class="conteng-starting">
-						<image src="../../../static/coen/liwu.svg" mode="widthFix"></image>
-						<text>{{item.types}}</text>
+						<image src="../../../static/coen/liwu.svg" mode="widthFix" class="img"></image>
+						<text class="text">{{item.types}}</text>
 					</view>
 				</view>
 			</view>
@@ -113,9 +111,9 @@
 		},
 		watch:{
 			takeShopDate:function(){
-				if(this.takeShopDate[0].hasOwnProperty('notice')){
+				if(this.takeShopDate[0].notice){
 					this.showEmpty = true;
-					this.tipText = '搜索为空'
+					this.tipText = '未搜索到商家'
 				}else{
 					this.showEmpty = false;
 				}

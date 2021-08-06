@@ -4,7 +4,7 @@
 			<view>
 				{{tipText}}
 			</view>
-			<image src="../static/coen/meoyopu.png" mode="aspectFill"></image>
+			<image src="../static/coen/meoyopu.png" mode="aspectFill" class="img"></image>
 		</view>
 	</view>
 </template>
@@ -19,11 +19,13 @@
 
 <style>
 	.tips{
+		margin-top: 160upx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	image{
+
+	.img{
 		width: 200upx;
 		height: 200upx;
 	}

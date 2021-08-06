@@ -28,6 +28,10 @@ const getdishesUrl = publicUrl + 'api/forshop/getdishes';
 // 全部评论或者AI分类评论(区别在于AIPOST请求参数data对象多一个属性值)
 const AllAndAiAssessUrl = publicUrl + 'api/message/discuss';
 
+// 登录
+const wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
+
+
 // 导出路径
 module.exports = {
 	preferenceUrl,
@@ -38,5 +42,6 @@ module.exports = {
 	commentUrl,
 	shopUrl,
 	getdishesUrl,
-	AllAndAiAssessUrl
+	AllAndAiAssessUrl,
+	wxLoginUrl
 }
