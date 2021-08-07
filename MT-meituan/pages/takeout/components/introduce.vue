@@ -19,7 +19,6 @@
 
 <script>
 	export default{
-
 	}
 </script>
 
@@ -33,7 +32,7 @@
 	position: fixed;
 	left: 0;
 	right: 0;
-	top: 89upx;
+	top: 0;
 	z-index: 99;
 	
 	}

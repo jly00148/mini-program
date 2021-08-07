@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/takeout/takeout",
     "pages/index/index",
     "pages/order/order",
     "pages/my/my",
-    "pages/search/search",
-    "pages/takeout/takeout"
+    "pages/search/search"
   ],
   "subPackages": [],
   "window": {
@@ -38,5 +38,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

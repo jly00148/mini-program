@@ -32,6 +32,7 @@ const store = new Vuex.Store({
 				}
 			}
 		},
+		
 		busidata(state,busidatalist){
 			state.screendata = {
 				busidataarr:busidatalist

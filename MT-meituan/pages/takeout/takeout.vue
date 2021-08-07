@@ -2,10 +2,12 @@
 	<view>
 		<!-- 商家介绍 -->
 		<Introduce></Introduce>
+		
 		<!-- tab切换 -->
 		<Tabs class="tabs"></Tabs>
-		<!-- 点菜 -->
+		
 		<view class="ordering-sceate">
+			<!-- 点菜 -->
 			<Ordering :class="[hideOrShow === 0 ? 'show' : 'hide' ]" :orderingdata="orderingdata"></Ordering>
 			<!-- 评论 -->
 			<Assess :class="[hideOrShow === 1 ? 'show' : 'hide' ]" :messagedata="messagedata" :sonComponentClassIndex="sonComponentClassIndex"></Assess>
@@ -36,7 +38,9 @@
 		},
 		data() {
 			return {
+				// 0：默认显示点菜这个组件以及该组件下的返回的信息
 				hideOrShow:0,
+				
 				orderingdata:[],
 				messagedata:[],
 				sonComponentClassIndex:0
@@ -69,6 +73,7 @@
 					
 					// 商品数据
 					this.orderingdata = result[1][1].data;
+					
 					// 评论(包括分类标签和评论)
 					this.messagedata = result[2][1].data;
 				})

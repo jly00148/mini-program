@@ -9,7 +9,7 @@ border-bottom-right-radius: 20rpx;
 position: fixed;
 left: 0;
 right: 0;
-top: 89rpx;
+top: 0;
 z-index: 99;
 }
 /* 1 */

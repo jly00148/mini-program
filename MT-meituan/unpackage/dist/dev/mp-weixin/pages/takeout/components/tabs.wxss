@@ -6,7 +6,7 @@ display: flex;
 position: fixed;
 left: 0;
 right: 0;
-top: 199rpx;
+top: 110rpx;
 z-index: 999;
 background-color: #f1f1f1;
 }

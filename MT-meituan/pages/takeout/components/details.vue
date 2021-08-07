@@ -5,7 +5,7 @@
 				<image src="../../../static/coen/dizhi.png" mode="widthFix"></image>
 			</view>
 			<view>
-				<text>{{busidata}}</text>
+				<text>{{thebusi.address}}</text>
 			</view>
 		</view>
 		<view class="introduce-view">
@@ -21,7 +21,7 @@
 				<image src="../../../static/coen/shijian.png" mode="widthFix"></image>
 			</view>
 			<view>
-				<text>配送时间:{{busidata}}</text>
+				<text>配送时间:{{thebusi.duration}}</text>
 			</view>
 		</view>
 		<view class="introduce-view">
@@ -36,15 +36,26 @@
 </template>
 
 <script>
+	// 引入vuex的mapState;
+	import { mapState } from 'vuex';
+	
 	export default{
-		props:{
-			busidata:Object
-		},
 		data() {
 			return {
 				
 			}
 		},
+		methods:{
+
+		},
+		computed:{
+			...mapState(['screendata']),
+			thebusi(){
+				const busidata = this.screendata.busidataarr[0];
+				return busidata
+			}
+		}
+
 	}
 </script>
 

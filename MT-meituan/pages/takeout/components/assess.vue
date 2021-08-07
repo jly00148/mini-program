@@ -8,7 +8,8 @@
 					<view :class="{activetext: index == num}" @click="menubtn(index,item)">{{item}}</view>
 				</block>	
 			</view>
-			<!-- 评价 -->
+			
+			<!-- 用户评价 -->
 			<block v-for="(item,index) in leaveword" :key="index">
 				<view class="message-dist">
 					<view class="users-message">
@@ -68,7 +69,8 @@
 				// --------------------------------------------------------------------------------
 				
 				// 二：处理标签(标签去重和去空值)：
-				// 1.提取标签
+				
+				// 1.提取标签(空标签不会被筛选出来)
 				let messageWord = newValue.map(item=>{
 					return item.classmessage
 				})
@@ -90,7 +92,7 @@
 			// 点击评论分类切换css和发送请求
 			menubtn(index,item){
 				this.num = index;
-				this.$parent.$parent.$parent.assessClassMethod(index,item)
+				this.$parent.assessClassMethod(index,item)
 			}
 		}
 	}

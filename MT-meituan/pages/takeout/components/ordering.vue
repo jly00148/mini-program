@@ -23,7 +23,7 @@
 								<view class="content-title">
 									<text class="conteng-take">{{item.input}}</text>
 									<view class="conteng-monthly">
-										<block v-for="(tagItem,index) in item.tags" key="index">
+										<block v-for="(tagItem,index) in item.tags" :key="index">
 											<text>{{tagItem}}</text>
 										</block>
 									</view>
@@ -75,8 +75,8 @@
 		<view class="total">
 			<!-- 骑手 -->
 			<view class="qishou">
-				<image src="../../../static/coen/weigou.png" v-show="showOrHide" mode="widthFix"></image>
-				<image src="../../../static/coen/yigou.png" v-show="!showOrHide" mode="widthFix"></image>
+				<image src="../../../static/coen/weigou.png" v-show="!showOrHide" mode="widthFix"></image>
+				<image src="../../../static/coen/yigou.png" v-show="showOrHide" mode="widthFix"></image>
 			</view>
 			<!-- 多少量 -->
 			<view class="Numbering">{{allNums}}</view>
@@ -85,15 +85,15 @@
 				<view class="total-left">
 					<view class="Cost-mony">
 						<text class="Total-price">¥{{eachCounts}}</text>
-						<text class="Delivery">另需配送费{{delivering}}元</text>
+						<text class="Delivery">另需配送费{{initBottomData.delivering}}元</text>
 					</view> 
 				</view>
-				<view class="total-right" v-show="allMoneys">
-					<text class="capita">{{capita}}元起送，</text>
+				<view class="total-right">
+					<text class="capita">{{initBottomData.capita}}元起送</text>
 					<text>还差{{priceDifer}}元</text>
 				</view>
-				<view class="pay" v-show="!allMoneys">
-					<text>总计:{{payMoney}}元,去支付</text>
+				<view class="pay" :class="{changePayClsss:changePayClsss==true}">
+					<text>总计:{{payMoney}}</text>
 				</view>				
 			</view>
 		</view>
@@ -122,7 +122,7 @@
 				// 初始化使其第一项(点菜)添加css
 				num:0,
 				
-				delivering:null,
+				delivering:0,
 				physical:null,
 				capita:null,
 				
@@ -133,14 +133,15 @@
 				allOrderPrice:[],
 				
 				// 当选择的份数是否为0切换图片
-				showOrHide:true,
+				showOrHide:false,
 				
 				// 显示的总份数
 				allNums:0,
 				
-				// 切换需要支付的钱或者差价
-				allMoneys:true,
+				// 满足起送价改变颜色
+				changePayClsss:false,
 				
+				// 总价包括运送费+食物价格
 				payMoney:0
 			 }
 		 },
@@ -177,7 +178,6 @@
 				this.newRightArr = newRightarr;
 			},
 			// 点击+号增加份数
-
 			// 点击左边和页面初始化共通调用函数
 			clickOrInitLoad(newValue){
 				let classifdata = newValue.map(item=>{
@@ -190,11 +190,11 @@
 				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
 				this.rightItemChange(this.leftItemChange)
 			},
-			initBottomData(delivering,physical,capita){
-				this.delivering = delivering;
-				this.physical = physical;
-				this.capita = capita;
-			},
+			// initBottomData(delivering,physical,capita){
+			// 	this.delivering = delivering;
+			// 	this.physical = physical;
+			// 	this.capita = capita;
+			// },
 			add(amount,index,id,state,price,image,input){
 				this.addOrReduce(amount,index,id,state,price,image,input)
 				// 方法一：更改this.newRightArr[index].amount中的amount值;
@@ -255,7 +255,6 @@
 					var TotalPrice = parseFloat(amount*price).toFixed(2);
 					
 // =======================================================点击+号把商品的信息存放到对象并且去重push到数组中======================================
-
 					// 定义的空对象：放点击或者删除后生成的数据存入该对象
 					const deleteObjInArr = {
 						TotalPrice,
@@ -274,7 +273,6 @@
 					this.allOrderPrice = newAllOrderPrice;
 					
 // =====================================================================点击+号结尾=============================================================
-
 				}else{
 					/*	备注：
 						*点的是-号
@@ -388,19 +386,45 @@
 					}
 			}
 		 },
-
 		 computed:{
+			 ...mapState(['screendata']),
+			 
 			 priceDifer(){
-				let  allPrice = parseFloat(Number(this.capita) - Number(this.eachCounts)).toFixed(1);
+				 // 差价allPrice
+				let allPrice = parseFloat(Number(this.capita) - Number(this.eachCounts)).toFixed(1);
+				
+				// 差价为0时令其差价为0
 				if(allPrice <= 0){
-					this.allMoneys = false;
-					this.payMoney = Number(this.eachCounts) + Number(this.delivering);
+					allPrice=0;
+					// 黄色
+					this.changePayClsss=true
 				}else{
-					this.allMoneys = true;
+					// 灰色
+					this.changePayClsss=false
+					this.allMoneys = false;
 				}
+				
+				this.eachCounts = Number(this.eachCounts);
+				this.delivering = Number(this.delivering);
+				
+				this.payMoney = parseFloat(this.eachCounts + this.delivering).toFixed(1);
+				this.payMoney == this.delivering ? this.payMoney = 0 : ''
 				return allPrice;
 			 },
-			 ...mapState(['screendata'])
+			 
+			 initBottomData(){
+				 const { delivering='',physical='',capita='' } = this.screendata.busidataarr[0];
+				 const  initBottomDataObj = {
+					 delivering:delivering,
+					 physical:physical,
+					 capita:capita
+				 }
+				 this.delivering = delivering;
+				 this.physical = physical;
+				 this.capita = capita;
+				 
+				 return initBottomDataObj;
+			 }
 		 },
 		 // 
 		 mounted() {
@@ -410,8 +434,10 @@
 				 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
 				 this.clickOrInitLoad(this.orderingdata);
 				 
-				const { delivering,physical,capita } = this.screendata.busidataarr[0];
-				this.initBottomData(delivering,physical,capita)
+				// const { delivering,physical,capita } = this.screendata.busidataarr[0];
+				// console.log(this.screendata.busidataarr[0])
+				
+				// this.initBottomData(delivering,physical,capita)
 			 },400)
 		 }
 	}
@@ -422,7 +448,6 @@
 	.ordering-left{width: 190upx; background: #F0F0F0;
 	overflow-y: auto;
 	height: 100%;
-
 	}
 	.ordering-left text{
 	color: #a8a8a8;
@@ -507,37 +532,49 @@
 	bottom: 0;
 	width: 100%;
 	}
+	.total-dis{
+		display: flex;
+		height: 130upx;
+		margin: 0 20upx;
+	}
 	.total-left{
-	height: 130upx;
-	background: #000000; flex-grow: 2;
-	border-top-left-radius: 50upx;
-	border-bottom-left-radius: 50upx;
+		flex-grow: 1;
+		height: 130upx;
+		background: #000000; 
+		border-top-left-radius: 50upx;
+		border-bottom-left-radius: 50upx;
 	}
 	.total-right{
-	display: flex;
-	justify-content: flex-start;
-	height: 130upx;
-	line-height: 130upx;
-	font-size: 30upx;
-	color: #7f7f7f;
-	text-align: center;
-	background: #000000; flex-grow: 1;
-	border-top-right-radius: 50upx;
-	border-bottom-right-radius: 50upx;}
-	.total-dis{display: flex;
-	height: 130upx;
-	margin: 0 20upx;
+		display: flex;
+		width: 200upx;
+		flex-wrap: wrap;
+		flex-grow: 1;
+		height: 130upx;
+		line-height: 130upx;
+		font-size: 30upx;
+		color: #7f7f7f;
+		text-align: center;
+		background: #000000; 
+	}
+	.total-dis text{
+		font-size: 25upx;
 	}
 	.total-right .capita{
 		color: #FFD100;
 	}
 	.pay{
-		border-top-right-radius: 50upx;
-		border-bottom-right-radius: 50upx;
-		background-color: #FFD100;
+		width: 100upx;
 		display: flex;
 		justify-content: center;
+		box-sizing: border-box;
+		flex-grow: 1;
+		border-top-right-radius: 50upx;
+		border-bottom-right-radius: 50upx;
+		background-color: grey;
 		align-items: center;
+	}
+	.changePayClsss{
+		background-color: #FFD100 !important;
 	}
 	.qishou{width: 120upx; height: 150upx;
 	position: fixed;
@@ -555,7 +592,7 @@
 	line-height: 65upx;
 	}
 	.Cost-mony{padding-left: 170upx; color: #4CD964;
-	height: 130upx;
+	height: 100upx;
 	}
 	/* 数量 */
 	.Numbering{

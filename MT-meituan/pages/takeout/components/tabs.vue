@@ -28,7 +28,7 @@
 					this._index = index;
 					
 					// 子组件调试父组件方法 ：parent;
-					this.$parent.$parent.fatherMethod(index);
+					this.$parent.fatherMethod(index);
 				}
 			}
 		}
@@ -41,7 +41,7 @@
 	position: fixed;
 	left: 0;
 	right: 0;
-	top: 199upx;
+	top: 110upx;
 	z-index: 999;
 	background-color: #f1f1f1;
 	}
