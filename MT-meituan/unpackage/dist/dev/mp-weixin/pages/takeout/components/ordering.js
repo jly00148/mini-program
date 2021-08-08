@@ -249,7 +249,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       allOrderPrice: [],
 
       // 当选择的份数是否为0切换图片
-      showOrHide: false,
+      showOrHide: true,
 
       // 显示的总份数
       allNums: 0,
@@ -433,6 +433,15 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       // 遍历完成后赋值给 this.newRightAr,然后遍历到内容中
       this.newRightArr = findArr;
       // ++++++++++++++++++++++++++++++++++++++++++++++++++++++公共部分++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    },
+
+    // 去结算
+    settleMent: function settleMent() {
+      if (this.changePayClsss == false) {
+        return;
+      } else {
+        console.log(1);
+      }
     } },
 
   watch: {

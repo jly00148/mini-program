@@ -75,8 +75,8 @@
 		<view class="total">
 			<!-- 骑手 -->
 			<view class="qishou">
-				<image src="../../../static/coen/weigou.png" v-show="!showOrHide" mode="widthFix"></image>
-				<image src="../../../static/coen/yigou.png" v-show="showOrHide" mode="widthFix"></image>
+				<image src="../../../static/coen/weigou.png" v-show="showOrHide" mode="widthFix"></image>
+				<image src="../../../static/coen/yigou.png" v-show="!showOrHide" mode="widthFix"></image>
 			</view>
 			<!-- 多少量 -->
 			<view class="Numbering">{{allNums}}</view>
@@ -92,7 +92,7 @@
 					<text class="capita">{{initBottomData.capita}}元起送</text>
 					<text>还差{{priceDifer}}元</text>
 				</view>
-				<view class="pay" :class="{changePayClsss:changePayClsss==true}">
+				<view class="pay" :class="{changePayClsss:changePayClsss==true}" @click="settleMent()">
 					<text>总计:{{payMoney}}</text>
 				</view>				
 			</view>
@@ -133,7 +133,7 @@
 				allOrderPrice:[],
 				
 				// 当选择的份数是否为0切换图片
-				showOrHide:false,
+				showOrHide:true,
 				
 				// 显示的总份数
 				allNums:0,
@@ -317,6 +317,15 @@
 					// 遍历完成后赋值给 this.newRightAr,然后遍历到内容中
 					this.newRightArr = findArr;
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++公共部分++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			},
+			
+			// 去结算
+			settleMent(){
+				if(this.changePayClsss == false){
+					return
+				}else{
+					console.log(1)
+				}
 			}
 		 },
 		 watch:{
