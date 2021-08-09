@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -217,9 +217,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var modal = function modal() {__webpack_require__.e(/*! require.ensure | modal/modal */ "modal/modal").then((function () {return resolve(__webpack_require__(/*! ../../../modal/modal.vue */ 131));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 {
+  components: {
+    modal: modal },
+
   props: {
     orderingdata: Array
     // busidata:Array
@@ -436,11 +441,19 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
     },
 
     // 去结算
-    settleMent: function settleMent() {
+    settleMent: function settleMent() {var _this = this;
       if (this.changePayClsss == false) {
         return;
       } else {
-        console.log(1);
+        var setdata = uni.getStorageSync('userInfo');
+        if (setdata) {
+          // 有本地缓存代表用户已登录，不需要弹出模拟登录框
+        } else {
+          // 反之未登录，需要弹出模拟登录框
+          this.$nextTick(function () {
+            _this.$refs.mod.init();
+          });
+        }
       }
     } },
 
@@ -552,12 +565,12 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
     } }),
 
   // 
-  mounted: function mounted() {var _this = this;
+  mounted: function mounted() {var _this2 = this;
     // 为什么要使用setTimeout定时器？令其要让mounted在watch在mounted之前调用，watch暂存数据后,mounted才可以拿到暂存的数据
 
     setTimeout(function () {
       // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
-      _this.clickOrInitLoad(_this.orderingdata);
+      _this2.clickOrInitLoad(_this2.orderingdata);
 
       // const { delivering,physical,capita } = this.screendata.busidataarr[0];
       // console.log(this.screendata.busidataarr[0])
@@ -565,6 +578,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       // this.initBottomData(delivering,physical,capita)
     }, 400);
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

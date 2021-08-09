@@ -66,7 +66,7 @@
 					secret:'9fc11f2a4ce8aa5e38ee5625d903ff40',
 					avatarUrl,
 					nickName,
-					code,
+					code
 				}
 				
 				allApi(wxLoginUrl,'POST',data)

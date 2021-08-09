@@ -1,0 +1,136 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 模态弹窗布局 */
+.wrap.data-v-2b8ce32d{
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.6);
+	z-index: 9999;
+}
+.wrap-view.data-v-2b8ce32d{
+	width: 500rpx;
+	height: 200rpx;
+	background: #FFFFFF;
+	margin: auto;
+	position: absolute;
+	-webkit-position:absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	border-radius: 10rpx;
+	overflow: hidden;
+}
+.wrap-text.data-v-2b8ce32d{
+	text-align: center;
+	margin-top: 30rpx;
+	font-size: 34rpx;
+	color: #666666;
+}
+.wrap-flex.data-v-2b8ce32d{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	border-top: 1rpx solid #EEEEEE;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 80rpx;
+	line-height: 80rpx;
+}
+.wrap-flex button.data-v-2b8ce32d{
+	border: none;
+	font-size: 30rpx;
+}						
+

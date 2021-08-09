@@ -97,13 +97,18 @@
 				</view>				
 			</view>
 		</view>
+		<modal ref="mod"></modal>
 	</view>
 </template>
 
 <script>
 	import { mapState } from 'vuex';
+	import modal from '../../../modal/modal.vue'
 	
 	export default{
+		components:{
+			modal
+		},
 		props:{
 			orderingdata:Array,
 			// busidata:Array
@@ -322,9 +327,17 @@
 			// 去结算
 			settleMent(){
 				if(this.changePayClsss == false){
-					return
+					return;
 				}else{
-					console.log(1)
+					let setdata = uni.getStorageSync('userInfo')
+					if(setdata){
+						// 有本地缓存代表用户已登录，不需要弹出模拟登录框
+					}else{
+						// 反之未登录，需要弹出模拟登录框
+						this.$nextTick(()=>{
+							this.$refs.mod.init()
+						})
+					}
 				}
 			}
 		 },

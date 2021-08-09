@@ -9277,6 +9277,7 @@ var allApi = function allApi(url, method, data) {
       data: data }).
 
     then(function (res) {
+      // console.log(res)
       resolve(res);
     }).
     catch(function (err) {
