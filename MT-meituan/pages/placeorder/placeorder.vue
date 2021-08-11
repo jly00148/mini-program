@@ -14,7 +14,7 @@
 						<view></view>
 						<view class="goods-address-name">
 							<text>{{address}}</text>
-							<text>{{message +' '+ tel}}</text>
+							<text>{{username +' '+ tel}}</text>
 						</view>
 					</view>
 					<view class="goods-address-right">
@@ -58,7 +58,7 @@
 			<view class="payment-left">
 				<text>合计¥:{{payment+delivering}}</text>
 			</view>
-			<view class="payment-right">
+			<view class="payment-right" @click="toPay()">
 				去支付
 			</view>
 		</view>
@@ -79,9 +79,10 @@
 				allNums:'',
 				uniqueArr:[],
 				// 收货地址
-				address:'深圳市龙华区民治大道108号',
-				message:'张三',
-				tel:'020-18888888'
+				address:'深圳市龙华区民治大道',
+				username:'你的名字',
+				tel:'20210814',
+				shopname:''
 			}
 		},
 		onLoad(obj) {
@@ -99,18 +100,68 @@
 			this.logo = ideObj.logo;
 			// 点的商品份数
 			this.allNums=ideObj.allNums;
+			// 商家标识
+			this.merchantId = ideObj.merchantId
 			// 需要渲染的数据(已去重)
 			this.uniqueArr = ideObj.uniqueArr;
+			// 商家名称
+			this.shopname = ideObj.shopname;
 		},
 		methods:{
 			addAddress(){
 				wx.chooseAddress({
 					success:res=>{
 							this.address = res.cityName + res.countyName + res.detailInfo
-							this.message = res.userName;
+							this.username = res.userName;
 							this.tel = res.telNumber;
 					}
 				})
+			},
+			
+			// 发起微信支付：
+			toPay(){
+				
+				// 发起微信支付的数据
+				/*
+					*1.下单客户信息
+					*2.商家信息
+				*/
+			   
+				// 	1.下单客户信息
+				let peopleobj = {
+					address:this.address,
+					name:this.username,
+					iphone:this.tel
+				}
+				// ------------------------------------------------------------------------------
+				// 2.商家信息
+				// 商家标识
+				let merchantid =this.merchantId;
+				
+				// 截取商家标识字符串
+				let ide = this.merchantId.slice(0,7)
+				
+				// 商家名称
+				let commod = this.shopname
+				
+				// 商家logo
+				let logo = this.logo;
+				// -----------------------------------------------------------------------------
+				
+				// 把发送给后台的数据以对象的形式存储
+				let Paymentinfor = {
+					type:'placeOrder',
+					peopleobj,
+					arrinfo:this.uniqueArr,
+					merchantid,
+					ide,
+					commod,
+					logo,
+					useropenid:this.openid,
+					// 支付的总价：
+					payment:this.payment+this.delivering
+				}
+				console.log(Paymentinfor)
 			}
 		}
 	}

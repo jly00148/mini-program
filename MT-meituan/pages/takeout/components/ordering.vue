@@ -155,6 +155,10 @@
 				// 商家logo
 				logo:null,
 				
+				// 商家标识
+				merchantId:null,
+				
+				// 去重后的数组
 				uniqueArr:[]
 			 }
 		 },
@@ -351,15 +355,17 @@
 							* 商家标识
 							* 商家logo
 							* 点的商品个数
+							* 商家标识
+							* 点餐需要渲染的数据
 						*/
-					   
 					   let orderList = {
 						   payment:this.eachCounts,
 						   delivering:this.delivering,
 						   openid:setdata.openid,
-						   merchantId:this.shopname,
+						   shopname:this.shopname,
 						   logo:this.logo,
 						   allNums:this.allNums,
+						   merchantId:this.merchantId,
 						   uniqueArr:this.uniqueArr
 					   }
 					   
@@ -481,7 +487,7 @@
 			 },
 			 
 			 initBottomData(){
-				 const { delivering='',physical='',capita='', shop,logo} = this.screendata.busidataarr[0];
+				 const { delivering='',physical='',capita='', shop,logo,openid} = this.screendata.busidataarr[0];
 				 const  initBottomDataObj = {
 					 delivering:delivering,
 					 physical:physical,
@@ -491,7 +497,8 @@
 				 this.physical = physical;
 				 this.capita = capita;
 				 this.shopname = shop;
-				 this.logo = logo
+				 this.logo = logo;
+				 this.merchantId = openid;
 				 
 				 return initBottomDataObj;
 			 }

@@ -216,9 +216,10 @@ var _default =
       allNums: '',
       uniqueArr: [],
       // 收货地址
-      address: '深圳市龙华区民治大道108号',
-      message: '张三',
-      tel: '020-18888888' };
+      address: '深圳市龙华区民治大道',
+      username: '你的名字',
+      tel: '20210814',
+      shopname: '' };
 
   },
   onLoad: function onLoad(obj) {
@@ -236,18 +237,68 @@ var _default =
     this.logo = ideObj.logo;
     // 点的商品份数
     this.allNums = ideObj.allNums;
+    // 商家标识
+    this.merchantId = ideObj.merchantId;
     // 需要渲染的数据(已去重)
     this.uniqueArr = ideObj.uniqueArr;
+    // 商家名称
+    this.shopname = ideObj.shopname;
   },
   methods: {
     addAddress: function addAddress() {var _this = this;
       wx.chooseAddress({
         success: function success(res) {
           _this.address = res.cityName + res.countyName + res.detailInfo;
-          _this.message = res.userName;
+          _this.username = res.userName;
           _this.tel = res.telNumber;
         } });
 
+    },
+
+    // 发起微信支付：
+    toPay: function toPay() {
+
+      // 发起微信支付的数据
+      /*
+      	*1.下单客户信息
+      	*2.商家信息
+      */
+
+      // 	1.下单客户信息
+      var peopleobj = {
+        address: this.address,
+        name: this.username,
+        iphone: this.tel };
+
+      // ------------------------------------------------------------------------------
+      // 2.商家信息
+      // 商家标识
+      var merchantid = this.merchantId;
+
+      // 截取商家标识字符串
+      var ide = this.merchantId.slice(0, 7);
+
+      // 商家名称
+      var commod = this.shopname;
+
+      // 商家logo
+      var logo = this.logo;
+      // -----------------------------------------------------------------------------
+
+      // 把发送给后台的数据以对象的形式存储
+      var Paymentinfor = {
+        type: 'placeOrder',
+        peopleobj: peopleobj,
+        arrinfo: this.uniqueArr,
+        merchantid: merchantid,
+        ide: ide,
+        commod: commod,
+        logo: logo,
+        useropenid: this.openid,
+        // 支付的总价：
+        payment: this.payment + this.delivering };
+
+      console.log(Paymentinfor);
     } } };exports.default = _default;
 
 /***/ }),

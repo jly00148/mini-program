@@ -271,6 +271,10 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       // 商家logo
       logo: null,
 
+      // 商家标识
+      merchantId: null,
+
+      // 去重后的数组
       uniqueArr: [] };
 
   },
@@ -467,15 +471,17 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
           	* 商家标识
           	* 商家logo
           	* 点的商品个数
+          	* 商家标识
+          	* 点餐需要渲染的数据
           */
-
           var orderList = {
             payment: this.eachCounts,
             delivering: this.delivering,
             openid: setdata.openid,
-            merchantId: this.shopname,
+            shopname: this.shopname,
             logo: this.logo,
             allNums: this.allNums,
+            merchantId: this.merchantId,
             uniqueArr: this.uniqueArr };
 
 
@@ -597,7 +603,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
     },
 
     initBottomData: function initBottomData() {var _this$screendata$busi =
-      this.screendata.busidataarr[0],_this$screendata$busi2 = _this$screendata$busi.delivering,delivering = _this$screendata$busi2 === void 0 ? '' : _this$screendata$busi2,_this$screendata$busi3 = _this$screendata$busi.physical,physical = _this$screendata$busi3 === void 0 ? '' : _this$screendata$busi3,_this$screendata$busi4 = _this$screendata$busi.capita,capita = _this$screendata$busi4 === void 0 ? '' : _this$screendata$busi4,shop = _this$screendata$busi.shop,logo = _this$screendata$busi.logo;
+      this.screendata.busidataarr[0],_this$screendata$busi2 = _this$screendata$busi.delivering,delivering = _this$screendata$busi2 === void 0 ? '' : _this$screendata$busi2,_this$screendata$busi3 = _this$screendata$busi.physical,physical = _this$screendata$busi3 === void 0 ? '' : _this$screendata$busi3,_this$screendata$busi4 = _this$screendata$busi.capita,capita = _this$screendata$busi4 === void 0 ? '' : _this$screendata$busi4,shop = _this$screendata$busi.shop,logo = _this$screendata$busi.logo,openid = _this$screendata$busi.openid;
       var initBottomDataObj = {
         delivering: delivering,
         physical: physical,
@@ -608,6 +614,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       this.capita = capita;
       this.shopname = shop;
       this.logo = logo;
+      this.merchantId = openid;
 
       return initBottomDataObj;
     } }),
