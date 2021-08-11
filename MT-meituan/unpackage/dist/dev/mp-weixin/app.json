@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/takeout/takeout",
+    "pages/placeorder/placeorder",
     "pages/index/index",
     "pages/order/order",
     "pages/my/my",

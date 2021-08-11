@@ -131,7 +131,7 @@
 				physical:null,
 				capita:null,
 				
-				// 每一份价格(初始值为0)
+				// 一种菜品的单价x份数(初始值为0)
 				eachCounts:0,
 				
 				// 点击添加或者减少把数组存入数组
@@ -147,7 +147,15 @@
 				changePayClsss:false,
 				
 				// 总价包括运送费+食物价格
-				payMoney:0
+				payMoney:0,
+				
+				// 商家名字
+				shopname:null,
+				
+				// 商家logo
+				logo:null,
+				
+				uniqueArr:[]
 			 }
 		 },
 		 methods:{
@@ -277,6 +285,7 @@
 					})
 					this.allOrderPrice = newAllOrderPrice;
 					
+					
 // =====================================================================点击+号结尾=============================================================
 				}else{
 					/*	备注：
@@ -331,7 +340,43 @@
 				}else{
 					let setdata = uni.getStorageSync('userInfo')
 					if(setdata){
-						// 有本地缓存代表用户已登录，不需要弹出模拟登录框
+						// 有本地缓存代表用户已登录，去支付,支付传的参数
+						
+						/*	
+							-参数一一对应以下-
+							
+							* 商品的总价
+							* 配送费
+							* 用户openid
+							* 商家标识
+							* 商家logo
+							* 点的商品个数
+						*/
+					   
+					   let orderList = {
+						   payment:this.eachCounts,
+						   delivering:this.delivering,
+						   openid:setdata.openid,
+						   merchantId:this.shopname,
+						   logo:this.logo,
+						   allNums:this.allNums,
+						   uniqueArr:this.uniqueArr
+					   }
+					   
+					   let orderListString = JSON.stringify(orderList)
+					   
+					   uni.navigateTo({
+						   /*注意点：
+							*1.路径带参数不能带对象、数组，只能带字符串
+							*2.非tabBar页面可以通过绝对路径进行页面的跳转
+							*3.跳转tabBar页面，需要uni.switchTab进行跳转
+							*4.传递参数必需是字符串
+						   */
+						  
+						   url:'/pages/placeorder/placeorder?ide=' + orderListString
+						   
+					   })
+					   
 					}else{
 						// 反之未登录，需要弹出模拟登录框
 						this.$nextTick(()=>{
@@ -376,6 +421,7 @@
 		
 					},[])
 					
+					this.uniqueArr = uniqueArr;
 					// ------------------------------------------------------------------------------------------------------------------------
 					// 为获取最终结果预设的值
 					var temp = 0;
@@ -435,7 +481,7 @@
 			 },
 			 
 			 initBottomData(){
-				 const { delivering='',physical='',capita='' } = this.screendata.busidataarr[0];
+				 const { delivering='',physical='',capita='', shop,logo} = this.screendata.busidataarr[0];
 				 const  initBottomDataObj = {
 					 delivering:delivering,
 					 physical:physical,
@@ -444,6 +490,8 @@
 				 this.delivering = delivering;
 				 this.physical = physical;
 				 this.capita = capita;
+				 this.shopname = shop;
+				 this.logo = logo
 				 
 				 return initBottomDataObj;
 			 }
