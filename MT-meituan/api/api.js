@@ -7,7 +7,6 @@
 			data:data
 		 })
 		 .then(res=>{
-			 // console.log(res)
 			 resolve(res)
 		 })
 		 .catch(err=>{

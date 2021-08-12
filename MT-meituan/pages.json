@@ -1,14 +1,24 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	{
-	    "path" : "pages/takeout/takeout",
-	    "style" :
-	    {
-	        "navigationBarTitleText": "下单",
-	        "enablePullDownRefresh": true
-	    }
-	    
-	},
+		{
+			"path" : "pages/takeout/takeout",
+			"style" :
+			{
+				"navigationBarTitleText": "下单",
+				"enablePullDownRefresh": true
+			}
+			
+		},
+		{
+			"path" : "pages/my/my",
+			"style" :                                                                                    
+			{
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": true
+			}
+			
+		},
+
 		{
 			"path" : "pages/placeorder/placeorder",
 			"style" :
@@ -35,15 +45,7 @@
             }
             
         }
-        ,{
-            "path" : "pages/my/my",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": true
-            }
-            
-        }
+
         ,{
             "path" : "pages/search/search",
             "style" :                                                                                    

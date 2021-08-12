@@ -1,5 +1,5 @@
 
-page{background: #F4f4f4;}
+page{background: #F4f4f4}
 .place-view{background: #FFFFFF;
 margin: 20rpx;
 border-radius: 9rpx;

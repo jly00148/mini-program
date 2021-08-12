@@ -58,8 +58,9 @@
 			wxLogin(avatarUrl,nickName,code){
 				
 				let data = {
+					// appid和secret来自个人的微信公众平台
 					appid:'wx7f1e12062dd459a1',
-					secret:'9fc11f2a4ce8aa5e38ee5625d903ff40',
+					secret:'2bf8c70dde7a49b1dfcc37ba5fb3f940',
 					avatarUrl,
 					nickName,
 					code
@@ -69,7 +70,7 @@
 				.then(res=>{
 					if(res[1].data.msg == 'success'){
 						// 存入本地
-						uni.setStorageSync('userInfo',res[1].data.datas)
+						uni.setStorageSync('usermen',res[1].data.datas)
 						
 						this.showOrHide = false;
 						this.HMmessages.show('用户已登录',{icon:'success',background:'#e5f7ff',duration:3000})

@@ -5,10 +5,10 @@
 			<block>
 				<view class="wx-name" v-if="!wxlogin">
 					<view>
-						<image></image>	
+						<image :src="avatarUrl"></image>	
 					</view>
 					<view class="wx-text">
-						<text>{{usering.nickName}}</text>
+						<text>{{nickName}}</text>
 					</view>
 				</view>
 			</block>
@@ -18,7 +18,7 @@
 				<view class="wx-button-view">登录每天外卖，开启吃货旅程</view>
 				<view>
 					<!-- getuserinfo的有效值getuserinfo,获取用户信息，可以从@getuserinfo回调中获取到用户信息，包括头像、昵称等信息-->
-					<button open-type="getUserInfo" @getuserinfo="getUserInfo">去登录</button>
+					<button @click="userLoginMsg">去登录</button>
 				</view>
 			</view>
 		</view>
@@ -33,18 +33,26 @@
 		data() {
 			return {
 				wxlogin:true,
-				usering:{}
+				nickName:'',
+				avatarUrl:''
 			}
 		},
 		methods: {
-			// 获取event
-			getUserInfo (event){
-				if(event.detail.userInfo){
-					let wxing = event.detail.userInfo;
-					this.wxCode(wxing.avatarUrl,wxing.nickName)
-				}
+			userLoginMsg(){
+				uni.getUserProfile({
+					desc:'登录',
+					success:(res)=>{
+						let userInfo = res.userInfo;
+						this.nickName = userInfo.nickName;
+						this.avatarUrl = userInfo.avatarUrl;
+						
+						this.wxCode(this.avatarUrl,this.nickName)
+					},
+					fail:(err)=>{
+						console.log(err)
+					}
+				})
 			},
-			
 			// 获取头像和code(code:调用接口获取凭证。同过凭证进而换取用户登录信息，包括用户的唯一识别码openid以及本次登录的会话密匙session_key等)
 			// 用户数据的加解密通讯需要依赖会话密匙完成。code凭证有效期为5分钟，开发者需要在开发者服务器后台调用auth.code2Session,使用code换取openid和会话密匙session_key
 			wxCode(avatarUrl,nickName){
@@ -63,29 +71,29 @@
 			wxLogin(avatarUrl,nickName,code){
 				let data = {
 					appid:'wx7f1e12062dd459a1',
-					secret:'9fc11f2a4ce8aa5e38ee5625d903ff40',
-					avatarUrl,
+					secret:'2bf8c70dde7a49b1dfcc37ba5fb3f940',
+					code,
 					nickName,
-					code
+					avatarUrl
 				}
 				
 				allApi(wxLoginUrl,'POST',data)
-				.then(res=>{
+				.then((res)=>{
 					if(res[1].data.msg == 'success'){
 						// 存入本地
-						uni.setStorageSync('userInfo',res[1].data.datas)
+						uni.setStorageSync('usermen',res[1].data.datas)
 					}
 					
 					this.checkUserInfo()
 				})
-				.catch(err=>{
+				.catch((err)=>{
 					console.log(err)
 				})
 			},
 			
 			checkUserInfo(){
 				// 取出本地缓存的用户信息
-				let cacheUserInfo = uni.getStorageSync('userInfo');
+				let cacheUserInfo = uni.getStorageSync('usermen');
 				
 				if(!cacheUserInfo){
 					// 用户未登录
@@ -93,7 +101,6 @@
 				}else{
 					// 用户已登录
 					this.wxlogin = false;
-					this.usering = cacheUserInfo;
 				}
 			}
 		},
@@ -102,7 +109,7 @@
 		// 生命周期函数onShow(每次显示这个页面都会执行的函数)
 		onShow(){
 			// 每次显示这个页面的时候调用这个检查本地缓存的用户信息的函数
-			this.checkUserInfo()
+			// this.checkUserInfo()
 		},
 		mounted(){
 

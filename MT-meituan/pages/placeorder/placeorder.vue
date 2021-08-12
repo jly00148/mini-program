@@ -68,6 +68,9 @@
 </template>
 
 <script>
+	import { wxPaymentUrl } from '../../api/request.js';
+	import allApi from '../../api/api.js';
+	
 	export default{
 		data(){
 			return {
@@ -119,7 +122,7 @@
 			},
 			
 			// 发起微信支付：
-			toPay(){
+			async toPay(){
 				
 				// 发起微信支付的数据
 				/*
@@ -159,16 +162,63 @@
 					logo,
 					useropenid:this.openid,
 					// 支付的总价：
-					payment:this.payment+this.delivering
+					payment:this.payment + this.delivering
 				}
-				console.log(Paymentinfor)
+				// es6:async sawit 异步编程同步化，分三步:
+				/*
+					1.统一下单
+					2.发起支付
+					3.
+				*/
+			   
+				// 1.统一下单:
+				let placeorder = await this.placeOrder(Paymentinfor)
+				let placeorderobj = placeorder[1].data.datas;
+				
+				// 2.发起支付:
+				let wxpay = await this.wxPays(placeorderobj)
+			},
+			
+			// 1.统一下单：
+			placeOrder(Paymentinfor){
+				return new Promise((resolve,reject)=>{
+					allApi(wxPaymentUrl,'POST',Paymentinfor)
+					.then(res=>{
+						// res[1].data.datas返回的值说明：
+						/*
+							nonceStr: "UCbMTLPh5ZNskhHR" //随机字符串
+							out_trade_no: "5dfcf32-1628716988838" // 商户订单号
+							payauto: "5689754C5CAE383B32A63165B70E44F0" //签名
+							time_stamp: "1628716989" //时间戳
+							_id: "61143fbdc2ec5207cfe9c40b" //订单标识id
+						*/
+						resolve(res)
+					})
+					.catch(err=>{
+						reject(err,'支付错误')
+					})
+				})
+			},
+			
+			// 2.发起支付请求
+			wxPays(placeorderobj){
+				// timeStamp应该是String而不是Undefined;参数。package应该是String而不是Undefined
+				return new Promise((resolve,reject)=>{
+					wx.requestPayment({
+						timeStamp:placeorderobj.time_stamp,
+						nonceStr:placeorderobj.nonceStr,
+						signType:'MD5',
+						paySign:placeorderobj.payauto,
+		
+					})
+				})
 			}
 		}
 	}
 </script>
 
 <style>
-	page{background: #F4f4f4;}
+	page{background: #F4f4f4}
 	.place-view{background: #FFFFFF;
 	margin: 20upx;
 	border-radius: 9upx;

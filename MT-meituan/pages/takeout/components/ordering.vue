@@ -342,7 +342,7 @@
 				if(this.changePayClsss == false){
 					return;
 				}else{
-					let setdata = uni.getStorageSync('userInfo')
+					let setdata = uni.getStorageSync('usermen')
 					if(setdata){
 						// 有本地缓存代表用户已登录，去支付,支付传的参数
 						
@@ -510,11 +510,6 @@
 			 setTimeout(()=>{
 				 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
 				 this.clickOrInitLoad(this.orderingdata);
-				 
-				// const { delivering,physical,capita } = this.screendata.busidataarr[0];
-				// console.log(this.screendata.busidataarr[0])
-				
-				// this.initBottomData(delivering,physical,capita)
 			 },400)
 		 }
 	}
