@@ -1,9 +1,10 @@
 /* 首页列表页 */
-.content-view .text{display: block;}
+.content-view .text{
+	display: block;
+}
 .content-view{display: flex; justify-content: space-between;
 height: 200upx !important; overflow: hidden;
 border-bottom: 1rpx solid #E4E8EB; padding-bottom: 5upx;
-margin: 70upx 0;
 color: #898989;
 }
 .content-img{width: 350upx !important; height: 200upx !important;

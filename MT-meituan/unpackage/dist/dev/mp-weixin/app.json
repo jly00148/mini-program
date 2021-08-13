@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/takeout/takeout",
     "pages/my/my",
     "pages/placeorder/placeorder",
-    "pages/index/index",
     "pages/order/order",
     "pages/search/search"
   ],
@@ -39,5 +39,7 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "homeload": "/loading/loading"
+  }
 }

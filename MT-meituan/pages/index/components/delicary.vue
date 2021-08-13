@@ -304,8 +304,11 @@
 
 <style scoped>
 	/* 筛选区 */
-	.delica-view .img{width: 30upx; height: 30upx; display: block;
-		}
+	.delica-view .img{
+		width: 30upx; 
+		height: 30upx; 
+		display: block;
+	}
 	.delica-view{
 	width: 702upx;
 	font-size: 30upx; display: flex; align-items: center;
@@ -319,16 +322,16 @@
 
 	.delica-right{justify-content: flex-end; flex-grow: 5;}
 	.delica-grow{flex-grow: 1;}
-	.prefer-posi{
-		position: absolute; left: 0; right: 0;
+/* 	.prefer-posi{
+		background-color: red;
+		position: fixed; left: 0; right: 0;top: 0;
 		width: 100%;
-		z-index: 99;}
+		z-index: 99;} */
 	/* 排序 */
 
 	.sortlist{
 		background: #ffffff;
 		position: relative;
-		top: 70upx;
 		border-bottom: 1rpx solid #ededed;
 		z-index: 99;
 		border-radius: 10upx;
@@ -349,7 +352,6 @@
 	.sortlist-view{height: 700upx; overflow: hidden;
 	overflow-y: scroll;
 	position: relative;
-	top:70upx;
 	}
 	.sortlist-title{padding: 0 15upx;
 	font-size: 30upx;

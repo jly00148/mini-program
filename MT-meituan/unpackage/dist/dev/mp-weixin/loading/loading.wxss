@@ -31,24 +31,3 @@
 	font-size: 25rpx;
 }
 
-
-.home-container.data-v-57280228{
-	padding: 25rpx;
-}
-#boxFixed.data-v-57280228{
-	width: 702rpx;
-	margin: 0 auto;
-}
-.isFixedBox.data-v-57280228{
-	height: 70rpx;
-	width: 100%;
-}
-.is_Fixed.data-v-57280228{
-	position: fixed;
-	top: 0rpx;
-	left: 0rpx;
-	right: 0rpx;
-	z-index: 99;
-}
-
-

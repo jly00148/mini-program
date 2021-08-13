@@ -9,15 +9,15 @@
 		<view>
 				<Title></Title>
 		</view>
-		<view>
+		<view class="isFixedBox">
 			<view id="boxFixed" :class="{'is_Fixed' : isFixed}" @click="poll">
 				<Delicary></Delicary>
 			</view>
 		</view>
 		<view>
-				<Takeout class="takeout" :takeShopDate='takeShopDate'>{{count}}</Takeout>
+			<Takeout class="takeout" :takeShopDate='takeShopDate'>{{count}}</Takeout>
 		</view>
-
+		<homeload v-if="showOrHide"></homeload>
 	</view>
 </template>
 
@@ -28,6 +28,7 @@
 	import Delicary from './components/delicary.vue';
 	import Title from './components/title.vue';
 	import Takeout from './components/takeout.vue';
+	import Homeload from '../../loading/loading.vue';
 	
 	// 引入接口
 	import allApi from '../../api/api.js';
@@ -57,10 +58,10 @@
 				getTop: '',
 				reac:'',
 				isFixed:false,
-				isFixed:false,
 				// 初始化默认渲染空数组
 				preferData:[],
-				takeShopDate:[]
+				takeShopDate:[],
+				showOrHide:true
 			}
 		},
 
@@ -92,6 +93,9 @@
 					// console.log(result)
 					this.preferData = result[0][1].data;
 					this.takeShopDate = result[1][1].data;
+					
+					// loading
+					this.showOrHide = false
 				})
 				.catch(err=>{
 					errMsg.errlist('服务端错误，请稍后再试')
@@ -157,9 +161,13 @@
 		width: 702upx;
 		margin: 0 auto;
 	}
+	.isFixedBox{
+		height: 70upx;
+		width: 100%;
+	}
 	.is_Fixed{
 		position: fixed;
-		top: 88upx;
+		top: 0upx;
 		left: 0upx;
 		right: 0upx;
 		z-index: 99;
