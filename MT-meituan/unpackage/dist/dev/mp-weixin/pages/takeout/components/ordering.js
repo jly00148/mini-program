@@ -284,6 +284,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       // loading控制
       loadingload: true };
 
+
   },
   methods: {
     // 点击上边相应切换点菜。评价等商家
@@ -466,6 +467,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
     // 去结算
     settleMent: function settleMent() {var _this = this;
+      // 支付框为灰色禁止支付
       if (this.changePayClsss == false) {
         return;
       } else {
@@ -513,7 +515,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
         } else {
           // 反之未登录，需要弹出模拟登录框
           this.$nextTick(function () {
-            _this.$refs.mod.userLoginMsg();
+            _this.$refs.mod.showOrHide = true;
           });
         }
       }

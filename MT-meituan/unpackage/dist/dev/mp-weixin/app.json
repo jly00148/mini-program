@@ -41,5 +41,6 @@
   },
   "usingComponents": {
     "homeload": "/loading/loading"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -167,6 +167,7 @@
 				
 				// loading控制
 				loadingload:true
+				
 			 }
 		 },
 		 methods:{
@@ -350,6 +351,7 @@
 			
 			// 去结算
 			settleMent(){
+				// 支付框为灰色禁止支付
 				if(this.changePayClsss == false){
 					return;
 				}else{
@@ -397,7 +399,7 @@
 					}else{
 						// 反之未登录，需要弹出模拟登录框
 						this.$nextTick(()=>{
-							this.$refs.mod.userLoginMsg()
+							this.$refs.mod.showOrHide = true
 						})
 					}
 				}

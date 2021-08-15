@@ -93,6 +93,10 @@
 
 
 
+
+
+
+
 /* 模态弹窗布局 */
 .wrap.data-v-2b8ce32d{
 	position: fixed;
@@ -140,5 +144,5 @@
 .wrap-flex button.data-v-2b8ce32d{
 	border: none;
 	font-size: 30rpx;
-}						
+}
 

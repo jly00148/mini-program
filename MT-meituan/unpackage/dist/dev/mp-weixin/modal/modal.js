@@ -150,7 +150,10 @@ var _request = __webpack_require__(/*! ../api/request.js */ 27);function _intero
 //
 //
 //
-var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 156));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: { userLoginMsg: function userLoginMsg() {var _this = this;
+var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 156));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: { messcancel: function messcancel() {
+      this.showOrHide = false;
+    },
+    userLoginMsg: function userLoginMsg() {var _this = this;
       uni.getUserProfile({
         desc: '登录',
         success: function success(res) {
@@ -194,6 +197,7 @@ var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure
         if (res[1].data.msg == 'success') {
           // 存入本地
           uni.setStorageSync('usermen', res[1].data.datas);
+          _this3.showOrHide = false;
           _this3.HMmessages.show('用户已登录', { icon: 'success', background: '#e5f7ff', duration: 3000 });
         }
       }).

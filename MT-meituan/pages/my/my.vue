@@ -82,7 +82,6 @@
 					if(res[1].data.msg == 'success'){
 						// 存入本地
 						uni.setStorageSync('usermen',res[1].data.datas)
-						this.HMmessages.show('用户已登录',{icon:'success',background:'#e5f7ff',duration:3000})
 					}
 					
 					this.checkUserInfo()

@@ -29,6 +29,9 @@
 		},
 	
 	methods: {
+			messcancel(){
+				this.showOrHide = false;
+			},
 			userLoginMsg(){
 				uni.getUserProfile({
 					desc:'登录',
@@ -73,6 +76,7 @@
 					if(res[1].data.msg == 'success'){
 						// 存入本地
 						uni.setStorageSync('usermen',res[1].data.datas)
+						this.showOrHide = false;
 						this.HMmessages.show('用户已登录',{icon:'success',background:'#e5f7ff',duration:3000})
 					}
 				})
@@ -137,5 +141,5 @@
 	.wrap-flex button{
 		border: none;
 		font-size: 30upx;
-	}						
+	}
 </style>
