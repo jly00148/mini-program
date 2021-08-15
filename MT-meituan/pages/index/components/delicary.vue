@@ -206,12 +206,10 @@
 					screen,
 					nums
 				}
-				
 				// 调用api返回按照条件排序的数据
 				allApi(nearbyTakeOutRank,'POST',data)
 				.then(result=>{
-					// 	存储到vuex数据仓库(store/store.js)
-					this.$store.commit('screenmuta',result[1].data)
+					this.$parent.fatherMethod(result[1].data)
 				})
 				.catch(err=>{
 					console.log(err)
@@ -220,7 +218,6 @@
 			
 			// 多选商家特色
 			choiceClick(id,indexs,sign){
-				// console.log(this.screendata[0].datas[id].id)
 				if(id === 1){
 					// 让其不选中
 					this.screendata[0].datas[indexs].id = 0;
@@ -266,6 +263,7 @@
 				this.$delete(this.multiObj,'duration');
 				this.$delete(this.multiObj,'physi');
 				
+				// 清空选择默认综合排序
 				this.sortClick(0,"综合排序","_id",1)
 				
 					for(var i = 0;i<this.screendata[0].datas.length;i++){
@@ -278,7 +276,8 @@
 			complete(){
 				allApi(multipleurl,'POST',this.multiObj)
 				.then(result=>{
-						this.$store.commit('screenmuta',result[1].data)
+						// this.$store.commit('screenmuta',result[1].data)
+						this.$parent.fatherMethod(result[1].data)
 				})
 				.catch(err=>{
 					errMsg.errlist('服务器错误，请稍后再试！');

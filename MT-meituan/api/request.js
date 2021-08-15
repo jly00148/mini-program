@@ -34,6 +34,9 @@ const wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
 // 微信支付
 let wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
 
+// 提交评论
+let wxCommont = publicUrl + 'api/message/comment';
+
 // 导出路径
 module.exports = {
 	preferenceUrl,
@@ -46,5 +49,6 @@ module.exports = {
 	getdishesUrl,
 	AllAndAiAssessUrl,
 	wxLoginUrl,
-	wxPaymentUrl
+	wxPaymentUrl,
+	wxCommont
 }

@@ -822,7 +822,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2014,7 +2014,7 @@ _vue.default.use(_vuex.default);
 
 var screendata = {
   // 存储筛选出来的数据
-  screenarr: [{}],
+  // screenarr:[{}],
   busidataarr: [{}] };
 
 
@@ -2028,19 +2028,18 @@ var store = new _vuex.default.Store({
   state: state,
   // 同步存储
   mutations: {
-    screenmuta: function screenmuta(state, listdata) {
-      // // console.log(listdata)
-      if (typeof listdata === 'string') {
-        listdata = [{ notice: listdata }];
-        state.screendata = {
-          screenarr: listdata };
-
-      } else {
-        state.screendata = {
-          screenarr: listdata };
-
-      }
-    },
+    // screenmuta(state,listdata){
+    // 	if(typeof listdata === 'string'){
+    // 		listdata = [{notice:listdata}];
+    // 		state.screendata = {
+    // 			screenarr:listdata
+    // 		}
+    // 	}else{
+    // 		state.screendata = {
+    // 			screenarr:listdata
+    // 		}
+    // 	}
+    // },
 
     busidata: function busidata(state, busidatalist) {
       state.screendata = {
@@ -3164,34 +3163,6 @@ var index = {
 
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 3)))
-
-/***/ }),
-
-/***/ 19:
-/*!******************************************************************!*\
-  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/api.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {// 封装接口
-var allApi = function allApi(url, method, data) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: url,
-      method: method,
-      data: data }).
-
-    then(function (res) {
-      resolve(res);
-    }).
-    catch(function (err) {
-      reject(err);
-    });
-  });
-};
-module.exports = allApi;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8721,7 +8692,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8742,14 +8713,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8835,7 +8806,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9243,7 +9214,35 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 20:
+/***/ 26:
+/*!******************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/api.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {// 封装接口
+var allApi = function allApi(url, method, data) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: url,
+      method: method,
+      data: data }).
+
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};
+module.exports = allApi;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 27:
 /*!**********************************************************************!*\
   !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/request.js ***!
   \**********************************************************************/
@@ -9286,6 +9285,9 @@ var wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
 // 微信支付
 var wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
 
+// 提交评论
+var wxCommont = publicUrl + 'api/message/comment';
+
 // 导出路径
 module.exports = {
   preferenceUrl: preferenceUrl,
@@ -9298,7 +9300,32 @@ module.exports = {
   getdishesUrl: getdishesUrl,
   AllAndAiAssessUrl: AllAndAiAssessUrl,
   wxLoginUrl: wxLoginUrl,
-  wxPaymentUrl: wxPaymentUrl };
+  wxPaymentUrl: wxPaymentUrl,
+  wxCommont: wxCommont };
+
+/***/ }),
+
+/***/ 28:
+/*!*********************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/errmsg.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };var _default =
+
+errMsg;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9333,18 +9360,29 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 37:
+/***/ 4:
+/*!******************************************************************!*\
+  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/pages.json ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 53:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 38);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 54);
 
 /***/ }),
 
-/***/ 38:
+/***/ 54:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -9375,7 +9413,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 39);
+module.exports = __webpack_require__(/*! ./runtime */ 55);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -9392,7 +9430,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 55:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -10121,40 +10159,6 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
-
-/***/ }),
-
-/***/ 4:
-/*!******************************************************************!*\
-  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/pages.json ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 48:
-/*!*********************************************************************!*\
-  !*** C:/Users/Pentium/senior/mini-program/MT-meituan/api/errmsg.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {// 错误提示
-var errMsg = {
-  errlist: function errlist(err) {
-    uni.showToast({
-      icon: 'none',
-      title: err, //提示的内容
-      duration: 3000,
-      mask: true });
-
-  } };
-
-module.exports = errMsg;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

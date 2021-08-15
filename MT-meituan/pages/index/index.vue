@@ -15,8 +15,9 @@
 			</view>
 		</view>
 		<view>
-			<Takeout class="takeout" :takeShopDate='takeShopDate'>{{count}}</Takeout>
+			<Takeout class="takeout" :takeShopDate="takeShopDate"></Takeout>
 		</view>
+		<!-- loading -->
 		<homeload v-if="showOrHide"></homeload>
 	</view>
 </template>
@@ -28,22 +29,14 @@
 	import Delicary from './components/delicary.vue';
 	import Title from './components/title.vue';
 	import Takeout from './components/takeout.vue';
+	// loading
 	import Homeload from '../../loading/loading.vue';
 	
 	// 引入接口
 	import allApi from '../../api/api.js';
 	
 	// 引入请求路径
-	import { 
-		preferenceUrl,
-		nearbyTakeOut
-	} from '../../api/request.js';
-	
-	// 引入调用成功、失败和loading等接口
-	import { errMsg } from '../../api/errmsg.js';
-	
-	// 引入vuex的mapState;
-	import { mapState } from 'vuex';
+	import { preferenceUrl,nearbyTakeOut } from '../../api/request.js';
 	
 	export default {
 		components:{
@@ -66,39 +59,28 @@
 		},
 
 		methods: {
-			// 为你优选调用接口初始化数据(之前写preference方法，现在用promise.all)
 			preference(){
-				// allApi(preferenceUrl,'GET')
-				// .then(result=>{
-				// 	// 返回的目标数组data在result数组中
-				// 	this.preferData = result[1].data;
-				// })
-				// .catch(err=>{
-				// 	errMsg.errlist('服务端错误，请稍后再试!!!!!!!!')
-				// 	console.log(err)
-				// })
-				
-				// ---------------------------------------------------------
-				
 				Promise.all(
 					[	
-						// // 为你优选调用接口初始化数据
+						// 为你优选横向轮播图初始化数据接口
 						allApi(preferenceUrl,'GET'),
 						
-						// 附近商家接口初始化数据
+						// 附近商家接口初始化接口
 						allApi(nearbyTakeOut,'GET')
 					]
 				)
 				.then(result=>{
-					// console.log(result)
+					// 返回为你优选的横向轮播图数据
 					this.preferData = result[0][1].data;
+					
+					// 附近商家的数据
 					this.takeShopDate = result[1][1].data;
 					
-					// loading
-					this.showOrHide = false
+					// loading消失
+					this.showOrHide = false;
 				})
 				.catch(err=>{
-					errMsg.errlist('服务端错误，请稍后再试')
+					console.log('err',err)
 				})
 			},
 			
@@ -108,19 +90,43 @@
 				wx.pageScrollTo({
 					// 不同手机this.getTop不同，必需动态添加getTop
 					scrollTop:backToTop,
-					duration:200
+					duration:300
 				})
 			},
+			
+			//点击综合排序后子组件调用父组件
+			fatherMethod(updateShopArr){
+				this.takeShopDate = updateShopArr;
+			},
 		},
-		
+	
 		// 监听页面滚动的距离:微信小程序提供接口
 		onPageScroll(e){
 			this.reac = e.scrollTop;
 		},
 		
+
+		
+		// 计算属性侦听器：时刻监听数据变化，现在监听组件置顶和不置顶
+		watch:{
+			reac(){
+				// 滚动距离大于该组件距离上边的距离
+				if(this.reac > this.getTop){
+					// 置顶
+					this.isFixed = true;
+				}
+				// 滚动距离大于该组件距离上边的距离
+				else{
+					// 不置顶
+					 this.isFixed = false;
+				}
+			}
+		},
+
 		mounted(){
 			this.preference();
-			// 监听筛选组件滚动的距离,组件地址：https://developers.weixin.qq.com/miniprogram/dev/api/wxml/wx.createSelectorQuery.html
+			
+			// 获取筛选组件距离顶部的距离,组件地址：https://developers.weixin.qq.com/miniprogram/dev/api/wxml/wx.createSelectorQuery.html
 			const query = wx.createSelectorQuery();
 			// #boxFixed点的上边界坐标
 			query.select('#boxFixed').boundingClientRect();
@@ -129,27 +135,6 @@
 				this.getTop = res[0].top;
 			})
 		},
-		
-		// 计算属性侦听器：时刻监听数据变化，现在监听组件置顶和不置顶
-		watch:{
-			reac(){
-				if(this.reac > this.getTop){
-					// 置顶
-					this.isFixed = true;
-				}else{
-					// 不置顶
-					 this.isFixed = false;
-				}
-			}
-		},
-
-		computed:{
-			...mapState(['screendata']),
-			// 使count与组件有依赖才会执行：组件中{{count}}
-			count(){
-				this.takeShopDate = this.screendata.screenarr;
-			}
-		}
 	}
 </script>
 

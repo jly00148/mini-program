@@ -2,7 +2,7 @@
 	<view>
 		<Tip :tipText="tipText" v-show="showEmpty"></Tip>
 			<block v-for="(item,index) in takeShopDate" :key="index">
-				<view  class="content-view">
+				<view  class="content-view" @click="choiceShop(item.openid)">
 					<view class="content-img" v-show="!showEmpty">
 						<image :src="item.logo" mode="aspectFill" class="img"></image>
 					</view>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	
 	import Tip from '../../../tips/tips.vue';
 	
 	export default {
@@ -41,81 +42,26 @@
 			return {
 				tipText:'',
 				showEmpty:false
-				// takeshop:this.takeshop
-				// takeshop:[
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// },
-					// {
-					// 	'logo':'https://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png',
-					// 	'shop':'酸菜鱼',
-					// 	'duration':20,
-					// 	'delivering':13,
-					// 	'physical':4,
-					// 	'capita':20,
-					// 	'types':'川菜'
-					// }
-				// ]
+			}
+		},
+		methods:{
+			choiceShop(shopOpenid){
+				uni.navigateTo({
+					//openid在/pages/takeout/takeout页面内用onload接收
+					url:'/pages/takeout/takeout?openid=' + shopOpenid
+				})
 			}
 		},
 		watch:{
-			takeShopDate:function(){
-				if(this.takeShopDate[0].notice){
+			// 每次点击(delicary.vue文件中sortClick和personClick方法)后返回的result传递到父组件中的fatherMethod方法,
+			// 然后把得到的数组通过监听takeShopDate得到的数组赋值给takeShopDate综合排序和筛选时
+			takeShopDate:function(takeShopDate){
+				if(takeShopDate.length == 0){
 					this.showEmpty = true;
-					this.tipText = '未搜索到商家'
+					this.tipText = '商家未找到'
 				}else{
 					this.showEmpty = false;
+					this.takeShopDate = takeShopDate;
 				}
 			}
 		}

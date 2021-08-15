@@ -97,7 +97,11 @@
 				</view>				
 			</view>
 		</view>
+		<!-- 弹出登录提示框 -->
 		<modal ref="mod"></modal>
+		
+		<!-- loading -->
+		<homeload v-if="loadingload"></homeload>
 	</view>
 </template>
 
@@ -111,7 +115,7 @@
 		},
 		props:{
 			orderingdata:Array,
-			// busidata:Array
+			busidata:Array
 		},
 		 data(){
 			 return {
@@ -159,7 +163,10 @@
 				merchantId:null,
 				
 				// 去重后的数组
-				uniqueArr:[]
+				uniqueArr:[],
+				
+				// loading控制
+				loadingload:true
 			 }
 		 },
 		 methods:{
@@ -183,8 +190,8 @@
 				
 				// nums值是点击加号或者减号产生的份数,给数组this.orderingdata中的每个对象添加一个属性amount,值为nums,0意味初始化点餐份数为0
 				var nums = 0;
-				
 				for(var i = 0;i<this.orderingdata.length;i++){
+					
 					this.orderingdata[i].objdis.amount = nums;
 					this.orderingdata[i].objdis.id = this.orderingdata[i]._id;
 					// 点击左边并且把item参数(盖浇饭小吃等)传进来和this.orderingdata[i].optidata是否相等去重相关多余的(左边)
@@ -204,8 +211,11 @@
 				// 左边分类去重
 				this.orderList = Array.from(new Set(classifdata))
 				
-				// 立即调用rightItemChange函数使其默认展示盖浇饭的数据
-				this.rightItemChange(this.leftItemChange)
+				
+				this.rightItemChange(this.orderList[0])
+				// 立即调用rightItemChange函数使其默认展示默认第一的数据
+				
+				this.leftItemChange = this.orderList[0]
 			},
 			// initBottomData(delivering,physical,capita){
 			// 	this.delivering = delivering;
@@ -245,7 +255,8 @@
 				// if(amount == this.clickReduce){
 				// 	return;
 				// }else{
-				// 	this.clickReduce = amount;
+				// 	this.clickReduce = 
+				;
 				// }
 				// // 判断份数是否为0
 				// amount <= 0 ? amount = 0  : amount--;
@@ -386,7 +397,7 @@
 					}else{
 						// 反之未登录，需要弹出模拟登录框
 						this.$nextTick(()=>{
-							this.$refs.mod.init()
+							this.$refs.mod.userLoginMsg()
 						})
 					}
 				}
@@ -396,7 +407,9 @@
 			// 用户进入页面默认展示第一个tab键上(盖浇饭),并且展示第一个tab键下的内容
 			orderingdata(newValue){
 				this.clickOrInitLoad(newValue)
+				this.loadingload = false;
 			},
+			
 			// 总价计算区域中的配送费，起送价、原价
 			// busidata(newValue){
 			// 	const { delivering,physical,capita } = newValue[0];
@@ -469,7 +482,7 @@
 				
 				// 差价为0时令其差价为0
 				if(allPrice <= 0){
-					allPrice=0;
+					allPrice=0
 					// 黄色
 					this.changePayClsss=true
 				}else{
@@ -502,15 +515,6 @@
 				 
 				 return initBottomDataObj;
 			 }
-		 },
-		 // 
-		 mounted() {
-			 // 为什么要使用setTimeout定时器？令其要让mounted在watch在mounted之前调用，watch暂存数据后,mounted才可以拿到暂存的数据
-			 
-			 setTimeout(()=>{
-				 // 当页面加载完成时渲染页面与上orderingdata(newValue)类似，以上需要点击
-				 this.clickOrInitLoad(this.orderingdata);
-			 },400)
 		 }
 	}
 </script>

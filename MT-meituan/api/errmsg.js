@@ -9,4 +9,4 @@ const errMsg = {
 		})
 	}
 }
- module.exports = errMsg
+export default errMsg

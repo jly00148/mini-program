@@ -153,17 +153,17 @@
 				
 				// 把发送给后台的数据以对象的形式存储
 				let Paymentinfor = {
-					type:'placeOrder',
-					peopleobj,
-					arrinfo:this.uniqueArr,
-					merchantid,
-					ide,
-					commod,
-					logo,
-					useropenid:this.openid,
-					// 支付的总价：
-					payment:this.payment + this.delivering
+					type:'placeOrder',//请求类型
+					peopleobj,//客户信息
+					arrinfo:this.uniqueArr,//客户选中的订单
+					merchantid,//商家标识
+					ide,//商家标志字符串截取前7位数
+					commod,//商家名称
+					logo,//商家logo
+					useropenid:this.openid,//用户openid
+					payment:this.payment + this.delivering // 支付的总价：
 				}
+				
 				// es6:async sawit 异步编程同步化，分三步:
 				/*
 					1.统一下单
@@ -177,6 +177,9 @@
 				
 				// 2.发起支付:
 				let wxpay = await this.wxPays(placeorderobj)
+				
+				// 3.查询时候支付成功
+				let paysucc = await this.paySucc(wxpay)
 			},
 			
 			// 1.统一下单：
@@ -184,15 +187,17 @@
 				return new Promise((resolve,reject)=>{
 					allApi(wxPaymentUrl,'POST',Paymentinfor)
 					.then(res=>{
+						console.log(res)
 						// res[1].data.datas返回的值说明：
 						/*
 							nonceStr: "UCbMTLPh5ZNskhHR" //随机字符串
 							out_trade_no: "5dfcf32-1628716988838" // 商户订单号
 							payauto: "5689754C5CAE383B32A63165B70E44F0" //签名
-							time_stamp: "1628716989" //时间戳
+							prepayId://预支付交易会话标识数据包。(缺少返回，无营业执照用不了真正的支付)
+							time_stamp: "1628716989" //时间戳,从1970年1月1日 00:00:00至今的秒数，即当前的时间
 							_id: "61143fbdc2ec5207cfe9c40b" //订单标识id
 						*/
-						resolve(res)
+						// resolve(res)
 					})
 					.catch(err=>{
 						reject(err,'支付错误')
@@ -205,11 +210,40 @@
 				// timeStamp应该是String而不是Undefined;参数。package应该是String而不是Undefined
 				return new Promise((resolve,reject)=>{
 					wx.requestPayment({
-						timeStamp:placeorderobj.time_stamp,
-						nonceStr:placeorderobj.nonceStr,
-						signType:'MD5',
-						paySign:placeorderobj.payauto,
-		
+						// 发起支付主要参数：
+						timeStamp:placeorderobj.time_stamp,//时间截，必填，从1970年1月1日 00:00:00至今的秒数，即当前的时间
+						nonceStr:placeorderobj.nonceStr, //随机字符串，必填，长度为32个字符以下
+						package:`prepay_id=${placeorderobj.prepayId}`,// 统一下单接口返回的prepay_id参数，必填，提交格式为prepay_id=***
+						signType:'MD5',//签名算法 非必填
+						paySign:placeorderobj.payauto,//签名，必填
+						// 调用接口成功的回调函数
+						success:res=>{
+							resolve(res)
+						},
+						// 调用接口失败的回调函数
+						fail:err=>{
+							reject(err)
+							let succ = '取消支付';
+							let ico = 'success';
+						}
+					})
+				})
+			},
+			// 3.
+			paySucc(wxpay){
+				return new Promise((resolve,reject)=>{
+					let data = {
+						type:'paysucc',
+						out_trade_no:wxpay.out_trade_no,
+						id:wxpay._id,
+						merchantid:this.merchantId
+					}
+					allApi(wexpayingUrl,'POST',data)
+					.then(res=>{
+						console.log(res)
+					})
+					.catch(err=>{
+						console.log(err)
 					})
 				})
 			}

@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view class="tips">
+			<image src="../static/coen/meoyopu.png" mode="aspectFill" class="img"></image>
 			<view>
 				{{tipText}}
 			</view>
-			<image src="../static/coen/meoyopu.png" mode="aspectFill" class="img"></image>
 		</view>
 	</view>
 </template>

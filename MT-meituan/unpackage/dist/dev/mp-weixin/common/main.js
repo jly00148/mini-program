@@ -19,7 +19,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! store/store.js */ 11
 _vue.default.prototype.$store = _store.default;
 
 // 引入全局组件loading.vue
-var globalComponent = function globalComponent() {__webpack_require__.e(/*! require.ensure | loading/loading */ "loading/loading").then((function () {return resolve(__webpack_require__(/*! ./loading/loading.vue */ 175));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var globalComponent = function globalComponent() {__webpack_require__.e(/*! require.ensure | loading/loading */ "loading/loading").then((function () {return resolve(__webpack_require__(/*! ./loading/loading.vue */ 19));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 // 注册组件
