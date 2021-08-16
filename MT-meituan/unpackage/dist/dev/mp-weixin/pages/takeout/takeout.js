@@ -157,7 +157,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 26));
-var _request = __webpack_require__(/*! ../../api/request.js */ 27);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Introduce = function Introduce() {__webpack_require__.e(/*! require.ensure | pages/takeout/components/introduce */ "pages/takeout/components/introduce").then((function () {return resolve(__webpack_require__(/*! ./components/introduce.vue */ 107));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Tabs = function Tabs() {__webpack_require__.e(/*! require.ensure | pages/takeout/components/tabs */ "pages/takeout/components/tabs").then((function () {return resolve(__webpack_require__(/*! ./components/tabs.vue */ 114));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Ordering = function Ordering() {Promise.all(/*! require.ensure | pages/takeout/components/ordering */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/takeout/components/ordering")]).then((function () {return resolve(__webpack_require__(/*! ./components/ordering.vue */ 121));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Assess = function Assess() {__webpack_require__.e(/*! require.ensure | pages/takeout/components/assess */ "pages/takeout/components/assess").then((function () {return resolve(__webpack_require__(/*! ./components/assess.vue */ 128));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Details = function Details() {Promise.all(/*! require.ensure | pages/takeout/components/details */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/takeout/components/details")]).then((function () {return resolve(__webpack_require__(/*! ./components/details.vue */ 135));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _request = __webpack_require__(/*! ../../api/request.js */ 27);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Introduce = function Introduce() {Promise.all(/*! require.ensure | pages/takeout/components/introduce */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/takeout/components/introduce")]).then((function () {return resolve(__webpack_require__(/*! ./components/introduce.vue */ 107));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Tabs = function Tabs() {__webpack_require__.e(/*! require.ensure | pages/takeout/components/tabs */ "pages/takeout/components/tabs").then((function () {return resolve(__webpack_require__(/*! ./components/tabs.vue */ 114));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Ordering = function Ordering() {Promise.all(/*! require.ensure | pages/takeout/components/ordering */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/takeout/components/ordering")]).then((function () {return resolve(__webpack_require__(/*! ./components/ordering.vue */ 121));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Assess = function Assess() {__webpack_require__.e(/*! require.ensure | pages/takeout/components/assess */ "pages/takeout/components/assess").then((function () {return resolve(__webpack_require__(/*! ./components/assess.vue */ 128));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Details = function Details() {Promise.all(/*! require.ensure | pages/takeout/components/details */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/takeout/components/details")]).then((function () {return resolve(__webpack_require__(/*! ./components/details.vue */ 135));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
@@ -199,7 +199,6 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 27);function _int
 
 
       then(function (result) {
-
         // 商家介绍.不用父传子组件传递数据传，采用vuex。result[0][1].data返回的数据是每家店铺的详细信息
         _this.$store.commit('busidata', result[0][1].data);
 
@@ -210,7 +209,7 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 27);function _int
         _this.messagedata = result[2][1].data;
       }).
       catch(function (err) {
-        console.log(err);
+        console.log('err:', err);
       });
     },
 

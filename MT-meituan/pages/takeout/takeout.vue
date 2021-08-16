@@ -67,7 +67,6 @@
 					]
 				)
 				.then(result=>{
-
 					// 商家介绍.不用父传子组件传递数据传，采用vuex。result[0][1].data返回的数据是每家店铺的详细信息
 					this.$store.commit('busidata',result[0][1].data)
 					
@@ -78,7 +77,7 @@
 					this.messagedata = result[2][1].data;
 				})
 				.catch(err=>{
-					console.log(err)
+					console.log('err:',err)
 				})
 			},
 			

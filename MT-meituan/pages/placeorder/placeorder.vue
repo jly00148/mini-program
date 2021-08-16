@@ -49,7 +49,7 @@
 		</view>
 		<!-- 配送费 -->
 		<view class="place-view">
-			<view class="Delivery">配送费：{{delivering}}¥</view>
+			<view class="Delivery">配送费:¥{{delivering}}</view>
 		</view>
 		<!-- 高度 -->
 		<view style="height: 140upx;"></view>
@@ -75,12 +75,12 @@
 		data(){
 			return {
 				payment:'',
-				delivering:'',
+				delivering:0,
 				openid:'',
 				merchantId:'',
 				log:'',
 				allNums:'',
-				uniqueArr:[],
+				uniqueArr:[{}],
 				// 收货地址
 				address:'深圳市龙华区民治大道',
 				username:'你的名字',
@@ -105,8 +105,10 @@
 			this.allNums=ideObj.allNums;
 			// 商家标识
 			this.merchantId = ideObj.merchantId
+			
 			// 需要渲染的数据(已去重)
 			this.uniqueArr = ideObj.uniqueArr;
+			
 			// 商家名称
 			this.shopname = ideObj.shopname;
 		},

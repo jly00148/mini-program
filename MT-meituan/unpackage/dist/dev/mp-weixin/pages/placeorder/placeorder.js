@@ -212,12 +212,12 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 26
   data: function data() {
     return {
       payment: '',
-      delivering: '',
+      delivering: 0,
       openid: '',
       merchantId: '',
       log: '',
       allNums: '',
-      uniqueArr: [],
+      uniqueArr: [{}],
       // 收货地址
       address: '深圳市龙华区民治大道',
       username: '你的名字',
@@ -242,8 +242,10 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 26
     this.allNums = ideObj.allNums;
     // 商家标识
     this.merchantId = ideObj.merchantId;
+
     // 需要渲染的数据(已去重)
     this.uniqueArr = ideObj.uniqueArr;
+
     // 商家名称
     this.shopname = ideObj.shopname;
   },

@@ -21,6 +21,9 @@ padding-right: 20rpx;}
 font-size: 27rpx;
 height: 40rpx;
 line-height: 40rpx;}
+.business-time text.data-v-1e6a4df2{
+	margin: 10rpx;
+}
 .business-take.data-v-1e6a4df2{display: -webkit-box;display: -webkit-flex;display: flex;
 height: 130rpx;
 /* background: #ffffff; */

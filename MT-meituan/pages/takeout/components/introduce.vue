@@ -3,13 +3,15 @@
 		<view class="business-view">
 			<view class="business-take">
 				<view class="business-img">
-					<image src="http://lstkk.oss-cn-beijing.aliyuncs.com/meituan/public/uploads/1583591740906.png" mode="aspectFill"></image>
+					<image :src="theShop.logo" mode="aspectFill"></image>
 				</view>
 				<view class="business-right">
-					<text class="business-title">酸菜鱼</text>
+					<text class="business-title">{{theShop.types}}</text>
 					<view class="business-time">
 						<image src="../../../static/coen/shijian.svg" mode="widthFix"></image>
-						<text>配送约10分钟</text>
+						<text>配送约:{{theShop.duration}} minutes</text>
+						<text>人均:¥{{theShop.capita}}</text>
+						<text>配送费:¥{{theShop.delivering}}</text>
 					</view>
 				</view>
 			</view>
@@ -18,7 +20,23 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex';
+	
 	export default{
+		data(){
+			return {
+				
+			}
+		},
+		computed:{
+			...mapState(['screendata']),
+			theShop(){
+				const shopDetail = this.screendata.busidataarr[0];
+				return shopDetail
+			}
+		},
+
+		
 	}
 </script>
 
@@ -45,6 +63,9 @@
 	font-size: 27upx;
 	height: 40upx;
 	line-height: 40upx;}
+	.business-time text{
+		margin: 10upx;
+	}
 	.business-take{display: flex;
 	height: 130upx;
 	/* background: #ffffff; */

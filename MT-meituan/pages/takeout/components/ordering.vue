@@ -163,7 +163,7 @@
 				merchantId:null,
 				
 				// 去重后的数组
-				uniqueArr:[],
+				uniqueArr:[{}],
 				
 				// loading控制
 				loadingload:true
@@ -412,13 +412,6 @@
 				this.loadingload = false;
 			},
 			
-			// 总价计算区域中的配送费，起送价、原价
-			// busidata(newValue){
-			// 	const { delivering,physical,capita } = newValue[0];
-			// 	// 暂存一下数组newValue[0],为什么要暂存？因为mounted在watch之前执行，暂存数组留着mounted使用，否则mounted拿不到数据(如果不适用定时器的话)
-			// 	this.initBottomData(delivering,physical,capita)
-			// }
-			
 			// 监听allOrderPrice
 			allOrderPrice(){
 				// 监听总价
@@ -443,6 +436,7 @@
 					},[])
 					
 					this.uniqueArr = uniqueArr;
+					
 					// ------------------------------------------------------------------------------------------------------------------------
 					// 为获取最终结果预设的值
 					var temp = 0;

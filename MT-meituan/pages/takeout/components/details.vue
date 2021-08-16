@@ -21,7 +21,7 @@
 				<image src="../../../static/coen/shijian.png" mode="widthFix"></image>
 			</view>
 			<view>
-				<text>配送时间:{{thebusi.duration}}</text>
+				<text>配送时间:{{thebusi.duration}}分钟</text>
 			</view>
 		</view>
 		<view class="introduce-view">
