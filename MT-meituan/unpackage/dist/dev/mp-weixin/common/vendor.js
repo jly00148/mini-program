@@ -282,10 +282,14 @@ var promiseInterceptor = {
     if (!isPromise(res)) {
       return res;
     }
-    return res.then(function (res) {
-      return res[1];
-    }).catch(function (res) {
-      return res[0];
+    return new Promise(function (resolve, reject) {
+      res.then(function (res) {
+        if (res[0]) {
+          reject(res[0]);
+        } else {
+          resolve(res[1]);
+        }
+      });
     });
   } };
 
@@ -2056,30 +2060,6 @@ function normalizeComponent (
   }
 }
 
-
-/***/ }),
-
-/***/ 106:
-/*!********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
-var errMsg = {
-  errlist: function errlist(err) {
-    uni.showToast({
-      icon: 'none',
-      title: err, //提示的内容
-      duration: 3000,
-      mask: true });
-
-  } };var _default =
-
-errMsg;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -7857,7 +7837,7 @@ function initProps (vm, propsOptions) {
       defineReactive$$1(props, key, value, function () {
         if (!isRoot && !isUpdatingChildComponent) {
           {
-            if(vm.mpHost === 'mp-baidu'){//百度 observer 在 setData callback 之后触发，直接忽略该 warn
+            if(vm.mpHost === 'mp-baidu' || vm.mpHost === 'mp-kuaishou'){//百度、快手 observer 在 setData callback 之后触发，直接忽略该 warn
                 return
             }
             //fixed by xxxxxx __next_tick_pending,uni://form-field 时不告警
@@ -10211,6 +10191,30 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
+
+/***/ }),
+
+/***/ 99:
+/*!********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };var _default =
+
+errMsg;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 
