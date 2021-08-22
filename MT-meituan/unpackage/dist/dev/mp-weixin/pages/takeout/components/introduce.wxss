@@ -2,6 +2,7 @@
 text.data-v-1e6a4df2{display: block;}
 .business-view.data-v-1e6a4df2{height: 130rpx;
 /* linear-gradient：css渐变颜色 */
+background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, #ffe566), to(#ffd300));
 background: -webkit-linear-gradient(bottom, #ffe566 30%, #ffd300 100%);
 background: linear-gradient(to top, #ffe566 30%, #ffd300 100%);
 border-bottom-left-radius: 20rpx;

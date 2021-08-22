@@ -11,6 +11,7 @@ Vue.prototype.$store = store;
 
 // 引入全局组件loading.vue
 import globalComponent from './loading/loading.vue';
+
 // 注册组件
 Vue.component('homeload',globalComponent)
 

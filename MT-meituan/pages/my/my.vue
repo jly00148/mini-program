@@ -10,6 +10,9 @@
 					<view class="wx-text">
 						<text>{{nickName}}</text>
 					</view>
+					<view class="logout" @click="userLogout">
+						<text>用户退出</text>
+					</view>
 				</view>
 			</block>
 			
@@ -104,6 +107,10 @@
 					this.nickName = cacheUserInfo.nickName;
 					this.avatarUrl = cacheUserInfo.avatarUrl;
 				}
+			},
+			userLogout(){
+				uni.removeStorageSync('usermen')
+				this.wxlogin = true;
 			}
 		},
 		
@@ -125,6 +132,7 @@
 		height: 350upx; 
 		display: flex; 
 		align-items: center;
+		position: relative;
 	}
 	.wx-name image{
 		width: 120upx !important;
@@ -146,6 +154,12 @@
 		height: 200upx;
 	}
 	.wx-text text{
+		font-size: 35upx;
+	}
+	.logout{
+		position: absolute;
+		top: 250upx;
+		right: 10upx;
 		font-size: 35upx;
 	}
 	/* 登录 */

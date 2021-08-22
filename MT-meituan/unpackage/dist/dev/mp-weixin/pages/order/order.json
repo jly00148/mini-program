@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "订单",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "tips": "/tips/tips"
+  }
 }

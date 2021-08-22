@@ -32,10 +32,13 @@ const AllAndAiAssessUrl = publicUrl + 'api/message/discuss';
 const wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
 
 // 微信支付
-let wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
+const wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
+
+// 我的订单(与微信支付接口一致)
+const wxOrderUrl = publicUrl + 'api/wxpay/wxpaying';
 
 // 提交评论
-let wxCommont = publicUrl + 'api/message/comment';
+const wxCommont = publicUrl + 'api/message/comment';
 
 // 导出路径
 module.exports = {
@@ -50,5 +53,6 @@ module.exports = {
 	AllAndAiAssessUrl,
 	wxLoginUrl,
 	wxPaymentUrl,
+	wxOrderUrl,
 	wxCommont
 }

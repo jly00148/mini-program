@@ -1,77 +1,85 @@
 <template>
 	<view>
-		<view class="place-view">
-			<view class="place-addres" @click="addAddress()">
-				+ 新增收货地址
-			</view>
-			<!-- 已选中收货地址 -->
-			<view class="goods-address" @click="addAddress()">
-				<view class="goods-address-box">
-					<view class="goods-address-left">
-						<image src="../../static/coen/address.png" mode="widthFix"></image>
-					</view>
-					<view class="goods-address-in">
-						<view></view>
-						<view class="goods-address-name">
-							<text>{{address}}</text>
-							<text>{{username +' '+ tel}}</text>
+		<view>
+			<view class="place-view">
+				<view class="place-addres" @click="addAddress()">
+					+ 新增收货地址
+				</view>
+				<!-- 已选中收货地址 -->
+				<view class="goods-address" @click="addAddress()">
+					<view class="goods-address-box">
+						<view class="goods-address-left">
+							<image src="../../static/coen/address.png" mode="widthFix"></image>
 						</view>
-					</view>
-					<view class="goods-address-right">
-						<image src="../../static/coen/jiantou.png" mode="widthFix"></image>
+						<view class="goods-address-in">
+							<view></view>
+							<view class="goods-address-name">
+								<text>{{address}}</text>
+								<text>{{username +' '+ tel}}</text>
+							</view>
+						</view>
+						<view class="goods-address-right">
+							<image src="../../static/coen/jiantou.png" mode="widthFix"></image>
+						</view>
 					</view>
 				</view>
+				<view class="place-time">
+					<image src="../../static/coen/times.png" mode="widthFix"></image>
+					<text>立即送出</text>
+				</view>
 			</view>
-			<view class="place-time">
-				<image src="../../static/coen/times.png" mode="widthFix"></image>
-				<text>立即送出</text>
+		
+			<!-- 菜单 -->
+			<view class="place-view">
+				<view>
+					<block v-for="(item,index) in uniqueArr" :key="index">
+						<view class="order-view">
+							<view class="order-img">
+								<image  :src="item.image" mode="aspectFill"></image>
+							</view>
+							<view class="order-title">
+								<text>{{item.TotalPrice}}</text>
+								<text>x{{item.amount}}</text>
+							</view>
+							<view class="order-price">
+								单价:¥{{item.price}}
+							</view>
+						</view>
+					</block>
+				</view>
 			</view>
+			
+			<!-- 配送费 -->
+			<view class="place-view">
+				<view class="Delivery">配送费:¥{{delivering}}</view>
+			</view>
+			<!-- 高度 -->
+			<view style="height: 140upx;"></view>
+			<!-- 支付 -->
+			<view class="payment">
+				<view class="payment-left">
+					<text>合计¥:{{payment+delivering}}</text>
+				</view>
+				<view class="payment-right" @click="toPay()">
+					去支付
+				</view>
+			</view>
+			<!-- 提示组件 -->
+			<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
+		</view>
 		</view>
 		
-		<!-- 菜单 -->
-		<view class="place-view">
-			<view>
-				<block v-for="(item,index) in uniqueArr" :key="index">
-					<view class="order-view">
-						<view class="order-img">
-							<image  :src="item.image" mode="aspectFill"></image>
-						</view>
-						<view class="order-title">
-							<text>{{item.TotalPrice}}</text>
-							<text>x{{item.amount}}</text>
-						</view>
-						<view class="order-price">
-							单价:¥{{item.price}}
-						</view>
-					</view>
-				</block>
-			</view>
-		</view>
-		<!-- 配送费 -->
-		<view class="place-view">
-			<view class="Delivery">配送费:¥{{delivering}}</view>
-		</view>
-		<!-- 高度 -->
-		<view style="height: 140upx;"></view>
-		<!-- 支付 -->
-		<view class="payment">
-			<view class="payment-left">
-				<text>合计¥:{{payment+delivering}}</text>
-			</view>
-			<view class="payment-right" @click="toPay()">
-				去支付
-			</view>
-		</view>
-		<!-- 提示组件 -->
-		<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
-		</view>
 </template>
 
 <script>
 	import { wxPaymentUrl } from '../../api/request.js';
 	import allApi from '../../api/api.js';
+	import HMmessages from "@/components/HM-messages/HM-messages.vue";
 	
 	export default{
+		components:{
+			HMmessages
+		},
 		data(){
 			return {
 				payment:'',
@@ -85,7 +93,8 @@
 				address:'深圳市龙华区民治大道',
 				username:'你的名字',
 				tel:'20210814',
-				shopname:''
+				shopname:'',
+				tipsText:''
 			}
 		},
 		onLoad(obj) {
@@ -132,7 +141,7 @@
 					*2.商家信息
 				*/
 			   
-				// 	1.下单客户信息
+					// 1.下单客户信息
 				let peopleobj = {
 					address:this.address,
 					name:this.username,
@@ -182,6 +191,7 @@
 				
 				// 3.查询时候支付成功
 				let paysucc = await this.paySucc(wxpay)
+				this.tipsText = '网络错误'
 			},
 			
 			// 1.统一下单：
@@ -190,6 +200,7 @@
 					allApi(wxPaymentUrl,'POST',Paymentinfor)
 					.then(res=>{
 						console.log(res)
+						this.HMmessages.show('余额不足，无法支付',{icon:'error',background:'#F78181',duration:3000})
 						// res[1].data.datas返回的值说明：
 						/*
 							nonceStr: "UCbMTLPh5ZNskhHR" //随机字符串

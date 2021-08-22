@@ -39,9 +39,9 @@
 				<Tip :tipText="tipText" ref="tips"></Tip>
 			</view>
 			<block v-for="(items,index) in searchResult" :key="index">
-				<view class="content-view"  v-show="!showEmptyResult">
+				<view class="content-view"  v-show="!showEmptyResult" @click="choiceShop(items.openid)">
 					<view class="content-img">
-						<image :src="items.logo" mode="aspectFill"></image>
+						<image :src="items.logo" mode="aspectFill" class="img"></image>
 					</view>
 					<view class="content-title">
 						<text class="conteng-take">{{items.shop}}</text>
@@ -55,8 +55,8 @@
 							<text>人均{{items.capita}}¥</text>
 						</view>
 						<view class="conteng-starting">
-							<image src="../../static/coen/liwu.svg" mode="widthFix"></image>
-							<text>类型：{{items.types}}</text>
+							<image src="../../static/coen/liwu.svg" mode="widthFix" class="img"></image>
+							<text class="text">类型：{{items.types}}</text>
 						</view>
 					</view>
 				</view>
@@ -163,6 +163,12 @@
 			clickHistory(items){
 				// 使其再回到输入框内
 				this.searchdata = items;
+			},
+			choiceShop(shopOpenid){
+				uni.navigateTo({
+					//openid在/pages/takeout/takeout页面内用onload接收
+					url:'/pages/takeout/takeout?openid=' + shopOpenid
+				})
 			}
 		},
 		mounted(){

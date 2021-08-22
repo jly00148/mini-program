@@ -59,8 +59,7 @@
 				<text @click="submitBtn && complete()" class="bgColor text" :class="{btnSelectedColor:submitBtn}">完成</text>
 			</view>
 		</view>
-		<view class="mask" v-if="mask" @click="hideMask">
-		</view>
+		<view class="mask" v-if="mask" @click="hideMask"></view>
 	</view>
 </template>
 
