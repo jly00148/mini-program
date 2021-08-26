@@ -876,7 +876,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2060,6 +2060,30 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 100:
+/*!********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };var _default =
+
+errMsg;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8744,7 +8768,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8765,14 +8789,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8858,7 +8882,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9403,18 +9427,75 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 52:
+/***/ 44:
+/*!*********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/login/login.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 26));
+var _request = __webpack_require__(/*! ../api/request.js */ 27);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+
+packLogin = /*#__PURE__*/function () {
+  function packLogin(nickName, avatarUrl) {_classCallCheck(this, packLogin);
+    this.nickName = nickName;
+    this.avatarUrl = avatarUrl;
+  }_createClass(packLogin, [{ key: "wxCode", value: function wxCode()
+    {var _this = this;
+      wx.login({
+        success: function success(res) {
+          var code = res.code;
+          _this.wxLogin(_this.avatarUrl, _this.nickName, code);
+        },
+        fail: function fail(err) {
+          throw err;
+        } });
+
+    } }, { key: "wxLogin", value: function wxLogin(
+
+    avatarUrl, nickName, code) {
+      // 请求后段后端登录
+      var data = {
+        appid: 'wx7f1e12062dd459a1',
+        secret: '2bf8c70dde7a49b1dfcc37ba5fb3f940',
+        code: code,
+        nickName: nickName,
+        avatarUrl: avatarUrl };
+
+
+      (0, _api.default)(_request.wxLoginUrl, 'POST', data).
+      then(function (res) {
+        if (res[1].data.msg == 'success') {
+          // 存入本地
+          uni.setStorageSync('usermen', res[1].data.datas);
+        }
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    } }]);return packLogin;}();
+
+
+module.exports = packLogin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 53:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 53);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 54);
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -9445,7 +9526,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 54);
+module.exports = __webpack_require__(/*! ./runtime */ 55);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -9462,7 +9543,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 55:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -10191,30 +10272,6 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
-
-/***/ }),
-
-/***/ 99:
-/*!********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
-var errMsg = {
-  errlist: function errlist(err) {
-    uni.showToast({
-      icon: 'none',
-      title: err, //提示的内容
-      duration: 3000,
-      mask: true });
-
-  } };var _default =
-
-errMsg;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

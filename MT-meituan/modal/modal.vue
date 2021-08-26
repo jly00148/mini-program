@@ -17,6 +17,7 @@
 	import allApi from '../api/api.js';
 	import { wxLoginUrl } from '../api/request.js';
 	import HMmessages from "@/components/HM-messages/HM-messages.vue";
+	const packLogin = require('../login/login.js')
 	
 	export default{
 		components:{
@@ -39,60 +40,19 @@
 						let userInfo = res.userInfo;
 						this.nickName = userInfo.nickName;
 						this.avatarUrl = userInfo.avatarUrl;
+						const casePackLogin = new packLogin(this.nickName,this.avatarUrl)
+						casePackLogin.wxCode()
 						
-						this.wxCode(this.avatarUrl,this.nickName)
+						// 登录成功后立即切换组件
+						this.showOrHide = false;
+						this.HMmessages.show('登录成功',{icon:'success',background:'#9FF781',duration:3000})
 					},
-					fail:(err)=>{
+					fail:(err)=>{ 
 						console.log(err)
 					}
 				})
-			},
-			// 获取头像和code(code:调用接口获取凭证。同过凭证进而换取用户登录信息，包括用户的唯一识别码openid以及本次登录的会话密匙session_key等)
-			// 用户数据的加解密通讯需要依赖会话密匙完成。code凭证有效期为5分钟，开发者需要在开发者服务器后台调用auth.code2Session,使用code换取openid和会话密匙session_key
-			wxCode(avatarUrl,nickName){
-				wx.login({
-					success:res=>{
-						let code = res.code;
-						this.wxLogin(avatarUrl,nickName,code)
-					},
-					fail:err=>{
-						throw err
-					}
-				})
-			},
-			
-			// 请求后段后端登录
-			wxLogin(avatarUrl,nickName,code){
-				let data = {
-					appid:'wx7f1e12062dd459a1',
-					secret:'2bf8c70dde7a49b1dfcc37ba5fb3f940',
-					code,
-					nickName,
-					avatarUrl
-				}
-				
-				allApi(wxLoginUrl,'POST',data)
-				.then((res)=>{
-					if(res[1].data.msg == 'success'){
-						// 存入本地
-						uni.setStorageSync('usermen',res[1].data.datas)
-						this.showOrHide = false;
-						this.HMmessages.show('用户已登录',{icon:'success',background:'#e5f7ff',duration:3000})
-					}
-				})
-				.catch((err)=>{
-					console.log(err)
-				})
-			},
-	
-		},
-		
-		
-		// 生命周期函数onShow(每次显示这个页面都会执行的函数)
-		onShow(){
-			// 每次显示这个页面的时候调用这个检查本地缓存的用户信息的函数
-			// this.checkUserInfo()
-		},
+			}
+		}
 	}
 </script>
 
