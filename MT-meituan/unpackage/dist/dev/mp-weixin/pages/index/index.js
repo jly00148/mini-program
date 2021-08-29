@@ -287,7 +287,7 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 32);function _int
       _this2.getTop = res[0].top;
     });
   },
-  onShow: function onShow() {
+  onReady: function onReady() {
     this.$refs.loading.open();
   } };exports.default = _default;
 

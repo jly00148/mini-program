@@ -132,7 +132,7 @@
 				this.getTop = res[0].top;
 			})
 		},
-		onShow() {
+		onReady() {
 			this.$refs.loading.open()
 		}
 	}

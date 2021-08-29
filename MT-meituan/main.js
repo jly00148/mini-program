@@ -9,16 +9,11 @@ App.mpType = 'app';
 import store from 'store/store.js';
 Vue.prototype.$store = store;
 
-// 引入全局组件loading.vue
-import globalComponent from './loading/loading.vue';
-import wLoading from "./components/loading2.vue";
 
+import comsFn from './components/wholeComponents/index.js';
 
-// 注册组件
-Vue.component('homeload',globalComponent)
-
-Vue.component('w-loading',wLoading)
-
+// 调用全局组件(在component/wholeComponents组件中已注册好)
+comsFn()
 
 const app = new Vue({
     ...App,

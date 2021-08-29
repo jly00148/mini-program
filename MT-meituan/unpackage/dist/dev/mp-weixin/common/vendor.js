@@ -3217,6 +3217,40 @@ var index = {
 
 /***/ }),
 
+/***/ 19:
+/*!******************************************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/components/wholeComponents/index.js ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+
+
+var _loading = _interopRequireDefault(__webpack_require__(/*! ../../loading/loading.vue */ 92));
+var _wLoading = _interopRequireDefault(__webpack_require__(/*! ../w-loading/w-loading.vue */ 28));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 引入全局组件:
+
+var compos = [
+{
+  value: 'homeload',
+  component: _loading.default },
+
+{
+  value: 'w-loading',
+  component: _wLoading.default }];
+
+
+
+var comsFn = function comsFn() {return (
+    compos.map(function (item) {
+      return _vue.default.component(item.value, item.component);
+    }));};var _default =
+
+comsFn;exports.default = _default;
+
+/***/ }),
+
 /***/ 195:
 /*!********************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!

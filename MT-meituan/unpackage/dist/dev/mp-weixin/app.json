@@ -39,8 +39,5 @@
       }
     ]
   },
-  "usingComponents": {
-    "homeload": "/loading/loading",
-    "w-loading": "/components/loading2"
-  }
+  "usingComponents": {}
 }
