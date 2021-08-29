@@ -2063,30 +2063,6 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 100:
-/*!********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
-var errMsg = {
-  errlist: function errlist(err) {
-    uni.showToast({
-      icon: 'none',
-      title: err, //提示的内容
-      duration: 3000,
-      mask: true });
-
-  } };var _default =
-
-errMsg;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 11:
 /*!*********************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/store/store.js ***!
@@ -3238,6 +3214,30 @@ var index = {
 
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 195:
+/*!********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };var _default =
+
+errMsg;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9290,7 +9290,38 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 26:
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 31:
 /*!*****************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/api.js ***!
   \*****************************************************************************/
@@ -9318,7 +9349,7 @@ module.exports = allApi;
 
 /***/ }),
 
-/***/ 27:
+/***/ 32:
 /*!*********************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/request.js ***!
   \*********************************************************************************/
@@ -9385,37 +9416,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ 4:
 /*!*****************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/pages.json ***!
@@ -9427,7 +9427,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 44:
+/***/ 49:
 /*!*********************************************************************************!*\
   !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/login/login.js ***!
   \*********************************************************************************/
@@ -9436,8 +9436,8 @@ module.exports = g;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
-var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 26));
-var _request = __webpack_require__(/*! ../api/request.js */ 27);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 31));
+var _request = __webpack_require__(/*! ../api/request.js */ 32);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 packLogin = /*#__PURE__*/function () {
   function packLogin(nickName, avatarUrl) {_classCallCheck(this, packLogin);
@@ -9484,18 +9484,18 @@ module.exports = packLogin;
 
 /***/ }),
 
-/***/ 53:
+/***/ 58:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 54);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 59);
 
 /***/ }),
 
-/***/ 54:
+/***/ 59:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -9526,7 +9526,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 55);
+module.exports = __webpack_require__(/*! ./runtime */ 60);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -9543,7 +9543,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 60:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/

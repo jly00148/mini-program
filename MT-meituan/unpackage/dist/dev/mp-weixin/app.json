@@ -40,7 +40,7 @@
     ]
   },
   "usingComponents": {
-    "homeload": "/loading/loading"
-  },
-  "sitemapLocation": "sitemap.json"
+    "homeload": "/loading/loading",
+    "w-loading": "/components/loading2"
+  }
 }

@@ -11,9 +11,14 @@ Vue.prototype.$store = store;
 
 // 引入全局组件loading.vue
 import globalComponent from './loading/loading.vue';
+import wLoading from "./components/loading2.vue";
+
 
 // 注册组件
 Vue.component('homeload',globalComponent)
+
+Vue.component('w-loading',wLoading)
+
 
 const app = new Vue({
     ...App,

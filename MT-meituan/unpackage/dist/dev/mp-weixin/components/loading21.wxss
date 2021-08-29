@@ -1,0 +1,86 @@
+
+.loading-21 view.data-v-445b7850 {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  -webkit-animation-name: move-data-v-445b7850;
+          animation-name: move-data-v-445b7850;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 1, 0.8);
+          animation-timing-function: cubic-bezier(0.4, 0, 1, 0.8);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  top: calc(50% - 20rpx);
+  left: 50%;
+  -webkit-transform-origin: -20rpx center;
+          transform-origin: -20rpx center;
+}
+.loading-21 view.data-v-445b7850:nth-child(1) {
+  background: #226b80;
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+  opacity: 0;
+}
+.loading-21 view.data-v-445b7850:nth-child(2) {
+  background: #226b80;
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+  opacity: 0;
+}
+.loading-21 view.data-v-445b7850:nth-child(3) {
+  background: #35b0ab;
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+  opacity: 0;
+}
+.loading-21 view.data-v-445b7850:nth-child(4) {
+  background: #c5f0a4;
+  -webkit-animation-delay: -2s;
+          animation-delay: -2s;
+  opacity: 0;
+}
+.loading-21 view.data-v-445b7850:nth-child(5) {
+  background: #226b80;
+  -webkit-animation-delay: -2.5s;
+          animation-delay: -2.5s;
+  opacity: 0;
+}
+.loading-21 view.data-v-445b7850:nth-child(6) {
+  background: #c5f0a4;
+  -webkit-animation-delay: -3s;
+          animation-delay: -3s;
+  opacity: 0;
+}
+@-webkit-keyframes move-data-v-445b7850 {
+0% {
+    -webkit-transform: scale(1) rotate(0deg) translate3d(0, 0, 1px);
+            transform: scale(1) rotate(0deg) translate3d(0, 0, 1px);
+}
+30% {
+    opacity: 1;
+}
+100% {
+    z-index: 10;
+    -webkit-transform: scale(0) rotate(360deg) translate3d(0, 0, 1px);
+            transform: scale(0) rotate(360deg) translate3d(0, 0, 1px);
+}
+}
+@keyframes move-data-v-445b7850 {
+0% {
+    -webkit-transform: scale(1) rotate(0deg) translate3d(0, 0, 1px);
+            transform: scale(1) rotate(0deg) translate3d(0, 0, 1px);
+}
+30% {
+    opacity: 1;
+}
+100% {
+    z-index: 10;
+    -webkit-transform: scale(0) rotate(360deg) translate3d(0, 0, 1px);
+            transform: scale(0) rotate(360deg) translate3d(0, 0, 1px);
+}
+}
+

@@ -1,0 +1,72 @@
+
+.loader.data-v-42b4b732 {
+  position: relative;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin: 75rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+.css-heart.data-v-42b4b732:before,
+.css-heart.data-v-42b4b732:after {
+  position: absolute;
+  content: "";
+  left: 50rpx;
+  top: 0;
+  width: 50rpx;
+  height: 80rpx;
+  background: #950d0d;
+  border-radius: 50rpx 50rpx 0 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+.css-heart.data-v-42b4b732:after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+.loading12 .css-heart.data-v-42b4b732 {
+  position: absolute;
+  -webkit-animation: star-fly-out-data-v-42b4b732 1s ease alternate infinite;
+  animation: star-fly-out-data-v-42b4b732 1s ease alternate infinite;
+  -webkit-transform: scale(0.2);
+  transform: scale(0.2);
+}
+.loading12 .heart1.data-v-42b4b732 {
+  top: 0;
+  left: 30rpx;
+}
+.loading12 .heart2.data-v-42b4b732 {
+  left: 60rpx;
+  top: 30rpx;
+}
+.loading12 .heart3.data-v-42b4b732 {
+  top: 60rpx;
+  left: 30rpx;
+}
+.loading12 .heart4.data-v-42b4b732 {
+  left: 0;
+  top: 30rpx;
+}
+@-webkit-keyframes star-fly-out-data-v-42b4b732 {
+0% {
+    top: 19rpx;
+    left: 19rpx;
+}
+100% {
+}
+}
+@keyframes star-fly-out-data-v-42b4b732 {
+0% {
+    top: 19rpx;
+    left: 19rpx;
+}
+100% {
+}
+}
+

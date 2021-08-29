@@ -1,5 +1,6 @@
 <template>
 	<view class="home-container">
+		<w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading>
 		<view>
 			<Search></Search>
 		</view>
@@ -17,8 +18,6 @@
 		<view>
 			<Takeout class="takeout" :takeShopDate="takeShopDate"></Takeout>
 		</view>
-		<!-- loading -->
-		<homeload v-if="showOrHide"></homeload>
 	</view>
 </template>
 
@@ -29,8 +28,6 @@
 	import Delicary from './components/delicary.vue';
 	import Title from './components/title.vue';
 	import Takeout from './components/takeout.vue';
-	// loading
-	import Homeload from '../../loading/loading.vue';
 	
 	// 引入接口
 	import allApi from '../../api/api.js';
@@ -77,7 +74,7 @@
 					this.takeShopDate = result[1][1].data;
 					
 					// loading消失
-					this.showOrHide = false;
+					this.$refs.loading.close()
 				})
 				.catch(err=>{
 					console.log('err',err)
@@ -135,6 +132,9 @@
 				this.getTop = res[0].top;
 			})
 		},
+		onShow() {
+			this.$refs.loading.open()
+		}
 	}
 </script>
 
