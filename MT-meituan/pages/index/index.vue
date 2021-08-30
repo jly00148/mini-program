@@ -18,6 +18,7 @@
 		<view>
 			<Takeout class="takeout" :takeShopDate="takeShopDate"></Takeout>
 		</view>
+		<uni-load-more :status="more" ></uni-load-more>
 	</view>
 </template>
 
@@ -51,7 +52,9 @@
 				// 初始化默认渲染空数组
 				preferData:[],
 				takeShopDate:[],
-				showOrHide:true
+				showOrHide:true,
+				
+				more:'more'
 			}
 		},
 

@@ -4,7 +4,8 @@
 			<block v-for="(item,index) in takeShopDate" :key="index">
 				<view  class="content-view" @click="choiceShop(item.openid)">
 					<view class="content-img" v-show="!showEmpty">
-						<image :src="item.logo" mode="aspectFill" class="img"></image>
+						<!--  mode为widthFix即图片高度自适应时要设置占位图默认高度  -->
+							<image :src="item.logo" mode="aspectFill" class="img"></image>
 					</view>
 					<view class="content-title" v-show="!showEmpty">
 						<text class="conteng-take">{{item.shop}}</text>
@@ -33,7 +34,7 @@
 	
 	export default {
 		components:{
-			Tip:Tip
+			Tip
 		},
 		props:{
 			takeShopDate:Array
@@ -41,7 +42,8 @@
 		data(){
 			return {
 				tipText:'',
-				showEmpty:false
+				showEmpty:false,
+				scrollTop:100
 			}
 		},
 		methods:{
@@ -52,6 +54,11 @@
 				})
 			}
 		},
+		onPageScroll({scrollTop}) {
+			console.log('aa')
+						// 传入scrollTop值并触发所有easy-loadimage组件下的滚动监听事件
+						this.scrollTop = scrollTop;
+					},
 		watch:{
 			// 每次点击(delicary.vue文件中sortClick和personClick方法)后返回的result传递到父组件中的fatherMethod方法,
 			// 然后把得到的数组通过监听takeShopDate得到的数组赋值给takeShopDate综合排序和筛选时
