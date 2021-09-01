@@ -20,7 +20,7 @@
 		
 		<!-- 综合排序筛选:定位1。v-if="drop"是隐藏这部分不显示 -->
 		<view class="sortlist sortliteltle" v-if="drop">
-			<block v-for="(item,index) in sortlist" :key="index">
+			<block v-for="(item,index) in sortlist1" :key="index">
 				<!-- sortClick(item.name,index)传递参数 -->
 				<text :class="{activeb:index == num}" class="text" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
 			</block>
@@ -81,29 +81,29 @@
 				multiObj:{},
 				// submitBtn值为false为禁止
 				submitBtn:false,
-				sortlist:[	
+				sortlist1:[	
 					{
-						"name":"综合排序",
+						name:"综合排序",
 						"screen":"_id",
 						"nums":1
 					},
 					{
-						"name":"起送价最低",
+						name:"起送价最低",
 						"screen":"delivering",
 						"nums":1
 					},
 					{
-						"name":"配送费最低",
+						name:"配送费最低",
 						"screen":"physical",
 						"nums":1
 					},
 					{
-						"name":"人均高到低",
+						name:"人均高到低",
 						"screen":"capita",
 						"nums":-1
 					},
 					{
-						"name":"人均低到高",
+						name:"人均低到高",
 						"screen":"capita",
 						"nums":1
 					}					

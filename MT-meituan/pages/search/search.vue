@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<view class="search-cont">
+			
 			<view class="search">
 				<input 
 				type="text"
@@ -87,6 +88,9 @@
 			}
 		},
 		methods: {
+			custom(a){
+				console.log(a)
+			},
 			// 一：点击右边搜索触发搜索
 			searchBtn(){
 				//获取搜索框输入的关键字：this.searchdata 双向数据绑定
@@ -189,12 +193,12 @@
 	}
 	.content-left{margin: 0 20upx;}
 	.search{
+		background-color: #f2f2f2;
 		height: 70upx;
 		line-height: 70upx;
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		background:#f8f8f8;
 		border-radius: 20upx;
 		margin-left: 20upx;
 		}
@@ -208,6 +212,7 @@
 			  } 
 	.search-cont{display: flex; justify-content: space-between; height: 70upx; align-items: center;
 				padding: 30upx 0;
+				margin-top: 20upx;
 				}
 	.search-code{width: 150upx; height: 50upx; text-align: center; font-size: 30upx;}
 	/* 搜索历史 */

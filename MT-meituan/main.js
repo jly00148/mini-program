@@ -11,7 +11,6 @@ Vue.prototype.$store = store;
 
 
 import comsFn from './components/wholeComponents/index.js';
-
 // 调用全局组件(在component/wholeComponents组件中已注册好)
 comsFn()
 

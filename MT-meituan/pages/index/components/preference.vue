@@ -71,7 +71,7 @@
 		}	
 	.prefer-view {
 		height: 300upx; width: 300upx;
-		padding: 0 8upx;
+		padding:8upx;
 	}
 	.prefer-view .img{
 		width: 300upx; height: 200upx; border-radius: 15upx;

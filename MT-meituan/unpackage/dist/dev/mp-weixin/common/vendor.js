@@ -876,7 +876,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -3218,26 +3218,337 @@ var index = {
 /***/ }),
 
 /***/ 120:
-/*!********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
-  \********************************************************************************/
+/*!**************************************************************!*\
+  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.esm.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
-var errMsg = {
-  errlist: function errlist(err) {
-    uni.showToast({
-      icon: 'none',
-      title: err, //提示的内容
-      duration: 3000,
-      mask: true });
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.initVueI18n = initVueI18n;exports.I18n = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var isObject = function isObject(val) {return val !== null && typeof val === 'object';};var
+BaseFormatter = /*#__PURE__*/function () {
+  function BaseFormatter() {_classCallCheck(this, BaseFormatter);
+    this._caches = Object.create(null);
+  }_createClass(BaseFormatter, [{ key: "interpolate", value: function interpolate(
+    message, values) {
+      if (!values) {
+        return [message];
+      }
+      var tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    } }]);return BaseFormatter;}();
 
-  } };var _default =
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+function parse(format) {
+  var tokens = [];
+  var position = 0;
+  var text = '';
+  while (position < format.length) {
+    var _char = format[position++];
+    if (_char === '{') {
+      if (text) {
+        tokens.push({ type: 'text', value: text });
+      }
+      text = '';
+      var sub = '';
+      _char = format[position++];
+      while (_char !== undefined && _char !== '}') {
+        sub += _char;
+        _char = format[position++];
+      }
+      var isClosed = _char === '}';
+      var type = RE_TOKEN_LIST_VALUE.test(sub) ?
+      'list' :
+      isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ?
+      'named' :
+      'unknown';
+      tokens.push({ value: sub, type: type });
+    } else
+    if (_char === '%') {
+      // when found rails i18n syntax, skip text capture
+      if (format[position] !== '{') {
+        text += _char;
+      }
+    } else
+    {
+      text += _char;
+    }
+  }
+  text && tokens.push({ type: 'text', value: text });
+  return tokens;
+}
+function compile(tokens, values) {
+  var compiled = [];
+  var index = 0;
+  var mode = Array.isArray(values) ?
+  'list' :
+  isObject(values) ?
+  'named' :
+  'unknown';
+  if (mode === 'unknown') {
+    return compiled;
+  }
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break;
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break;
+      case 'named':
+        if (mode === 'named') {
+          compiled.push(values[token.value]);
+        } else
+        {
+          if (true) {
+            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
+          }
+        }
+        break;
+      case 'unknown':
+        if (true) {
+          console.warn("Detect 'unknown' type of token!");
+        }
+        break;}
 
-errMsg;exports.default = _default;
+    index++;
+  }
+  return compiled;
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = function hasOwn(val, key) {return hasOwnProperty.call(val, key);};
+var defaultFormatter = new BaseFormatter();
+function include(str, parts) {
+  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
+}
+function startsWith(str, parts) {
+  return parts.find(function (part) {return str.indexOf(part) === 0;});
+}
+function normalizeLocale(locale, messages) {
+  if (!locale) {
+    return;
+  }
+  locale = locale.trim().replace(/_/g, '-');
+  if (messages[locale]) {
+    return locale;
+  }
+  locale = locale.toLowerCase();
+  if (locale.indexOf('zh') === 0) {
+    if (locale.indexOf('-hans') !== -1) {
+      return 'zh-Hans';
+    }
+    if (locale.indexOf('-hant') !== -1) {
+      return 'zh-Hant';
+    }
+    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
+      return 'zh-Hant';
+    }
+    return 'zh-Hans';
+  }
+  var lang = startsWith(locale, ['en', 'fr', 'es']);
+  if (lang) {
+    return lang;
+  }
+}var
+I18n = /*#__PURE__*/function () {
+  function I18n(_ref) {var locale = _ref.locale,fallbackLocale = _ref.fallbackLocale,messages = _ref.messages,watcher = _ref.watcher,formater = _ref.formater;_classCallCheck(this, I18n);
+    this.locale = 'en';
+    this.fallbackLocale = 'en';
+    this.message = {};
+    this.messages = {};
+    this.watchers = [];
+    if (fallbackLocale) {
+      this.fallbackLocale = fallbackLocale;
+    }
+    this.formater = formater || defaultFormatter;
+    this.messages = messages;
+    this.setLocale(locale);
+    if (watcher) {
+      this.watchLocale(watcher);
+    }
+  }_createClass(I18n, [{ key: "setLocale", value: function setLocale(
+    locale) {var _this = this;
+      var oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      this.message = this.messages[this.locale];
+      this.watchers.forEach(function (watcher) {
+        watcher(_this.locale, oldLocale);
+      });
+    } }, { key: "getLocale", value: function getLocale()
+    {
+      return this.locale;
+    } }, { key: "watchLocale", value: function watchLocale(
+    fn) {var _this2 = this;
+      var index = this.watchers.push(fn) - 1;
+      return function () {
+        _this2.watchers.splice(index, 1);
+      };
+    } }, { key: "t", value: function t(
+    key, locale, values) {
+      var message = this.message;
+      if (typeof locale === 'string') {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else
+      {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join('');
+    } }]);return I18n;}();exports.I18n = I18n;
+
+
+function initLocaleWatcher(appVm, i18n) {
+  appVm.$i18n &&
+  appVm.$i18n.vm.$watch('locale', function (newLocale) {
+    i18n.setLocale(newLocale);
+  }, {
+    immediate: true });
+
+}
+function getDefaultLocale() {
+  if (typeof navigator !== 'undefined') {
+    return navigator.userLanguage || navigator.language;
+  }
+  if (typeof plus !== 'undefined') {
+    // TODO 待调整为最新的获取语言代码
+    return plus.os.language;
+  }
+  return uni.getSystemInfoSync().language;
+}
+function initVueI18n(messages) {var fallbackLocale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';var locale = arguments.length > 2 ? arguments[2] : undefined;
+  var i18n = new I18n({
+    locale: locale || fallbackLocale,
+    fallbackLocale: fallbackLocale,
+    messages: messages });
+
+  var _t = function t(key, values) {
+    if (typeof getApp !== 'function') {
+      // app-plus view
+      /* eslint-disable no-func-assign */
+      _t = function t(key, values) {
+        return i18n.t(key, values);
+      };
+    } else
+    {
+      var appVm = getApp().$vm;
+      if (!appVm.$t || !appVm.$i18n) {
+        if (!locale) {
+          i18n.setLocale(getDefaultLocale());
+        }
+        /* eslint-disable no-func-assign */
+        _t = function t(key, values) {
+          return i18n.t(key, values);
+        };
+      } else
+      {
+        initLocaleWatcher(appVm, i18n);
+        /* eslint-disable no-func-assign */
+        _t = function t(key, values) {
+          var $i18n = appVm.$i18n;
+          var silentTranslationWarn = $i18n.silentTranslationWarn;
+          $i18n.silentTranslationWarn = true;
+          var msg = appVm.$t(key, values);
+          $i18n.silentTranslationWarn = silentTranslationWarn;
+          if (msg !== key) {
+            return msg;
+          }
+          return i18n.t(key, $i18n.locale, values);
+        };
+      }
+    }
+    return _t(key, values);
+  };
+  return {
+    t: function t(key, values) {
+      return _t(key, values);
+    },
+    getLocale: function getLocale() {
+      return i18n.getLocale();
+    },
+    setLocale: function setLocale(newLocale) {
+      return i18n.setLocale(newLocale);
+    },
+    mixin: {
+      beforeCreate: function beforeCreate() {var _this3 = this;
+        var unwatch = i18n.watchLocale(function () {
+          _this3.$forceUpdate();
+        });
+        this.$once('hook:beforeDestroy', function () {
+          unwatch();
+        });
+      },
+      methods: {
+        $$t: function $$t(key, values) {
+          return _t(key, values);
+        } } } };
+
+
+
+}
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 121:
+/*!***********************************************************************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
+  \***********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 122));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 123));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 124));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 122:
+/*!**********************************************************************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
+  \**********************************************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
+
+/***/ }),
+
+/***/ 123:
+/*!***************************************************************************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
+
+/***/ }),
+
+/***/ 124:
+/*!***************************************************************************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
 
 /***/ }),
 
@@ -3272,6 +3583,30 @@ var comsFn = function comsFn() {return (
     }));};var _default =
 
 comsFn;exports.default = _default;
+
+/***/ }),
+
+/***/ 146:
+/*!********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/errmsg.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 错误提示
+var errMsg = {
+  errlist: function errlist(err) {
+    uni.showToast({
+      icon: 'none',
+      title: err, //提示的内容
+      duration: 3000,
+      mask: true });
+
+  } };var _default =
+
+errMsg;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8802,7 +9137,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8823,14 +9158,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8916,7 +9251,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"MT-meituan","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9355,181 +9690,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 34:
-/*!*****************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/api.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {// 封装接口
-var allApi = function allApi(url, method, data) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: url,
-      method: method,
-      data: data }).
-
-    then(function (res) {
-      resolve(res);
-    }).
-    catch(function (err) {
-      reject(err);
-    });
-  });
-};
-module.exports = allApi;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 35:
-/*!*********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/request.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// 公共路径
-var publicUrl = 'https://meituan.thexxdd.cn/';
-
-// 为你优选请求路径
-var preferenceUrl = publicUrl + 'api/forshop/getprefer';
-
-// 附近商家请求路径
-var nearbyTakeOut = publicUrl + 'api/forshop/wxshop';
-
-// 排序附近商家
-var nearbyTakeOutRank = publicUrl + 'api/forshop/starting';
-
-// 筛选多选
-var multipleurl = publicUrl + 'api/forshop/multiple';
-
-// 搜索：
-var srarchUrl = publicUrl + 'api/forshop/search';
-
-// 评论
-var commentUrl = publicUrl + 'api/message/discuss';
-
-// 商家介绍
-var shopUrl = publicUrl + 'api/forshop/shop';
-
-// 商品数据
-var getdishesUrl = publicUrl + 'api/forshop/getdishes';
-
-// 全部评论或者AI分类评论(区别在于AIPOST请求参数data对象多一个属性值)
-var AllAndAiAssessUrl = publicUrl + 'api/message/discuss';
-
-// 登录
-var wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
-
-// 微信支付
-var wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
-
-// 我的订单(与微信支付接口一致)
-var wxOrderUrl = publicUrl + 'api/wxpay/wxpaying';
-
-// 提交评论
-var wxCommont = publicUrl + 'api/message/comment';
-
-// 导出路径
-module.exports = {
-  preferenceUrl: preferenceUrl,
-  nearbyTakeOut: nearbyTakeOut,
-  nearbyTakeOutRank: nearbyTakeOutRank,
-  multipleurl: multipleurl,
-  srarchUrl: srarchUrl,
-  commentUrl: commentUrl,
-  shopUrl: shopUrl,
-  getdishesUrl: getdishesUrl,
-  AllAndAiAssessUrl: AllAndAiAssessUrl,
-  wxLoginUrl: wxLoginUrl,
-  wxPaymentUrl: wxPaymentUrl,
-  wxOrderUrl: wxOrderUrl,
-  wxCommont: wxCommont };
-
-/***/ }),
-
-/***/ 4:
-/*!*****************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/pages.json ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 52:
-/*!*********************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/login/login.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 34));
-var _request = __webpack_require__(/*! ../api/request.js */ 35);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
-
-packLogin = /*#__PURE__*/function () {
-  function packLogin(nickName, avatarUrl) {_classCallCheck(this, packLogin);
-    this.nickName = nickName;
-    this.avatarUrl = avatarUrl;
-  }_createClass(packLogin, [{ key: "wxCode", value: function wxCode()
-    {var _this = this;
-      wx.login({
-        success: function success(res) {
-          var code = res.code;
-          _this.wxLogin(_this.avatarUrl, _this.nickName, code);
-        },
-        fail: function fail(err) {
-          throw err;
-        } });
-
-    } }, { key: "wxLogin", value: function wxLogin(
-
-    avatarUrl, nickName, code) {
-      // 请求后段后端登录
-      var data = {
-        appid: 'wx7f1e12062dd459a1',
-        secret: '2bf8c70dde7a49b1dfcc37ba5fb3f940',
-        code: code,
-        nickName: nickName,
-        avatarUrl: avatarUrl };
-
-
-      (0, _api.default)(_request.wxLoginUrl, 'POST', data).
-      then(function (res) {
-        if (res[1].data.msg == 'success') {
-          // 存入本地
-          uni.setStorageSync('usermen', res[1].data.datas);
-        }
-      }).
-      catch(function (err) {
-        console.log(err);
-      });
-    } }]);return packLogin;}();
-
-
-module.exports = packLogin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 61:
+/***/ 36:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 62);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 37);
 
 /***/ }),
 
-/***/ 62:
+/***/ 37:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -9560,7 +9732,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 63);
+module.exports = __webpack_require__(/*! ./runtime */ 38);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -9577,7 +9749,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 38:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -10309,338 +10481,166 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 94:
-/*!**************************************************************!*\
-  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.esm.js ***!
-  \**************************************************************/
+/***/ 4:
+/*!*****************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/pages.json ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 63:
+/*!*****************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/api.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.initVueI18n = initVueI18n;exports.I18n = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var isObject = function isObject(val) {return val !== null && typeof val === 'object';};var
-BaseFormatter = /*#__PURE__*/function () {
-  function BaseFormatter() {_classCallCheck(this, BaseFormatter);
-    this._caches = Object.create(null);
-  }_createClass(BaseFormatter, [{ key: "interpolate", value: function interpolate(
-    message, values) {
-      if (!values) {
-        return [message];
-      }
-      var tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    } }]);return BaseFormatter;}();
+/* WEBPACK VAR INJECTION */(function(uni) {// 封装接口
+var allApi = function allApi(url, method, data) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: url,
+      method: method,
+      data: data }).
 
-var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-function parse(format) {
-  var tokens = [];
-  var position = 0;
-  var text = '';
-  while (position < format.length) {
-    var _char = format[position++];
-    if (_char === '{') {
-      if (text) {
-        tokens.push({ type: 'text', value: text });
-      }
-      text = '';
-      var sub = '';
-      _char = format[position++];
-      while (_char !== undefined && _char !== '}') {
-        sub += _char;
-        _char = format[position++];
-      }
-      var isClosed = _char === '}';
-      var type = RE_TOKEN_LIST_VALUE.test(sub) ?
-      'list' :
-      isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ?
-      'named' :
-      'unknown';
-      tokens.push({ value: sub, type: type });
-    } else
-    if (_char === '%') {
-      // when found rails i18n syntax, skip text capture
-      if (format[position] !== '{') {
-        text += _char;
-      }
-    } else
-    {
-      text += _char;
-    }
-  }
-  text && tokens.push({ type: 'text', value: text });
-  return tokens;
-}
-function compile(tokens, values) {
-  var compiled = [];
-  var index = 0;
-  var mode = Array.isArray(values) ?
-  'list' :
-  isObject(values) ?
-  'named' :
-  'unknown';
-  if (mode === 'unknown') {
-    return compiled;
-  }
-  while (index < tokens.length) {
-    var token = tokens[index];
-    switch (token.type) {
-      case 'text':
-        compiled.push(token.value);
-        break;
-      case 'list':
-        compiled.push(values[parseInt(token.value, 10)]);
-        break;
-      case 'named':
-        if (mode === 'named') {
-          compiled.push(values[token.value]);
-        } else
-        {
-          if (true) {
-            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
-          }
-        }
-        break;
-      case 'unknown':
-        if (true) {
-          console.warn("Detect 'unknown' type of token!");
-        }
-        break;}
-
-    index++;
-  }
-  return compiled;
-}
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var hasOwn = function hasOwn(val, key) {return hasOwnProperty.call(val, key);};
-var defaultFormatter = new BaseFormatter();
-function include(str, parts) {
-  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
-}
-function startsWith(str, parts) {
-  return parts.find(function (part) {return str.indexOf(part) === 0;});
-}
-function normalizeLocale(locale, messages) {
-  if (!locale) {
-    return;
-  }
-  locale = locale.trim().replace(/_/g, '-');
-  if (messages[locale]) {
-    return locale;
-  }
-  locale = locale.toLowerCase();
-  if (locale.indexOf('zh') === 0) {
-    if (locale.indexOf('-hans') !== -1) {
-      return 'zh-Hans';
-    }
-    if (locale.indexOf('-hant') !== -1) {
-      return 'zh-Hant';
-    }
-    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
-      return 'zh-Hant';
-    }
-    return 'zh-Hans';
-  }
-  var lang = startsWith(locale, ['en', 'fr', 'es']);
-  if (lang) {
-    return lang;
-  }
-}var
-I18n = /*#__PURE__*/function () {
-  function I18n(_ref) {var locale = _ref.locale,fallbackLocale = _ref.fallbackLocale,messages = _ref.messages,watcher = _ref.watcher,formater = _ref.formater;_classCallCheck(this, I18n);
-    this.locale = 'en';
-    this.fallbackLocale = 'en';
-    this.message = {};
-    this.messages = {};
-    this.watchers = [];
-    if (fallbackLocale) {
-      this.fallbackLocale = fallbackLocale;
-    }
-    this.formater = formater || defaultFormatter;
-    this.messages = messages;
-    this.setLocale(locale);
-    if (watcher) {
-      this.watchLocale(watcher);
-    }
-  }_createClass(I18n, [{ key: "setLocale", value: function setLocale(
-    locale) {var _this = this;
-      var oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      this.message = this.messages[this.locale];
-      this.watchers.forEach(function (watcher) {
-        watcher(_this.locale, oldLocale);
-      });
-    } }, { key: "getLocale", value: function getLocale()
-    {
-      return this.locale;
-    } }, { key: "watchLocale", value: function watchLocale(
-    fn) {var _this2 = this;
-      var index = this.watchers.push(fn) - 1;
-      return function () {
-        _this2.watchers.splice(index, 1);
-      };
-    } }, { key: "t", value: function t(
-    key, locale, values) {
-      var message = this.message;
-      if (typeof locale === 'string') {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else
-      {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join('');
-    } }]);return I18n;}();exports.I18n = I18n;
-
-
-function initLocaleWatcher(appVm, i18n) {
-  appVm.$i18n &&
-  appVm.$i18n.vm.$watch('locale', function (newLocale) {
-    i18n.setLocale(newLocale);
-  }, {
-    immediate: true });
-
-}
-function getDefaultLocale() {
-  if (typeof navigator !== 'undefined') {
-    return navigator.userLanguage || navigator.language;
-  }
-  if (typeof plus !== 'undefined') {
-    // TODO 待调整为最新的获取语言代码
-    return plus.os.language;
-  }
-  return uni.getSystemInfoSync().language;
-}
-function initVueI18n(messages) {var fallbackLocale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';var locale = arguments.length > 2 ? arguments[2] : undefined;
-  var i18n = new I18n({
-    locale: locale || fallbackLocale,
-    fallbackLocale: fallbackLocale,
-    messages: messages });
-
-  var _t = function t(key, values) {
-    if (typeof getApp !== 'function') {
-      // app-plus view
-      /* eslint-disable no-func-assign */
-      _t = function t(key, values) {
-        return i18n.t(key, values);
-      };
-    } else
-    {
-      var appVm = getApp().$vm;
-      if (!appVm.$t || !appVm.$i18n) {
-        if (!locale) {
-          i18n.setLocale(getDefaultLocale());
-        }
-        /* eslint-disable no-func-assign */
-        _t = function t(key, values) {
-          return i18n.t(key, values);
-        };
-      } else
-      {
-        initLocaleWatcher(appVm, i18n);
-        /* eslint-disable no-func-assign */
-        _t = function t(key, values) {
-          var $i18n = appVm.$i18n;
-          var silentTranslationWarn = $i18n.silentTranslationWarn;
-          $i18n.silentTranslationWarn = true;
-          var msg = appVm.$t(key, values);
-          $i18n.silentTranslationWarn = silentTranslationWarn;
-          if (msg !== key) {
-            return msg;
-          }
-          return i18n.t(key, $i18n.locale, values);
-        };
-      }
-    }
-    return _t(key, values);
-  };
-  return {
-    t: function t(key, values) {
-      return _t(key, values);
-    },
-    getLocale: function getLocale() {
-      return i18n.getLocale();
-    },
-    setLocale: function setLocale(newLocale) {
-      return i18n.setLocale(newLocale);
-    },
-    mixin: {
-      beforeCreate: function beforeCreate() {var _this3 = this;
-        var unwatch = i18n.watchLocale(function () {
-          _this3.$forceUpdate();
-        });
-        this.$once('hook:beforeDestroy', function () {
-          unwatch();
-        });
-      },
-      methods: {
-        $$t: function $$t(key, values) {
-          return _t(key, values);
-        } } } };
-
-
-
-}
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};
+module.exports = allApi;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
-/***/ 95:
-/*!***********************************************************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
-  \***********************************************************************************************************************************/
+/***/ 64:
+/*!*********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/api/request.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// 公共路径
+var publicUrl = 'https://meituan.thexxdd.cn/';
+
+// 为你优选请求路径
+var preferenceUrl = publicUrl + 'api/forshop/getprefer';
+
+// 附近商家请求路径
+var nearbyTakeOut = publicUrl + 'api/forshop/wxshop';
+
+// 排序附近商家
+var nearbyTakeOutRank = publicUrl + 'api/forshop/starting';
+
+// 筛选多选
+var multipleurl = publicUrl + 'api/forshop/multiple';
+
+// 搜索：
+var srarchUrl = publicUrl + 'api/forshop/search';
+
+// 评论
+var commentUrl = publicUrl + 'api/message/discuss';
+
+// 商家介绍
+var shopUrl = publicUrl + 'api/forshop/shop';
+
+// 商品数据
+var getdishesUrl = publicUrl + 'api/forshop/getdishes';
+
+// 全部评论或者AI分类评论(区别在于AIPOST请求参数data对象多一个属性值)
+var AllAndAiAssessUrl = publicUrl + 'api/message/discuss';
+
+// 登录
+var wxLoginUrl = publicUrl + 'api/wxuser/wxlogin';
+
+// 微信支付
+var wxPaymentUrl = publicUrl + 'api/wxpay/wxpaying';
+
+// 我的订单(与微信支付接口一致)
+var wxOrderUrl = publicUrl + 'api/wxpay/wxpaying';
+
+// 提交评论
+var wxCommont = publicUrl + 'api/message/comment';
+
+// 导出路径
+module.exports = {
+  preferenceUrl: preferenceUrl,
+  nearbyTakeOut: nearbyTakeOut,
+  nearbyTakeOutRank: nearbyTakeOutRank,
+  multipleurl: multipleurl,
+  srarchUrl: srarchUrl,
+  commentUrl: commentUrl,
+  shopUrl: shopUrl,
+  getdishesUrl: getdishesUrl,
+  AllAndAiAssessUrl: AllAndAiAssessUrl,
+  wxLoginUrl: wxLoginUrl,
+  wxPaymentUrl: wxPaymentUrl,
+  wxOrderUrl: wxOrderUrl,
+  wxCommont: wxCommont };
+
+/***/ }),
+
+/***/ 81:
+/*!*********************************************************************************!*\
+  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/login/login.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 96));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 97));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 98));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
-{
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default };exports.default = _default;
+/* WEBPACK VAR INJECTION */(function(uni) {
+var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 63));
+var _request = __webpack_require__(/*! ../api/request.js */ 64);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
-/***/ }),
+packLogin = /*#__PURE__*/function () {
+  function packLogin(nickName, avatarUrl) {_classCallCheck(this, packLogin);
+    this.nickName = nickName;
+    this.avatarUrl = avatarUrl;
+  }_createClass(packLogin, [{ key: "wxCode", value: function wxCode()
+    {var _this = this;
+      wx.login({
+        success: function success(res) {
+          var code = res.code;
+          _this.wxLogin(_this.avatarUrl, _this.nickName, code);
+        },
+        fail: function fail(err) {
+          throw err;
+        } });
 
-/***/ 96:
-/*!**********************************************************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
-  \**********************************************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
+    } }, { key: "wxLogin", value: function wxLogin(
 
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
+    avatarUrl, nickName, code) {
+      // 请求后段后端登录
+      var data = {
+        appid: 'wx7f1e12062dd459a1',
+        secret: '2bf8c70dde7a49b1dfcc37ba5fb3f940',
+        code: code,
+        nickName: nickName,
+        avatarUrl: avatarUrl };
 
-/***/ }),
 
-/***/ 97:
-/*!***************************************************************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
-  \***************************************************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
+      (0, _api.default)(_request.wxLoginUrl, 'POST', data).
+      then(function (res) {
+        if (res[1].data.msg == 'success') {
+          // 存入本地
+          uni.setStorageSync('usermen', res[1].data.datas);
+        }
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    } }]);return packLogin;}();
 
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
 
-/***/ }),
-
-/***/ 98:
-/*!***************************************************************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/MT-meituan/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
-  \***************************************************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
+module.exports = packLogin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

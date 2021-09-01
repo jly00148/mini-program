@@ -1,6 +1,7 @@
 <template>
 	<view class="home-container">
 		<w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading>
+		<!-- <u-loading mode="circle" color="#c7c7c7" size="36upx"></u-loading> -->
 		<view>
 			<Search></Search>
 		</view>
