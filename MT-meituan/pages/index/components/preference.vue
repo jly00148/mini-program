@@ -70,7 +70,6 @@
 		display: flex; justify-content: space-between;
 		}	
 	.prefer-view {
-		height: 300upx; width: 300upx;
 		padding:8upx;
 	}
 	.prefer-view .img{

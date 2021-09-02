@@ -2,19 +2,32 @@
 	<view>
 		<view class="search-cont">
 			
-			<view class="search">
+			<!-- 			
+				<view class="search">
 				<input 
 				type="text"
 				focus="true"
 				confirm-type="search"
-				v-model="searchdata"
+				v-model="keyword"
 				@confirm="onKeyInput"
 				placeholder="请输入关键字"
 				/>
-			</view>
-			<view class="search-code" @click="searchBtn()">
-				搜索
-			</view>
+				<view class="search-code" @click="searchBtn()">
+					搜索
+				</view>
+			</view> -->
+			<u-search
+				placeholder="请输入关键字"
+				v-model="keyword" 
+				class="search"
+				shape="square"
+				:show-action="true"
+				@custom="custom(keyword)"
+				action-text="搜索" 
+				:animation="false"
+				>
+			  </u-search>
+	
 		</view>
 		
 		<!-- 搜索历史 -->
@@ -80,7 +93,7 @@
 		
 		data() {
 			return {
-				searchdata:'',
+				keyword:'',
 				searchHistory:[],
 				searchResult:[],
 				showEmptyResult:false,
@@ -88,14 +101,14 @@
 			}
 		},
 		methods: {
-			custom(a){
-				console.log(a)
+			custom(keyword){
+				this.searchData(this.keyword)
 			},
 			// 一：点击右边搜索触发搜索
-			searchBtn(){
-				//获取搜索框输入的关键字：this.searchdata 双向数据绑定
-				this.searchData(this.searchdata)
-			},
+			// searchBtn(){
+			// 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
+			// 	this.searchData(this.searchdata)
+			// },
 			
 			// 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
 			onKeyInput(e){
@@ -155,10 +168,11 @@
 			
 			// 清除本地缓存
 			clearSearchHistory(){
-				// 点击右边图片删除搜索记录，令其等于空数组
-				this.searchHistory = [];
-				// 同时清除本地缓存
+				// 清除本地缓存
 				uni.removeStorageSync('search_key');
+				
+				// 删除搜索记录，令其等于空数组
+				this.searchHistory = [];
 				
 				this.showEmptyResult = false;
 			},
@@ -166,7 +180,7 @@
 			// 点击搜索记录再次搜索
 			clickHistory(items){
 				// 使其再回到输入框内
-				this.searchdata = items;
+				this.keyword = items;
 			},
 			choiceShop(shopOpenid){
 				uni.navigateTo({
@@ -201,6 +215,7 @@
 		flex-direction: row;
 		border-radius: 20upx;
 		margin-left: 20upx;
+		margin-right: 20upx;
 		}
 	.search input{
 			height: 70upx;

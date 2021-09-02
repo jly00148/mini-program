@@ -9,10 +9,19 @@
 		
 		<!-- 搜索 -->
 		<view class="search-box">
+			<!-- 	
 			<view class="search" @click="goSearchPage()">
 				<image src="../../../static/coen/sousuo.svg" mode="widthFix" class="search-img"></image>
 				<input type="text" class="input" placeholder="椒盐牛排" />
-			</view>
+			</view> -->
+			<u-search
+				placeholder="请输入关键字"
+				shape="square"
+				:show-action="false"
+				@focus="goSearchPage()"
+				:animation="false"
+				>
+			  </u-search>
 		</view>
 		
 		<!-- 轮播图 -->

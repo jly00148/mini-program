@@ -14,6 +14,11 @@ import comsFn from './components/wholeComponents/index.js';
 // 调用全局组件(在component/wholeComponents组件中已注册好)
 comsFn()
 
+
+// 1.配置uView之引入uView主JS库
+import uView from "view-ui/uview-ui";
+Vue.use(uView);
+
 const app = new Vue({
     ...App,
 	store:store

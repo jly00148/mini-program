@@ -6,6 +6,21 @@
 	width: 702rpx;
 	margin: 0 auto;
 }
+.loading-mask.data-v-57280228{
+	position: fixed;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	background-color: rgb(0,0,0,0.3);
+	z-index: 9999;
+}
+.loading.data-v-57280228{
+	position: absolute;
+	left: 50%;
+	top: 450rpx;
+	margin-left: -18rpx;
+}
 .isFixedBox.data-v-57280228{
 	height: 70rpx;
 	width: 100%;

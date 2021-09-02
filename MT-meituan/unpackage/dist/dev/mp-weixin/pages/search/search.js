@@ -93,6 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uSearch: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 212))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -131,6 +154,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,9 +308,25 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 64);function _int
 //
 //
 //
-var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 203));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { searchdata: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(a) {console.log(a);}, // 一：点击右边搜索触发搜索
-    searchBtn: function searchBtn() {//获取搜索框输入的关键字：this.searchdata 双向数据绑定
-      this.searchData(this.searchdata);}, // 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 205));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
+    // searchBtn(){
+    // 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
+    // 	this.searchData(this.searchdata)
+    // },
+    // 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
     onKeyInput: function onKeyInput(e) {//  获取搜索框输入的关键字：e.detail.value
       this.searchData(e.detail.value);}, searchData: function searchData(keyWord) {var _this = this; // 输入搜索关键字后使其输入框清空;
       this.searchdata = ''; // 三L:判断是否为空字符串,是的话停止执行 (一个或多个空格键)
@@ -289,28 +341,13 @@ var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips *
       var newLocalArr = Array.from(new Set(localArr)); // 八：让获取的数组等于this.searchHistory，输入搜索即可出现搜索历史记录
       this.searchHistory = newLocalArr; // 九：数组存入本地storage
       uni.setStorageSync('search_key', newLocalArr);}, // 清除本地缓存
-    clearSearchHistory: function clearSearchHistory() {// 点击右边图片删除搜索记录，令其等于空数组
-      this.searchHistory = []; // 同时清除本地缓存
-      uni.removeStorageSync('search_key');
-      this.showEmptyResult = false;
-    },
-
-    // 点击搜索记录再次搜索
-    clickHistory: function clickHistory(items) {
-      // 使其再回到输入框内
-      this.searchdata = items;
-    },
-    choiceShop: function choiceShop(shopOpenid) {
-      uni.navigateTo({
-        //openid在/pages/takeout/takeout页面内用onload接收
-        url: '/pages/takeout/takeout?openid=' + shopOpenid });
-
-    } },
-
-  mounted: function mounted() {
-    // 页面一加载即从本地获取搜索存入的关键字
-    this.searchHistory = uni.getStorageSync('search_key') || [];
-  } };exports.default = _default;
+    clearSearchHistory: function clearSearchHistory() {// 清除本地缓存
+      uni.removeStorageSync('search_key'); // 删除搜索记录，令其等于空数组
+      this.searchHistory = [];this.showEmptyResult = false;}, // 点击搜索记录再次搜索
+    clickHistory: function clickHistory(items) {// 使其再回到输入框内
+      this.keyword = items;}, choiceShop: function choiceShop(shopOpenid) {uni.navigateTo({ //openid在/pages/takeout/takeout页面内用onload接收
+        url: '/pages/takeout/takeout?openid=' + shopOpenid });} }, mounted: function mounted() {// 页面一加载即从本地获取搜索存入的关键字
+    this.searchHistory = uni.getStorageSync('search_key') || [];} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

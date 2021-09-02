@@ -2,8 +2,7 @@
   "navigationBarTitleText": "MT-TAKEOUT",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "w-loading": "/components/w-loading/w-loading",
-    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
+    "u-loading": "/view-ui/uview-ui/components/u-loading/u-loading",
     "search": "/pages/index/components/search",
     "preference": "/pages/index/components/preference",
     "delicary": "/pages/index/components/delicary",

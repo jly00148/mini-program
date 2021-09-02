@@ -17,7 +17,6 @@
 		display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
 }
 .prefer-view.data-v-0ed85ae4 {
-		height: 300rpx; width: 300rpx;
 		padding:8rpx;
 }
 .prefer-view .img.data-v-0ed85ae4{

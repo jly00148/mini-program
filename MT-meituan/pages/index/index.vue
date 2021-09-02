@@ -1,7 +1,9 @@
 <template>
 	<view class="home-container">
-		<w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading>
-		<!-- <u-loading mode="circle" color="#c7c7c7" size="36upx"></u-loading> -->
+		<!-- <w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading> -->
+		<view class="loading-mask" v-if="showOrHide">
+			<u-loading mode="circle" :show="true" class="loading"></u-loading>
+		</view>
 		<view>
 			<Search></Search>
 		</view>
@@ -19,7 +21,6 @@
 		<view>
 			<Takeout class="takeout" :takeShopDate="takeShopDate"></Takeout>
 		</view>
-		<uni-load-more :status="more" ></uni-load-more>
 	</view>
 </template>
 
@@ -78,7 +79,8 @@
 					this.takeShopDate = result[1][1].data;
 					
 					// loading消失
-					this.$refs.loading.close()
+					this.showOrHide = false;
+					// this.$refs.loading.close()
 				})
 				.catch(err=>{
 					console.log('err',err)
@@ -137,7 +139,7 @@
 			})
 		},
 		onReady() {
-			this.$refs.loading.open()
+			// this.$refs.loading.open()
 		}
 	}
 </script>
@@ -149,6 +151,21 @@
 	#boxFixed{
 		width: 702upx;
 		margin: 0 auto;
+	}
+	.loading-mask{
+		position: fixed;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		background-color: rgb(0,0,0,0.3);
+		z-index: 9999;
+	}
+	.loading{
+		position: absolute;
+		left: 50%;
+		top: 450upx;
+		margin-left: -18upx;
 	}
 	.isFixedBox{
 		height: 70upx;

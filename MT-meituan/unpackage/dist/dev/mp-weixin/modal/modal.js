@@ -87,7 +87,7 @@ var _request = __webpack_require__(/*! ../api/request.js */ 64);function _intero
 //
 //
 //
-var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 196));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var packLogin = __webpack_require__(/*! ../login/login.js */ 81);var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: {
+var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 198));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var packLogin = __webpack_require__(/*! ../login/login.js */ 81);var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: {
     messcancel: function messcancel() {
       this.showOrHide = false;
     },

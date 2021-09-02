@@ -2,6 +2,7 @@
   "navigationBarTitleText": "搜索",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "u-search": "/view-ui/uview-ui/components/u-search/u-search",
     "tip": "/tips/tips"
   }
 }

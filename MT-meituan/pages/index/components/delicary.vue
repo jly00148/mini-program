@@ -22,7 +22,7 @@
 		<view class="sortlist sortliteltle" v-if="drop">
 			<block v-for="(item,index) in sortlist1" :key="index">
 				<!-- sortClick(item.name,index)传递参数 -->
-				<text :class="{activeb:index == num}" class="text" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
+				<text :class="{activeb:index === num}" class="text" @click="sortClick(index,item.name,item.screen,item.nums)">{{item.name}}</text>
 			</block>
 		</view>
 		
@@ -334,10 +334,12 @@
 		z-index: 99;
 		border-radius: 10upx;
 	}
+	.sortliteltle{
+		display:flex;
+		flex-direction: column;
+	}
 	.sortliteltle .text{
-		padding: 0 25upx;
-		display: block;
-		font-size: 1%;
+		padding-left: 20upx;
 		height: 70upx;
 		line-height: 70upx;
 		border-top: 1rpx solid #ededed;
