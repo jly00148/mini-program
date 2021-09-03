@@ -1,8 +1,8 @@
 {
+  "component": true,
   "usingComponents": {
     "u-lazy-load": "/view-ui/uview-ui/components/u-lazy-load/u-lazy-load",
     "u-empty": "/view-ui/uview-ui/components/u-empty/u-empty",
     "tip": "/tips/tips"
-  },
-  "component": true
+  }
 }
