@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "u-lazy-load": "/view-ui/uview-ui/components/u-lazy-load/u-lazy-load",
     "modal": "/modal/modal"
   },
   "component": true

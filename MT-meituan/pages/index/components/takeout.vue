@@ -1,11 +1,14 @@
 <template>
 	<view>
-		<Tip :tipText="tipText" v-show="showEmpty"></Tip>
+		<!-- <Tip :tipText="tipText" v-show="showEmpty"></Tip> -->
 			<block v-for="(item,index) in takeShopDate" :key="index">
 				<view  class="content-view" @click="choiceShop(item.openid)">
 					<view class="content-img" v-show="!showEmpty">
+						
 						<!--  mode为widthFix即图片高度自适应时要设置占位图默认高度  -->
-							<image :src="item.logo" mode="aspectFill" class="img"></image>
+							<!-- <image :src="item.logo" mode="aspectFill" class="img"></image> -->
+							<u-lazy-load :image="item.logo" threshold="-100"></u-lazy-load>
+							
 					</view>
 					<view class="content-title" v-show="!showEmpty">
 						<text class="conteng-take">{{item.shop}}</text>
@@ -25,6 +28,7 @@
 					</view>
 				</view>
 			</block>
+			<u-empty text="搜索商家列表为空" mode="list" v-show="showEmpty"></u-empty>
 	</view>
 </template>
 
@@ -54,18 +58,14 @@
 				})
 			}
 		},
-		onPageScroll({scrollTop}) {
-			console.log('aa')
-						// 传入scrollTop值并触发所有easy-loadimage组件下的滚动监听事件
-						this.scrollTop = scrollTop;
-					},
 		watch:{
 			// 每次点击(delicary.vue文件中sortClick和personClick方法)后返回的result传递到父组件中的fatherMethod方法,
 			// 然后把得到的数组通过监听takeShopDate得到的数组赋值给takeShopDate综合排序和筛选时
 			takeShopDate:function(takeShopDate){
 				if(takeShopDate.length == 0){
 					this.showEmpty = true;
-					this.tipText = '商家未找到'
+					// this.tipText = '商家未找到'
+					
 				}else{
 					this.showEmpty = false;
 					this.takeShopDate = takeShopDate;

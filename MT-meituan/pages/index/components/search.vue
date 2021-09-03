@@ -132,7 +132,7 @@
 						},
 						{
 							'img':'/static/inster/meituan.png',
-							'title':'美团'
+							'title':'外卖'
 						},
 						{
 							'img':'/static/inster/shuiguo.png',

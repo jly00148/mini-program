@@ -17,7 +17,10 @@
 						<view class="content-view">
 							<!-- 左边商品图片 -->
 							<view class="content-img">
-								<image mode="aspectFill" :src="item.image"></image>
+								
+								<!-- <image mode="aspectFill" :src="item.image"></image> -->
+								<u-lazy-load :image="item.image" mode="aspectFill"></u-lazy-load>
+								
 							</view> 
 							<!-- 右边商品 -->
 								<view class="content-title">

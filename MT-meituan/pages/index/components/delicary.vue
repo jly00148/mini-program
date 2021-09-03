@@ -280,6 +280,7 @@
 				})
 				.catch(err=>{
 					errMsg.errlist('服务器错误，请稍后再试！');
+					
 				})
 				this.sortmen = false;
 				this.mask = false;

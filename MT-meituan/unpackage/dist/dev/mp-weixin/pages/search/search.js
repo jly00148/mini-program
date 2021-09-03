@@ -96,7 +96,13 @@ var components
 try {
   components = {
     uSearch: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 212))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 207))
+    },
+    uLazyLoad: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-lazy-load/u-lazy-load */ "view-ui/uview-ui/components/u-lazy-load/u-lazy-load").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-lazy-load/u-lazy-load.vue */ 214))
+    },
+    uEmpty: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 254))
     }
   }
 } catch (e) {
@@ -154,6 +160,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
 
 
 
@@ -321,7 +329,9 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 64);function _int
 //
 //
 //
-var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 205));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
+//
+//
+var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
     // searchBtn(){
     // 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
     // 	this.searchData(this.searchdata)
@@ -332,7 +342,10 @@ var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips *
       this.searchdata = ''; // 三L:判断是否为空字符串,是的话停止执行 (一个或多个空格键)
       if (keyWord.trim() === '') {return;} // 四：同步存储
       this.handleStorage(keyWord);var data = { searchdata: keyWord };(0, _api.default)(_request.srarchUrl, 'POST', data).then(function (result) {// 未搜索到目标
-        if (typeof result[1].data === 'string') {_this.showEmptyResult = true;_this.tipText = '未搜索到'; // this.$refs.tips:获取组件
+        if (typeof result[1].data === 'string') {/*
+                                                 	this.tipText = '未搜索到'; 注销掉，现在使用的是uVidw UI框架搭建
+                                                 */_this.showEmptyResult = true;_this.searchResult = []; // 记住：
+          // this.$refs.tips:获取组件
           // this.$refs.tips.init()调用组件上的方法
         } else {// 搜索到目标
           _this.showEmptyResult = false;_this.searchResult = result[1].data;}}).catch(function (err) {console.log(err);});}, handleStorage: function handleStorage(storageWord) {// 五：获取local storege中存储的数组，没有的话设置为空数组

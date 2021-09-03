@@ -50,12 +50,13 @@
 		<!-- 内容展示 -->
 		<view class="content-left">
 			<view class="empty" v-show="showEmptyResult">
-				<Tip :tipText="tipText" ref="tips"></Tip>
+				<!-- <Tip :tipText="tipText" ref="tips"></Tip> -->
 			</view>
 			<block v-for="(items,index) in searchResult" :key="index">
 				<view class="content-view"  v-show="!showEmptyResult" @click="choiceShop(items.openid)">
 					<view class="content-img">
-						<image :src="items.logo" mode="aspectFill" class="img"></image>
+						<!-- <image :src="items.logo" mode="aspectFill" class="img"></image> -->
+						<u-lazy-load :image="items.logo" threshold="-100"></u-lazy-load>
 					</view>
 					<view class="content-title">
 						<text class="conteng-take">{{items.shop}}</text>
@@ -78,6 +79,7 @@
 		</view>
 		
 		<!-- 反馈组件 -->
+		<u-empty text="搜索商家列表为空" mode="list" v-show="showEmptyResult"></u-empty>
 	</view>
 </template>
 
@@ -135,8 +137,13 @@
 				.then(result=>{
 					// 未搜索到目标
 					if(typeof result[1].data === 'string'){
-						this.showEmptyResult = true;
-						this.tipText = '未搜索到';
+						/*
+							this.tipText = '未搜索到'; 注销掉，现在使用的是uVidw UI框架搭建
+						*/
+					   this.showEmptyResult = true;
+					   this.searchResult = [];
+						
+						// 记住：
 						// this.$refs.tips:获取组件
 						// this.$refs.tips.init()调用组件上的方法
 					}else{
