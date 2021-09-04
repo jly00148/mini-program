@@ -1,73 +1,76 @@
 <template>
 	<view>
-		<view>
-			<view class="place-view">
-				<view class="place-addres" @click="addAddress()">
-					+ 新增收货地址
-				</view>
-				<!-- 已选中收货地址 -->
-				<view class="goods-address" @click="addAddress()">
-					<view class="goods-address-box">
-						<view class="goods-address-left">
-							<image src="../../static/coen/address.png" mode="widthFix"></image>
-						</view>
-						<view class="goods-address-in">
-							<view></view>
-							<view class="goods-address-name">
-								<text>{{address}}</text>
-								<text>{{username +' '+ tel}}</text>
-							</view>
-						</view>
-						<view class="goods-address-right">
-							<image src="../../static/coen/jiantou.png" mode="widthFix"></image>
+		<view class="place-view">
+			<!-- 已选中收货地址 -->
+			<view class="goods-address" >
+				<view class="goods-address-box border-bottom">
+					<view class="goods-address-left">
+						<image src="../../static/coen/address.png" mode="widthFix"></image>
+					</view>
+					<view class="goods-address-in">
+						<view class="goods-address-name">
+						<!-- 	<text>{{address}}</text>
+							<text>{{username +' '+ tel}}</text> -->
+							<text>用户姓名:</text>
 						</view>
 					</view>
-				</view>
-				<view class="place-time">
-					<image src="../../static/coen/times.png" mode="widthFix"></image>
-					<text>立即送出</text>
+					<view class="goods-address-right">
+						<image src="../../static/coen/jiantou.png" mode="widthFix"></image>
+					</view>
 				</view>
 			</view>
-		
-			<!-- 菜单 -->
-			<view class="place-view">
-				<view>
-					<block v-for="(item,index) in uniqueArr" :key="index">
-						<view class="order-view">
-							<view class="order-img">
-								<image  :src="item.image" mode="aspectFill"></image>
-							</view>
-							<view class="order-title">
-								<text>{{item.TotalPrice}}</text>
-								<text>x{{item.amount}}</text>
-							</view>
-							<view class="order-price">
-								单价:¥{{item.price}}
-							</view>
+			<view class="place-time border-bottom">
+				<image src="../../static/coen/times.png" mode="widthFix"></image>
+				<text>用户地址:</text>
+			</view>
+			<view class="place-time border-bottom">
+				<image src="../../static/coen/times.png" mode="widthFix"></image>
+				<text>联系方式:</text>
+			</view>
+			<view class="place-addres border-bottom" @click="addAddress()">
+				选择收货地址
+			</view>
+		</view>
+
+		<!-- 菜单 -->
+		<view class="place-view">
+			<text>订单列表:</text>
+			<view class="uniqueArr-wrap">
+				<block v-for="(item,index) in uniqueArr" :key="index">
+					<view class="order-view">
+						<view class="order-img">
+							<image  :src="item.image" mode="aspectFill"></image>
 						</view>
-					</block>
-				</view>
+						<view class="order-title">
+							<text>{{item.TotalPrice}}</text>
+							<text>x{{item.amount}}</text>
+						</view>
+						<view class="order-price">
+							单价:¥{{item.price}}
+						</view>
+					</view>
+				</block>
 			</view>
-			
-			<!-- 配送费 -->
-			<view class="place-view">
-				<view class="Delivery">配送费:¥{{delivering}}</view>
-			</view>
-			<!-- 高度 -->
-			<view style="height: 140upx;"></view>
-			<!-- 支付 -->
-			<view class="payment">
-				<view class="payment-left">
-					<text>合计¥:{{payment+delivering}}</text>
-				</view>
-				<view class="payment-right" @click="toPay()">
-					去支付
-				</view>
-			</view>
-			<!-- 提示组件 -->
-			<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
 		</view>
+		
+		<!-- 配送费 -->
+		<view class="place-view">
+			<view class="Delivery">配送费:¥{{delivering}}</view>
 		</view>
+		<!-- 高度 -->
+		<view style="height: 140upx;"></view>
+		<!-- 支付 -->
+		<view class="payment">
+			<view class="payment-left">
+				<text>合计¥:{{payment+delivering}}</text>
+			</view>
+			<view class="payment-right" @click="toPay()">
+				去支付
+			</view>
+		</view>
+		<!-- 提示组件 -->
+		<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
+	</view>
 		
 </template>
 
@@ -123,13 +126,17 @@
 		},
 		methods:{
 			addAddress(){
-				wx.chooseAddress({
-					success:res=>{
-							this.address = res.cityName + res.countyName + res.detailInfo
-							this.username = res.userName;
-							this.tel = res.telNumber;
-					}
+				uni.navigateTo({
+					url: '/pages/address/index'
 				})
+				
+				// wx.chooseAddress({
+				// 	success:res=>{
+				// 			this.address = res.cityName + res.countyName + res.detailInfo
+				// 			this.username = res.userName;
+				// 			this.tel = res.telNumber;
+				// 	}
+				// })
 			},
 			
 			// 发起微信支付：
@@ -264,12 +271,15 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	page{background: #F4f4f4}
 	.place-view{background: #FFFFFF;
 	margin: 20upx;
 	border-radius: 9upx;
-	padding: 35upx 15upx;}
+	}
+	.border-bottom{
+		border-bottom: 1rpx solid #F4f4f4;
+	}
 	.place-addres{
 	border: 1rpx solid #ffb000;
 	width: 400upx;
@@ -278,20 +288,23 @@
 	border-radius: 50upx;
 	text-align: center;
 	color: #ffb000;
-	margin: 0 auto;
+	margin: 40upx auto;
 	font-size: 30upx;
 	}
-	.place-time image{width: 40upx; height: 40upx; padding-right: 20upx;}
+	.place-time image{width: 40upx; height: 40upx;}
 	.place-time{display: flex; align-items: center; font-size: 30upx;
-	border-top: 1rpx solid #F4f4f4;
-	padding-top: 35upx;
+	padding-top: 25upx;
 	margin-top: 35upx;
 	}
 	/* 菜单 */
+	.uniqueArr-wrap{
+		border-top: 1px #f2f2f2 solid;
+	}
 	.order-view{display: flex;
 	height: 150upx !important; overflow: hidden;
-	margin-bottom: 15upx;
+	margin-bottom: 10upx;
 	font-size: 30upx;
+	border-bottom: 1upx #f2f2f2 solid;
 	}
 	.order-view text{display: block;}
 	.order-img{width: 200upx !important; height: 150upx !important;
@@ -331,7 +344,6 @@
 	/* 收货地址 */
 	.goods-address{
 		margin-top: 20upx;
-		border-top: 1rpx solid #F4f4f4;
 	}
 	.goods-address-box{
 		display: flex;

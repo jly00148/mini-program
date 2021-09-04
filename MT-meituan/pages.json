@@ -58,7 +58,23 @@
                 "enablePullDownRefresh": true
             }
             
-        }	
+        }
+		,{
+		    "path" : "pages/address/addSite",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "新添加地址",
+		        "enablePullDownRefresh": true
+		    }
+		}
+		,{
+		    "path" : "pages/address/index",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "选择地址",
+		        "enablePullDownRefresh": true
+		    }
+		}
 
     ],
 	

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "新添加地址",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-icon": "/view-ui/uview-ui/components/u-icon/u-icon",
+    "u-picker": "/view-ui/uview-ui/components/u-picker/u-picker",
+    "select-city": "/components/selectCity/index"
+  }
+}

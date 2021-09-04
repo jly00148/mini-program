@@ -1,0 +1,12 @@
+
+.u-demo.data-v-fc4304f6{
+	margin-top: 30rpx;
+}
+.u-demo-result-line.data-v-fc4304f6{
+	font-size: 32rpx;
+	margin-bottom: 30rpx;
+}
+.btn-wrap.data-v-fc4304f6 {
+	margin: 100rpx 30rpx;
+}
+

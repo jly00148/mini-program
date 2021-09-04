@@ -87,7 +87,7 @@ var _request = __webpack_require__(/*! ../api/request.js */ 64);function _intero
 //
 //
 //
-var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var packLogin = __webpack_require__(/*! ../login/login.js */ 81);var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: {
+var HMmessages = function HMmessages() {__webpack_require__.e(/*! require.ensure | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then((function () {return resolve(__webpack_require__(/*! @/components/HM-messages/HM-messages.vue */ 209));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var packLogin = __webpack_require__(/*! ../login/login.js */ 81);var _default = { components: { HMmessages: HMmessages }, data: function data() {return { showOrHide: false };}, methods: {
     messcancel: function messcancel() {
       this.showOrHide = false;
     },
@@ -400,7 +400,7 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 64);function _int
 //
 //
 //
-var Tips = function Tips() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tips: Tips }, data: function data() {return { showOrHide: false, tipText: '', openid: '' };}, methods: { ordering: function ordering() {// 发送请求
+var Tips = function Tips() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 216));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tips: Tips }, data: function data() {return { showOrHide: false, tipText: '', openid: '' };}, methods: { ordering: function ordering() {// 发送请求
       var data = { type: 'myorder', openid: this.openid };(0, _api.default)(_request.wxOrderUrl, 'POST', data).then(function (res) {console.log(res);}).catch(function (err) {console.log(err);});} }, onShow: function onShow() {// 取出本地缓存的用户信息
     var cacheUserInfo = uni.getStorageSync('usermen'); // 用户未登录
     if (!cacheUserInfo) {// 暂存opendi,以便发送请求传参

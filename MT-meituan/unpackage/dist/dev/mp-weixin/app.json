@@ -5,7 +5,9 @@
     "pages/my/my",
     "pages/placeorder/placeorder",
     "pages/order/order",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/address/addSite",
+    "pages/address/index"
   ],
   "subPackages": [],
   "window": {
