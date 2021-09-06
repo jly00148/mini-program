@@ -89,7 +89,7 @@ export default {
 		submit() {
 			if(this.$u.test.mobile(this.tel)) {
 				this.$u.route({
-					url: 'pages/code/code'
+					url: 'pages/code/code?tel=' + this.tel
 				})
 			}
 		},

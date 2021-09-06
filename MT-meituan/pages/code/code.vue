@@ -2,7 +2,7 @@
 	<view class="wrap">
 		<view class="key-input">
 			<view class="title">输入验证码</view>
-			<view class="tips">验证码已发送至 +150****9320</view>
+			<view class="tips">验证码已发送至 86+{{tel}}</view>
 			<u-message-input :focus="true" :value="value" @change="change" @finish="finish" mode="bottomLine" :maxlength="maxlength"></u-message-input>
 			<text :class="{ error: error }">验证码错误，请重新输入</text>
 			<view class="captcha">
@@ -21,12 +21,13 @@ export default {
 			value: '',
 			second: 3,
 			show: false,
-			error: false
+			error: false,
+			tel:''
 		};
 	},
 	computed: {},
-	onLoad() {
-		// this.getCaptcha()
+	onLoad(obj) {
+		this.tel = obj.tel
 		let interval = setInterval(() => {
 			this.second--;
 			if (this.second <= 0) {
