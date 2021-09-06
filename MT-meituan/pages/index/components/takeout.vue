@@ -4,11 +4,9 @@
 			<block v-for="(item,index) in takeShopDate" :key="index">
 				<view  class="content-view" @click="choiceShop(item.openid)">
 					<view class="content-img" v-show="!showEmpty">
-						
 						<!--  mode为widthFix即图片高度自适应时要设置占位图默认高度  -->
 							<!-- <image :src="item.logo" mode="aspectFill" class="img"></image> -->
 							<u-lazy-load :image="item.logo" threshold="-100"></u-lazy-load>
-							
 					</view>
 					<view class="content-title" v-show="!showEmpty">
 						<text class="conteng-take">{{item.shop}}</text>
@@ -29,6 +27,7 @@
 				</view>
 			</block>
 			<u-empty text="搜索商家列表为空" mode="list" v-show="showEmpty"></u-empty>
+			<u-divider color="#848484" v-show="!showEmpty">我是有底线的</u-divider>
 	</view>
 </template>
 

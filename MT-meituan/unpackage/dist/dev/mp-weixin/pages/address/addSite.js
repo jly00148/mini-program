@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 244))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 224))
     },
     uPicker: function() {
-      return Promise.all(/*! import() | view-ui/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("view-ui/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-picker/u-picker.vue */ 251))
+      return Promise.all(/*! import() | view-ui/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("view-ui/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-picker/u-picker.vue */ 266))
     }
   }
 } catch (e) {
@@ -156,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var selectCity = function selectCity() {__webpack_require__.e(/*! require.ensure | components/selectCity/index */ "components/selectCity/index").then((function () {return resolve(__webpack_require__(/*! ../../components/selectCity/index.vue */ 261));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var selectCity = function selectCity() {__webpack_require__.e(/*! require.ensure | components/selectCity/index */ "components/selectCity/index").then((function () {return resolve(__webpack_require__(/*! ../../components/selectCity/index.vue */ 276));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

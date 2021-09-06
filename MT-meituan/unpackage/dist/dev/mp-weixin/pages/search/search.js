@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uSearch: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 223))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 245))
     },
     uLazyLoad: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-lazy-load/u-lazy-load */ "view-ui/uview-ui/components/u-lazy-load/u-lazy-load").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-lazy-load/u-lazy-load.vue */ 230))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-lazy-load/u-lazy-load */ "view-ui/uview-ui/components/u-lazy-load/u-lazy-load").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-lazy-load/u-lazy-load.vue */ 252))
     },
     uEmpty: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 237))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 259))
     }
   }
 } catch (e) {
@@ -331,7 +331,7 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 64);function _int
 //
 //
 //
-var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 216));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
+var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
     // searchBtn(){
     // 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
     // 	this.searchData(this.searchdata)

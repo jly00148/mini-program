@@ -75,6 +75,14 @@
 		        "enablePullDownRefresh": true
 		    }
 		}
+		,{
+		    "path" : "pages/code/code",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "...",
+		        "enablePullDownRefresh": true
+		    }
+		}
 
     ],
 	
@@ -100,13 +108,13 @@
 				"iconPath": "static/tab/dingdana.png",
 				"selectedIconPath": "./static/tab/dingdanb.png",
 				"text": "订单"
-			},			{
+			},
+			{
 				"pagePath": "pages/my/my",
 				"iconPath": "./static/tab/wodea.png",
 				"selectedIconPath": "./static/tab/wodeb.png",
 				"text": "我的"
-			}
-			
+			}			
 		]
 	}
 }
