@@ -79,8 +79,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uIcon: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 217))
+    },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-button/u-button */ "view-ui/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-button/u-button.vue */ 304))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-button/u-button */ "view-ui/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-button/u-button.vue */ 259))
     }
   }
 } catch (e) {
@@ -142,7 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var citySelect = function citySelect() {Promise.all(/*! require.ensure | components/selectCity/u-city-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/selectCity/u-city-select")]).then((function () {return resolve(__webpack_require__(/*! ./u-city-select.vue */ 311));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var citySelect = function citySelect() {Promise.all(/*! require.ensure | components/selectCity/u-city-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/selectCity/u-city-select")]).then((function () {return resolve(__webpack_require__(/*! ./u-city-select.vue */ 304));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -171,12 +174,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       marginTop: 30,
       marginBottom: 30,
       value: false,
-      input: '' };
+      input: '请选择收获地址',
+      homeFill: 'home-fill' };
 
   },
   methods: {
     cityChange: function cityChange(e) {
       this.input = e.province.label + '-' + e.city.label + '-' + e.area.label;
+      this.$parent.fatherMethod(this.input);
     } } };exports.default = _default;
 
 /***/ }),

@@ -46,28 +46,28 @@ export default {
 					],
 					site: '广东省深圳市宝安区 自由路66号'
 				},
-				{
-					id: 2,
-					name: '李XX',
-					phone: '183****5555',
-					tag: [
-						{
-							tagText: '公司'
-						}
-					],
-					site: '广东省深圳市宝安区 翻身路xx号'
-				},
-				{
-					id: 3,
-					name: '王YY',
-					phone: '153****5555',
-					tag: [],
-					site: '广东省深圳市宝安区 平安路13号'
-				}
+				
+				// {
+				// 	id: 2,
+				// 	name: '李XX',
+				// 	phone: '183****5555',
+				// 	tag: [
+				// 		{
+				// 			tagText: '公司'
+				// 		}
+				// 	],
+				// 	site: '广东省深圳市宝安区 翻身路xx号'
+				// },
+				// {
+				// 	id: 3,
+				// 	name: '王YY',
+				// 	phone: '153****5555',
+				// 	tag: [],
+				// 	site: '广东省深圳市宝安区 平安路13号'
+				// }
 			];
 		},
 		toAddSite(){
-			console.log('aa')
 			uni.navigateTo({
 			    url: '/pages/address/addSite'
 			});

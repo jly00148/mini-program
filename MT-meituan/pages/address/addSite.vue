@@ -2,65 +2,126 @@
 	<view class="wrap">
 		<view class="top">
 			<view class="item">
-				<view class="left">收货人</view>
-				<input type="text" placeholder-class="line" placeholder="请填写收货人姓名" />
+				<view class="left"><u-icon :name="accountFill" size="30" color="#909399"></u-icon>收货人:</view>
+				<input type="text" placeholder-class="line" v-model="name" placeholder="请填写收货人姓名" />
 			</view>
 			<view class="item">
-				<view class="left">手机号码</view>
-				<input type="text" placeholder-class="line" placeholder="请填写收货人手机号" />
+				<view class="left"><u-icon :name="phone" size="30" color="#909399"></u-icon>手机号码:</view>
+				<input type="text" placeholder-class="line"  v-model="tel" placeholder="请填写收货人手机号" />
 			</view>
-			<selectCity></selectCity>
+			<SelectCity></SelectCity>
 			<view class="item address">
 				<view class="left">详细地址</view>
-				<textarea type="text" placeholder-class="line" placeholder="街道、楼牌等" />
+				<textarea type="text" placeholder-class="line" v-model="detailSite" placeholder="街道、楼牌等" />
 			</view>
-<!-- 			<view class="site-clipboard">
-				<textarea placeholder-class="line" value="" placeholder="粘贴文本,可自动识别姓名和地址等" />
-				<view class="clipboard">
-					地址粘贴板
-					<u-icon name="arrow-down" class="icon" :size="20"></u-icon>
-				</view>
-			</view> -->
 		</view>
 		<view class="bottom">
 			<view class="tag">
 				<view class="left">标签</view>
 				<view class="right">
-					<text class="tags">家</text>
-					<text class="tags">公司</text>
-					<text class="tags">学校</text>
-					<view class="tags plus"><u-icon size="22" name="plus"></u-icon></view>
+					<block v-for="(item,index) in tags" :key="index">
+						<text class="tags" @click="selectTag(item,index)" :class="{activeb:index === num}">{{item}}</text>
+					</block>
+					<u-popup v-model="showPopup" mode="bottom" border-radius="15"  height="30%">
+						<u-alert-tips type="warning" :title="title" :show="show" class="tips" :description="description"></u-alert-tips>
+						<!-- <view>出淤泥而不染，濯清涟而不妖</view> -->
+						<u-input v-model="addNewTag" :border="border" input-align="center" clearable=false />
+						<u-button type="primary" :plain="true" @click="addTag">添加标签</u-button>
+					</u-popup>
+					<view class="tags plus" @click="showPopup = true"><u-icon size="22" name="plus"></u-icon></view>
 				</view>
 			</view>
 			<view class="default">
 				<view class="left">
 					<view class="set">设置默认地址</view>
-					<view class="tips">提醒：每次下单会默认推荐该地址</view>
 				</view>
 				<view class="right"><switch color="red" @change="setDefault" /></view>
 			</view>
 		</view>
-		<u-picker mode="region" ref="uPicker" v-model="show" />
+		<u-button type="success" :plain="true" @click="addSite">添加地址</u-button>
+		<!-- <u-picker mode="region" ref="uPicker" v-model="show" /> -->
 	</view>
 </template>
-
+<!-- 					name: '游X',
+					phone: '183****5523',
+					tag: [
+						{
+							tagText: '默认'
+						},
+						{
+							tagText: '家'
+						}
+					],
+					site: '广东省深圳市宝安区 自由路66号' -->
 <script>
-	import selectCity from '../../components/selectCity/index.vue';
+	import SelectCity from '../../components/selectCity/index.vue';
 	
 export default {
 	components:{
-		selectCity
+		SelectCity
 	},
 	data() {
 		return {
-			show: false
+			showPopup: false,
+			show:false,
+			name:'',
+			tel:'',
+			selectedCity:'',
+			detailSite:'',
+			tag:'',
+			tags:'',
+			addNewTag:'',
+			phone: 'phone',
+			accountFill:'account-fill',
+			description:'',
+			num:''
 		};
 	},
 	methods: {
 		setDefault() {},
-		// showRegionPicker() {
+		// showRegionPicker(obj1) {
+		// 	console.log(obj1)
 		// 	this.show = true;
-		// }
+		// },
+		fatherMethod(selectedCity){
+			this.selectedCity = selectedCity
+		},
+		addTag(){
+			// 标签去重
+			for(var i = 0;i<this.tags.length;i++){
+				if(this.tags[i] == this.addNewTag){
+					// 标签已存在
+					this.description = '标签已存在';
+					this.show = true;
+					return
+				}
+			}
+			if(this.addNewTag == '') {
+				this.description = '标签不能为空';
+				this.show = true;
+				return
+			};
+			
+			// 标签无重复
+			this.show = false;
+			this.showPopup = false;
+			this.tags.push(this.addNewTag)
+			uni.setStorageSync('tags',this.tags)
+		},
+		selectTag(item,index){
+			this.num = index;
+			this.tag = item;
+		},
+		addSite(){
+			console.log(this.name)
+			console.log(this.tel)
+			console.log(this.selectedCity)
+			console.log(this.detailSite)
+			console.log(this.tag)
+		},
+	},
+	mounted(){
+		this.tags = uni.getStorageSync('tags')  || ['家','公司','学校'];
 	}
 };
 </script>
@@ -69,6 +130,12 @@ export default {
 /deep/ .line {
 	color: $u-light-color;
 	font-size: 28rpx;
+}
+.tips{
+	z-index: 999;
+}
+.activeb{
+	background-color: #F5A9A9;
 }
 .wrap {
 	background-color: #f2f2f2;

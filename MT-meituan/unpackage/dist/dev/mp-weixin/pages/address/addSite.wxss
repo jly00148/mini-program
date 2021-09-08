@@ -28,6 +28,12 @@
   color: #c0c4cc;
   font-size: 28rpx;
 }
+.tips.data-v-5adf3af8 {
+  z-index: 999;
+}
+.activeb.data-v-5adf3af8 {
+  background-color: #F5A9A9;
+}
 .wrap.data-v-5adf3af8 {
   background-color: #f2f2f2;
 }

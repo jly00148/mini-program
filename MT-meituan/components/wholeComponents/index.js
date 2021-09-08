@@ -1,13 +1,13 @@
 import Vue from 'vue';
 
 // 引入全局组件:
-import globalComponent from '../../loading/loading.vue';
+// import globalComponent from '../../loading/loading.vue';
 import wLoading from "../w-loading/w-loading.vue";
 
 const compos = [
 	{
 		value:'homeload',
-		component:globalComponent
+		// component:globalComponent
 	},
 	{
 		value:'w-loading',

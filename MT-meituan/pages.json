@@ -29,8 +29,6 @@
 				"enablePullDownRefresh": true
 			}
 		},
-
-
 		{
 			"path" : "pages/placeorder/placeorder",
 			"style" :
@@ -39,8 +37,8 @@
 				"enablePullDownRefresh": true
 			}
 			
-		}
-	    ,{
+		},
+	    {
             "path" : "pages/order/order",
             "style" :                                                                                    
             {

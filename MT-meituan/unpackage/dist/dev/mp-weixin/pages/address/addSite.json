@@ -3,7 +3,10 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "u-icon": "/view-ui/uview-ui/components/u-icon/u-icon",
-    "u-picker": "/view-ui/uview-ui/components/u-picker/u-picker",
+    "u-popup": "/view-ui/uview-ui/components/u-popup/u-popup",
+    "u-alert-tips": "/view-ui/uview-ui/components/u-alert-tips/u-alert-tips",
+    "u-input": "/view-ui/uview-ui/components/u-input/u-input",
+    "u-button": "/view-ui/uview-ui/components/u-button/u-button",
     "select-city": "/components/selectCity/index"
   }
 }

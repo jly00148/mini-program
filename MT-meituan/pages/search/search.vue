@@ -17,6 +17,7 @@
 				</view>
 			</view> -->
 			<u-search
+				@confirm="onKeyInput"
 				placeholder="请输入关键字"
 				v-model="keyword" 
 				class="search"

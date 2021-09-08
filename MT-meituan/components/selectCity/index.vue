@@ -3,7 +3,7 @@
 		<view class="u-demo-wrap">
 			<view class="u-demo-area">
 				<city-select v-model="value" @city-change="cityChange"></city-select>
-				<view class="u-demo-result-line">{{ input ? input : '地址:' }}</view>
+				<view class="u-demo-result-line"><u-icon :name="homeFill" size="30" color="#909399"></u-icon>收获地址:{{ input }}</view>
 			</view>
 		</view>
 		<view class="u-config-wrap">
@@ -27,12 +27,14 @@ export default {
 			marginTop: 30,
 			marginBottom: 30,
 			value: false,
-			input: '',
+			input: '请选择收获地址',
+			homeFill:'home-fill'
 		};
 	},
 	methods: {
 		cityChange(e) {
 			this.input = e.province.label + '-' + e.city.label + '-' + e.area.label;
+			this.$parent.fatherMethod(this.input)
 		}
 	}
 };
