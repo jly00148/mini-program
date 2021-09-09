@@ -86,7 +86,7 @@ try {
       return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 252))
     },
     uDivider: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-divider/u-divider */ "view-ui/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-divider/u-divider.vue */ 290))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-divider/u-divider */ "view-ui/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-divider/u-divider.vue */ 309))
     }
   }
 } catch (e) {

@@ -2,6 +2,7 @@
   "navigationBarTitleText": "选择地址",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "u-empty": "/view-ui/uview-ui/components/u-empty/u-empty",
     "u-icon": "/view-ui/uview-ui/components/u-icon/u-icon"
   }
 }

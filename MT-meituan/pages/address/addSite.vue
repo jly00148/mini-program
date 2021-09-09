@@ -1,5 +1,6 @@
 <template>
 	<view class="wrap">
+		<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
 		<view class="top">
 			<view class="item">
 				<view class="left"><u-icon :name="accountFill" size="30" color="#909399"></u-icon>收货人:</view>
@@ -32,38 +33,38 @@
 				</view>
 			</view>
 			<view class="default">
-				<view class="left">
-					<view class="set">设置默认地址</view>
-				</view>
-				<view class="right"><switch color="red" @change="setDefault" /></view>
+					<view class="left">
+						<view class="set">设置默认地址</view>
+					</view>
+					<view class="right">
+						<u-modal 
+							v-model="Modalshow" 
+							:content="content" 
+							mask-close-able="true"
+							:title-style="{color: 'red'}"
+						>
+						</u-modal>
+						<u-switch v-model="checked" @change="swithBth"></u-switch>
+					</view>
 			</view>
 		</view>
 		<u-button type="success" :plain="true" @click="addSite">添加地址</u-button>
 		<!-- <u-picker mode="region" ref="uPicker" v-model="show" /> -->
 	</view>
 </template>
-<!-- 					name: '游X',
-					phone: '183****5523',
-					tag: [
-						{
-							tagText: '默认'
-						},
-						{
-							tagText: '家'
-						}
-					],
-					site: '广东省深圳市宝安区 自由路66号' -->
+
 <script>
 	import SelectCity from '../../components/selectCity/index.vue';
+	import HMmessages from "@/components/HM-messages/HM-messages.vue";
+	
 	
 export default {
 	components:{
+		HMmessages,
 		SelectCity
 	},
 	data() {
 		return {
-			showPopup: false,
-			show:false,
 			name:'',
 			tel:'',
 			selectedCity:'',
@@ -74,15 +75,21 @@ export default {
 			phone: 'phone',
 			accountFill:'account-fill',
 			description:'',
-			num:''
+			num:'',
+			sites:[],
+			checked: false,
+			showPopup: false,
+			Modalshow:false,
+			show:false,
+			content:'设置默认地址'
 		};
 	},
 	methods: {
-		setDefault() {},
-		// showRegionPicker(obj1) {
-		// 	console.log(obj1)
-		// 	this.show = true;
-		// },
+		swithBth(status) {
+			this.Modalshow = status
+		},
+		setDefault() {
+		},
 		fatherMethod(selectedCity){
 			this.selectedCity = selectedCity
 		},
@@ -93,13 +100,14 @@ export default {
 					// 标签已存在
 					this.description = '标签已存在';
 					this.show = true;
-					return
+					return;
 				}
-			}
+			};
+			
 			if(this.addNewTag == '') {
 				this.description = '标签不能为空';
 				this.show = true;
-				return
+				return;
 			};
 			
 			// 标签无重复
@@ -113,15 +121,40 @@ export default {
 			this.tag = item;
 		},
 		addSite(){
-			console.log(this.name)
-			console.log(this.tel)
-			console.log(this.selectedCity)
-			console.log(this.detailSite)
-			console.log(this.tag)
-		},
+			const siteObj = {};
+			siteObj.name = this.name;
+			siteObj.phone = this.tel;
+			siteObj.site = this.selectedCity + ' ' + this.detailSite;
+			
+			// 选默认地址:this.checked代表siwtch打开，值为true
+			if(this.checked){
+				
+				// 添加默认标签
+				siteObj.default = '默认';
+				for(var i = 0;i<this.sites.length;i++){
+					if(this.sites[i].default == '默认'){
+						// 删除之前存在的默认标签，整个收获地址只能有一个默认标签
+						delete this.sites[i].default;
+					}
+				}
+			} 
+			siteObj.tagText = this.tag;
+			
+			// 新增的地址信息push到数组中，然后本地存储
+			this.sites.push(siteObj)
+			uni.setStorageSync('siteArray',this.sites);
+			
+			// 提示反馈
+			this.HMmessages.show('添加成功',{icon:'success',background:'#9FF781',duration:3000})
+			
+			uni.navigateTo({
+				url:'/pages/address/index?defaultOrNot=' + siteObj.default
+			})
+		}
 	},
 	mounted(){
 		this.tags = uni.getStorageSync('tags')  || ['家','公司','学校'];
+		this.sites = uni.getStorageSync('siteArray') || [];
 	}
 };
 </script>

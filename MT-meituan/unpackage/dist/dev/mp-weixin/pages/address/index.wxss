@@ -61,6 +61,10 @@
 }
 .item .top .tag .red.data-v-5f170bce {
   background-color: red;
+  display: block !important;
+}
+.item .top .tag .default.data-v-5f170bce {
+  display: none;
 }
 .item .bottom.data-v-5f170bce {
   display: -webkit-box;

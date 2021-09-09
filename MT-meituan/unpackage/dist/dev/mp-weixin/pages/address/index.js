@@ -95,6 +95,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uEmpty: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 252))
+    },
     uIcon: function() {
       return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 217))
     }
@@ -176,51 +179,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      siteList: [] };
+      showEmptyResult: false,
+      siteList: [],
+      showOrNot: false };
 
   },
 
   methods: {
     getData: function getData() {
-      this.siteList = [
-      {
-        id: 1,
-        name: '游X',
-        phone: '183****5523',
-        tag: [
-        {
-          tagText: '默认' },
+      this.siteList = uni.getStorageSync('siteArray') || [{}];
 
-        {
-          tagText: '家' }],
+      // 无任何地址显示空组件的反馈
+      if (JSON.stringify(this.siteList[0]) === '{}') this.showEmptyResult = true;
 
 
-        site: '广东省深圳市宝安区 自由路66号' }
-
-
-      // {
-      // 	id: 2,
-      // 	name: '李XX',
-      // 	phone: '183****5555',
-      // 	tag: [
-      // 		{
-      // 			tagText: '公司'
-      // 		}
-      // 	],
-      // 	site: '广东省深圳市宝安区 翻身路xx号'
-      // },
-      // {
-      // 	id: 3,
-      // 	name: '王YY',
-      // 	phone: '153****5555',
-      // 	tag: [],
-      // 	site: '广东省深圳市宝安区 平安路13号'
-      // }
-      ];
     },
     toAddSite: function toAddSite() {
       uni.navigateTo({
@@ -228,7 +208,12 @@ var _default =
 
     } },
 
-  mounted: function mounted() {
+  onShow: function onShow() {
+    this.getData();
+  },
+
+  // onLoad 和 mounted一样，不过接受参数必须是onload
+  onLoad: function onLoad(defaultObj) {
     this.getData();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

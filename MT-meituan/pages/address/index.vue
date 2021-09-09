@@ -1,23 +1,27 @@
 <template>
 	<view>
-		<view class="item" v-for="(res, index) in siteList" :key="res.id">
-			<view class="top">
-				<view class="name">{{ res.name }}</view>
-				<view class="phone">{{ res.phone }}</view>
-				<view class="tag">
-					<text v-for="(item, index) in res.tag" :key="index" :class="{red:item.tagText=='默认'}">{{ item.tagText }}</text>
+		<u-empty text="地址列表为空" mode="address" v-show="showEmptyResult"></u-empty>
+		<block v-for="(item,index) in siteList" :key="index">
+			<view class="item" v-show="!showEmptyResult">
+				<view class="top">
+					<view class="name">{{ item.name }}</view>
+					<view class="phone">{{ item.phone }}</view>
+					<view class="tag">
+						<text>{{ item.tagText }}</text>
+						<text :class="{red:item.default=='默认'}" class="default">{{ item.default }}</text>
+					</view>
+				</view>
+				<view class="bottom">
+					{{item.site}}
+					<u-icon name="edit-pen" :size="40" color="#999999"></u-icon>
 				</view>
 			</view>
-			<view class="bottom">
-				广东省深圳市宝安区 自由路66号
-				<u-icon name="edit-pen" :size="40" color="#999999"></u-icon>
+			<view class="addSite" @click="toAddSite">
+				<view class="add">
+					<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
+				</view>
 			</view>
-		</view>
-		<view class="addSite" @click="toAddSite">
-			<view class="add">
-				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
-			</view>
-		</view>
+		</block>
 	</view>
 </template>
 
@@ -25,47 +29,20 @@
 export default {
 	data() {
 		return {
-			siteList: []
+			showEmptyResult:false,
+			siteList: [],
+			showOrNot:false
 		};
 	},
 
 	methods: {
 		getData() {
-			this.siteList = [
-				{
-					id: 1,
-					name: '游X',
-					phone: '183****5523',
-					tag: [
-						{
-							tagText: '默认'
-						},
-						{
-							tagText: '家'
-						}
-					],
-					site: '广东省深圳市宝安区 自由路66号'
-				},
-				
-				// {
-				// 	id: 2,
-				// 	name: '李XX',
-				// 	phone: '183****5555',
-				// 	tag: [
-				// 		{
-				// 			tagText: '公司'
-				// 		}
-				// 	],
-				// 	site: '广东省深圳市宝安区 翻身路xx号'
-				// },
-				// {
-				// 	id: 3,
-				// 	name: '王YY',
-				// 	phone: '153****5555',
-				// 	tag: [],
-				// 	site: '广东省深圳市宝安区 平安路13号'
-				// }
-			];
+			this.siteList = uni.getStorageSync('siteArray') || [{}];
+
+			// 无任何地址显示空组件的反馈
+			if(JSON.stringify(this.siteList[0]) === '{}') this.showEmptyResult = true;
+			
+			
 		},
 		toAddSite(){
 			uni.navigateTo({
@@ -73,13 +50,19 @@ export default {
 			});
 		}
 	},
-	mounted() {
+	onShow() {
+		this.getData();
+	},
+	
+	// onLoad 和 mounted一样，不过接受参数必须是onload
+	onLoad(defaultObj) {
 		this.getData();
 	}
 };
 
 </script>
 <style lang="scss" scoped>
+
 .item {
 	border-bottom: 1px solid #f2f2f2;
 	padding: 40rpx 20rpx;
@@ -107,7 +90,11 @@ export default {
 				background-color:rgb(49, 145, 253);
 			}
 			.red{
-				background-color:red
+				background-color:red;
+				display: block!important;
+			}
+			.default{
+				display: none;
 			}
 		}
 	}

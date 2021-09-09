@@ -7,6 +7,9 @@
     "u-alert-tips": "/view-ui/uview-ui/components/u-alert-tips/u-alert-tips",
     "u-input": "/view-ui/uview-ui/components/u-input/u-input",
     "u-button": "/view-ui/uview-ui/components/u-button/u-button",
+    "u-modal": "/view-ui/uview-ui/components/u-modal/u-modal",
+    "u-switch": "/view-ui/uview-ui/components/u-switch/u-switch",
+    "h-mmessages": "/components/HM-messages/HM-messages",
     "select-city": "/components/selectCity/index"
   }
 }
