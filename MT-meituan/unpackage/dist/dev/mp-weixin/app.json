@@ -42,5 +42,7 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "global-loading": "/components/loading/index"
+  }
 }

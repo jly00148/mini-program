@@ -1,9 +1,7 @@
 <template>
 	<view class="home-container">
 		<!-- <w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading> -->
-		<view class="loading-mask" v-if="showOrHide">
-			<u-loading mode="circle" :show="true" class="loading"></u-loading>
-		</view>
+			<globalLoading v-if="showOrHide"></globalLoading>
 		<view>
 			<Search></Search>
 		</view>

@@ -34,20 +34,61 @@
 				</view>
 			</view>
 		</view>
+		
 		<!-- 已登录 -->
-		<view class="myhome" v-if="!wxlogin">
-			<view class="wx-name">
-				<view>
-					<image :src="avatarUrl"></image>
+		<view v-if="!wxlogin">
+			<view>
+				<u-navbar :is-back="false" title="　" :border-bottom="false">
+					<view class="u-flex u-row-right" style="width: 100%;">
+						<view class="camera u-flex u-row-center">
+							<u-icon name="camera-fill" color="#000000" size="48"></u-icon>
+						</view>
+					</view>
+				</u-navbar>
+				<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30">
+					<view class="u-m-r-10">
+						<u-avatar :src="avatarUrl" size="140"></u-avatar>
+					</view>
+					<view class="u-flex-1">
+						<view class="u-font-18 u-p-b-20">{{nickName}}</view>
+						<view class="u-font-14 u-tips-color">微信号:johnny</view>
+					</view>
+					<view class="u-m-l-10 u-p-10">
+						<u-icon name="scan" color="#969799" size="28"></u-icon>
+					</view>
+					<view class="u-m-l-10 u-p-10">
+						<u-icon name="arrow-right" color="#969799" size="28"></u-icon>
+					</view>
 				</view>
-				<view class="wx-text">
-					<text>{{nickName}}</text>
+				
+				<view class="u-m-t-20">
+					<u-cell-group>
+						<u-cell-item icon="rmb-circle" title="支付"></u-cell-item>
+					</u-cell-group>
 				</view>
-				<view class="logout" @click="userLogout">
-					<text>用户退出</text>
+				
+				<view class="u-m-t-20">
+					<u-cell-group>
+						<u-cell-item icon="star" title="收藏"></u-cell-item>
+						<u-cell-item icon="photo" title="相册"></u-cell-item>
+						<u-cell-item icon="coupon" title="卡券"></u-cell-item>
+						<u-cell-item icon="heart" title="关注"></u-cell-item>
+					</u-cell-group>
+				</view>
+				
+				<view class="u-m-t-20">
+					<u-cell-group>
+						<u-cell-item icon="setting" title="设置"></u-cell-item>
+					</u-cell-group>
+				</view>
+				<view class="u-m-t-20">
+					<u-cell-group>
+						<u-cell-item icon="close" title="退出登录" @click="userLogout"></u-cell-item>
+					</u-cell-group>
 				</view>
 			</view>
 		</view>
+		<globalLoading v-if="loadingShowOrHide"></globalLoading>
 	</view>
 </template>
 
@@ -65,6 +106,7 @@ export default {
 			avatarUrl:'',
 			description:'',
 			show:true,
+			loadingShowOrHide:false,
 			errMsg:'请输入正确手机号',
 			succMsg:'手机号输入正确'
 		}
@@ -98,13 +140,21 @@ export default {
 				desc:'登录',
 				success:(res)=>{
 					let userInfo = res.userInfo;
-					this.nickName = userInfo.nickName;
-					this.avatarUrl = userInfo.avatarUrl;
+					
+						this.nickName = userInfo.nickName;
+						this.avatarUrl = userInfo.avatarUrl;
+					
+					// 实例化后调用原型对象上的方法
 					const casePackLogin = new packLogin(this.nickName,this.avatarUrl)
 					casePackLogin.wxCode()
 					
 					// 登录成功后立即切换组件
-					this.wxlogin = false;
+					this.loadingShowOrHide = true;
+					setTimeout(()=>{
+						this.wxlogin = false;
+						this.loadingShowOrHide = false;
+					},400)
+					
 				},
 				fail:(err)=>{ 
 					console.log(err)
@@ -138,8 +188,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 未登录
 .wrap {
-	// 未登录
 	font-size: 28rpx;
 	.content {
 		width: 600rpx;
@@ -201,55 +251,4 @@ export default {
 	}
 }
 
-// 已登录
-.myhome{
-	background: linear-gradient(to top, #ffe566 10%, #ffd300 100%); 
-	height: 350upx; 
-	display: flex; 
-	align-items: center;
-	position: relative;
-}
-.wx-name image{
-	width: 120upx !important;
-	 height: 120upx !important;
-	 border-radius: 50%;
-	 margin-right: 20upx;
-	border: 10rpx solid #999999;
-}
-text{
-	display: block; 
-	margin: 10upx 0; 
-	color: #999999;
-}
-.wx-name{
-	display: flex; 
-	align-items: center; 
-	padding: 0 30upx; 
-	align-content: center;
-	height: 200upx;
-}
-.wx-text text{
-	font-size: 35upx;
-}
-.logout{
-	position: absolute;
-	top: 250upx;
-	right: 10upx;
-	font-size: 35upx;
-}
-/* 登录 */
-.wx-button button{
-	border: none;font-size: 30upx; 
-	background: linear-gradient(to right, #28a6f1 10%, #0e8dd7 80%);
-	 border-radius: 50upx;
-	color: #FFFFFF;
-}							
-.wx-button-view{
-	font-size: 35upx; 
-	color: #FFFFFF; 
-	margin-bottom: 25upx;
-}
-.wx-button{
-	margin: 0 auto;
-}
 </style>

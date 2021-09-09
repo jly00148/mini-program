@@ -9,8 +9,6 @@
 					</view>
 					<view class="goods-address-in">
 						<view class="goods-address-name">
-						<!-- 	<text>{{address}}</text>
-							<text>{{username +' '+ tel}}</text> -->
 							<text>用户姓名:</text>
 						</view>
 					</view>

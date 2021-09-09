@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/componentsA/common/vendor"],{
 
 /***/ 661:
-/*!********************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/Sample-Projects/common/index.list.js ***!
-  \********************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Users/ASUS/github_depositories/mini-program/Sample-Projects/common/index.list.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

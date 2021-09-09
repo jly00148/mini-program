@@ -100,6 +100,18 @@ try {
     },
     uIcon: function() {
       return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 217))
+    },
+    uNavbar: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-navbar/u-navbar */ "view-ui/uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-navbar/u-navbar.vue */ 224))
+    },
+    uAvatar: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-avatar/u-avatar */ "view-ui/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-avatar/u-avatar.vue */ 231))
+    },
+    uCellGroup: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-cell-group/u-cell-group */ "view-ui/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-cell-group/u-cell-group.vue */ 238))
+    },
+    uCellItem: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-cell-item/u-cell-item */ "view-ui/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-cell-item/u-cell-item.vue */ 245))
     }
   }
 } catch (e) {
@@ -219,6 +231,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 56));
 var _request = __webpack_require__(/*! ../../api/request.js */ 57);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -273,34 +326,55 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 57);function _int
 //
 //
 //
-var packLogin = __webpack_require__(/*! ../../login/login.js */ 74);var _default = { data: function data() {return { tel: '', wxlogin: true, nickName: '', avatarUrl: '', description: '', show: true, errMsg: '请输入正确手机号', succMsg: '手机号输入正确' };}, computed: { inputStyle: function inputStyle() {var style = {};if (this.tel) {style.color = "#fff";style.backgroundColor = this.$u.color['primary'];}return style;} }, watch: { tel: function tel(_tel) {if (this.$u.test.mobile(this.tel)) this.show = false;else this.show = true;} }, methods: { submit: function submit() {if (this.$u.test.mobile(this.tel)) {this.$u.route({ url: 'pages/code/code?tel=' + this.tel });}}, userLoginMsg: function userLoginMsg() {var _this = this;uni.getUserProfile({ desc: '登录', success: function success(res) {var userInfo = res.userInfo;_this.nickName = userInfo.nickName;_this.avatarUrl = userInfo.avatarUrl;var casePackLogin = new packLogin(_this.nickName, _this.avatarUrl);casePackLogin.wxCode(); // 登录成功后立即切换组件
-          _this.wxlogin = false;}, fail: function fail(err) {console.log(err);
-        } });
-    },
-    checkUserInfo: function checkUserInfo() {
-      // 取出本地缓存的用户信息
-      var cacheUserInfo = uni.getStorageSync('usermen');
-
-      if (!cacheUserInfo) {
-        // 用户未登录
-        this.wxlogin = true;
-      } else {
-        // 用户已登录
-        this.wxlogin = false;
-        this.nickName = cacheUserInfo.nickName;
-        this.avatarUrl = cacheUserInfo.avatarUrl;
-      }
-    },
-    userLogout: function userLogout() {
-      uni.removeStorageSync('usermen');
-      this.wxlogin = true;
-    } },
-
-  // 生命周期函数onShow(每次显示这个页面都会执行的函数)
-  onShow: function onShow() {
-    // 每次显示这个页面的时候调用这个检查本地缓存的用户信息的函数
-    this.checkUserInfo();
-  } };exports.default = _default;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var packLogin = __webpack_require__(/*! ../../login/login.js */ 74);var _default = { data: function data() {return { tel: '', wxlogin: true, nickName: '', avatarUrl: '', description: '', show: true, loadingShowOrHide: false, errMsg: '请输入正确手机号', succMsg: '手机号输入正确' };}, computed: { inputStyle: function inputStyle() {var style = {};if (this.tel) {style.color = "#fff";style.backgroundColor = this.$u.color['primary'];}return style;} }, watch: { tel: function tel(_tel) {if (this.$u.test.mobile(this.tel)) this.show = false;else this.show = true;} }, methods: { submit: function submit() {if (this.$u.test.mobile(this.tel)) {this.$u.route({ url: 'pages/code/code?tel=' + this.tel });}}, userLoginMsg: function userLoginMsg() {var _this = this;uni.getUserProfile({ desc: '登录', success: function success(res) {var userInfo = res.userInfo;_this.nickName = userInfo.nickName;_this.avatarUrl = userInfo.avatarUrl; // 实例化后调用原型对象上的方法
+          var casePackLogin = new packLogin(_this.nickName, _this.avatarUrl);casePackLogin.wxCode(); // 登录成功后立即切换组件
+          _this.loadingShowOrHide = true;setTimeout(function () {_this.wxlogin = false;_this.loadingShowOrHide = false;}, 400);}, fail: function fail(err) {console.log(err);} });}, checkUserInfo: function checkUserInfo() {// 取出本地缓存的用户信息
+      var cacheUserInfo = uni.getStorageSync('usermen');if (!cacheUserInfo) {// 用户未登录
+        this.wxlogin = true;} else {// 用户已登录
+        this.wxlogin = false;this.nickName = cacheUserInfo.nickName;this.avatarUrl = cacheUserInfo.avatarUrl;}}, userLogout: function userLogout() {uni.removeStorageSync('usermen');this.wxlogin = true;} }, // 生命周期函数onShow(每次显示这个页面都会执行的函数)
+  onShow: function onShow() {// 每次显示这个页面的时候调用这个检查本地缓存的用户信息的函数
+    this.checkUserInfo();} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

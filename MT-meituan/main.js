@@ -9,11 +9,9 @@ App.mpType = 'app';
 import store from 'store/store.js';
 Vue.prototype.$store = store;
 
-
-import comsFn from './components/wholeComponents/index.js';
-// 调用全局组件(在component/wholeComponents组件中已注册好)
-comsFn()
-
+// 注册全局组件loading
+import loading from "./components/loading/index.vue";
+Vue.component('globalLoading',loading)
 
 // 1.配置uView之引入uView主JS库
 import uView from "view-ui/uview-ui";

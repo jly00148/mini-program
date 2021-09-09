@@ -80,7 +80,7 @@ var components
 try {
   components = {
     uSearch: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 238))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 266))
     }
   }
 } catch (e) {

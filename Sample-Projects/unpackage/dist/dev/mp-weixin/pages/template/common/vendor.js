@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/template/common/vendor"],{
 
 /***/ 297:
-/*!***********************************************************************************************!*\
-  !*** C:/Users/ASUS/github_ Repositories/mini-program/Sample-Projects/common/classify.data.js ***!
-  \***********************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/Users/ASUS/github_depositories/mini-program/Sample-Projects/common/classify.data.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
