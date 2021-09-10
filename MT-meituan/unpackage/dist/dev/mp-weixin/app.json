@@ -44,5 +44,6 @@
   },
   "usingComponents": {
     "global-loading": "/components/loading/index"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

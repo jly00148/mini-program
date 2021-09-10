@@ -2,6 +2,6 @@
   "navigationBarTitleText": "订单",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "tips": "/tips/tips"
+    "u-tabs-swiper": "/view-ui/uview-ui/components/u-tabs-swiper/u-tabs-swiper"
   }
 }

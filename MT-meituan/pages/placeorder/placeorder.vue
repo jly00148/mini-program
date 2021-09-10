@@ -173,8 +173,8 @@
 				return new Promise((resolve,reject)=>{
 					allApi(wxPaymentUrl,'POST',Paymentinfor)
 					.then(res=>{
-						console.log(res)
 						this.HMmessages.show('余额不足，无法支付',{icon:'error',background:'#F78181',duration:3000})
+
 						// res[1].data.datas返回的值说明：
 						/*
 							nonceStr: "UCbMTLPh5ZNskhHR" //随机字符串

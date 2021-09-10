@@ -1,6 +1,5 @@
 <template>
 	<view class="home-container">
-		<!-- <w-loading text="加载中.." mask="true" click="true" ref="loading"></w-loading> -->
 			<globalLoading v-if="showOrHide"></globalLoading>
 		<view>
 			<Search></Search>
@@ -46,6 +45,7 @@
 		},
 		data() {
 			return {
+				scrollTop: 100,
 				getTop: '',
 				reac:'',
 				isFixed:false,
@@ -53,7 +53,7 @@
 				preferData:[],
 				takeShopDate:[],
 				showOrHide:true,
-				
+				loading: true,
 				more:'more'
 			}
 		},
@@ -78,7 +78,7 @@
 					
 					// loading消失
 					this.showOrHide = false;
-					// this.$refs.loading.close()
+					this.loading = false;
 				})
 				.catch(err=>{
 					console.log('err',err)
