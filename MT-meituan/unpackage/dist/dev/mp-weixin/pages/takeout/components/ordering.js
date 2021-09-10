@@ -537,7 +537,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
             url: '/pages/placeorder/placeorder?ide=' + orderListString });
 
 
-
         } else {
           // 反之未登录，需要弹出模拟登录框
           this.$nextTick(function () {

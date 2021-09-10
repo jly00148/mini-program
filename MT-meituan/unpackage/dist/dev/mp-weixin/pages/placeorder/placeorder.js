@@ -93,6 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uIcon: function() {
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-icon/u-icon */ "view-ui/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-icon/u-icon.vue */ 217))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -232,46 +255,15 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 56
       username: '你的名字',
       tel: '20210814',
       shopname: '',
-      tipsText: '' };
+      tipsText: '',
+      defaultSite: { name: '', site: '', phone: '' } };
 
-  },
-  onLoad: function onLoad(obj) {
-    var ideObj = JSON.parse(obj.ide);
-
-    // 商品的总价
-    this.payment = ideObj.payment;
-    // 配送费
-    this.delivering = ideObj.delivering;
-    // 用户openid
-    this.openid = ideObj.openid;
-    // 商家标识
-    this.merchantId = ideObj.merchantId;
-    // 商家logo
-    this.logo = ideObj.logo;
-    // 点的商品份数
-    this.allNums = ideObj.allNums;
-    // 商家标识
-    this.merchantId = ideObj.merchantId;
-
-    // 需要渲染的数据(已去重)
-    this.uniqueArr = ideObj.uniqueArr;
-
-    // 商家名称
-    this.shopname = ideObj.shopname;
   },
   methods: {
     addAddress: function addAddress() {
       uni.navigateTo({
         url: '/pages/address/index' });
 
-
-      // wx.chooseAddress({
-      // 	success:res=>{
-      // 			this.address = res.cityName + res.countyName + res.detailInfo
-      // 			this.username = res.userName;
-      // 			this.tel = res.telNumber;
-      // 	}
-      // })
     },
 
     // 发起微信支付：
@@ -401,7 +393,54 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 56
           console.log(err);
         });
       });
-    } } };exports.default = _default;
+    },
+    getAllSite: function getAllSite(siteArray) {
+      for (var i = 0; i < siteArray.length; i++) {
+        if (siteArray[i].default) {
+          this.defaultSite = siteArray[i];
+        }
+      }
+    } },
+
+  onLoad: function onLoad(obj) {
+    // 刚进入该页面取出本地的地址缓存的数组
+    var siteArray = uni.getStorageSync('siteArray');
+    // 调用方法for循环检查是否有默认标签的地址，有的话显示默认地址，没有不显示
+    this.getAllSite(siteArray);
+
+    // 跳转到本页面传过来的订单列表：
+    if (obj.ide) {
+      var ideObj = JSON.parse(obj.ide);
+      // 商品的总价
+      this.payment = ideObj.payment;
+      // 配送费
+      this.delivering = ideObj.delivering;
+      // 用户openid
+      this.openid = ideObj.openid;
+      // 商家标识
+      this.merchantId = ideObj.merchantId;
+      // 商家logo
+      this.logo = ideObj.logo;
+      // 点的商品份数
+      this.allNums = ideObj.allNums;
+      // 商家标识
+      this.merchantId = ideObj.merchantId;
+
+      // 需要渲染的数据(已去重)
+      this.uniqueArr = ideObj.uniqueArr;
+      // 为什么要存？因为选择地址后跳转该页面获取不到订单列表，所以先存起来方便取出来
+      uni.setStorageSync('uniqueArr', this.uniqueArr);
+      // 商家名称
+      this.shopname = ideObj.shopname;
+
+      // 选择地址跳转该页面的传过来的地址
+    } else if (obj.select) {
+      this.uniqueArr = uni.getStorageSync('uniqueArr');
+      this.defaultSite = JSON.parse(obj.select);
+    }
+
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

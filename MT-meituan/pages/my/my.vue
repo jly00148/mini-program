@@ -51,7 +51,7 @@
 					</view>
 					<view class="u-flex-1">
 						<view class="u-font-18 u-p-b-20">{{nickName}}</view>
-						<view class="u-font-14 u-tips-color">微信号:johnny</view>
+						<view class="u-font-14 u-tips-color">微信号:johnny57350</view>
 					</view>
 					<view class="u-m-l-10 u-p-10">
 						<u-icon name="scan" color="#969799" size="28"></u-icon>

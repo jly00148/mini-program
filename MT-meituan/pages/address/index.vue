@@ -2,7 +2,7 @@
 	<view>
 		<u-empty text="地址列表为空" mode="address" v-show="showEmptyResult"></u-empty>
 		<block v-for="(item,index) in siteList" :key="index">
-			<view class="item" v-show="!showEmptyResult">
+			<view class="item" v-show="!showEmptyResult" @click="choiceSite(item.name,item.phone,item.site)">
 				<view class="top">
 					<view class="name">{{ item.name }}</view>
 					<view class="phone">{{ item.phone }}</view>
@@ -16,12 +16,13 @@
 					<u-icon name="edit-pen" :size="40" color="#999999"></u-icon>
 				</view>
 			</view>
-			<view class="addSite" @click="toAddSite">
-				<view class="add">
-					<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
-				</view>
-			</view>
 		</block>
+		
+		<view class="addSite" @click="toAddSite">
+			<view class="add">
+				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -48,6 +49,19 @@ export default {
 			uni.navigateTo({
 			    url: '/pages/address/addSite'
 			});
+		},
+		choiceSite(name,phone,site){
+			const obj = {
+				name:name,
+				phone:phone,
+				site:site
+			}
+			
+			const objString = JSON.stringify(obj)
+			
+			uni.navigateTo({
+				url:'/pages/placeorder/placeorder?select=' + objString
+			})
 		}
 	},
 	onShow() {

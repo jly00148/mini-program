@@ -396,7 +396,6 @@
 						   */
 						  
 						   url:'/pages/placeorder/placeorder?ide=' + orderListString
-						   
 					   })
 					   
 					}else{

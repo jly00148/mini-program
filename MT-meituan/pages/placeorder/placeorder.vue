@@ -5,11 +5,11 @@
 			<view class="goods-address" >
 				<view class="goods-address-box border-bottom">
 					<view class="goods-address-left">
-						<image src="../../static/coen/address.png" mode="widthFix"></image>
+						<u-icon name="account-fill" color="#909399" size="28"></u-icon>
 					</view>
 					<view class="goods-address-in">
 						<view class="goods-address-name">
-							<text>用户姓名:</text>
+							<text>用户姓名:{{defaultSite.name}}</text>
 						</view>
 					</view>
 					<view class="goods-address-right">
@@ -18,12 +18,12 @@
 				</view>
 			</view>
 			<view class="place-time border-bottom">
-				<image src="../../static/coen/times.png" mode="widthFix"></image>
-				<text>用户地址:</text>
+				<u-icon name="home-fill" color="#909399" size="28"></u-icon>
+				<text>用户地址:{{defaultSite.site}}</text>
 			</view>
 			<view class="place-time border-bottom">
-				<image src="../../static/coen/times.png" mode="widthFix"></image>
-				<text>联系方式:</text>
+				<u-icon name="phone" color="#909399" size="28"></u-icon>
+				<text>联系方式:{{defaultSite.phone}}</text>
 			</view>
 			<view class="place-addres border-bottom" @click="addAddress()">
 				选择收货地址
@@ -95,46 +95,15 @@
 				username:'你的名字',
 				tel:'20210814',
 				shopname:'',
-				tipsText:''
+				tipsText:'',
+				defaultSite:{name:'',site:'',phone:''}
 			}
-		},
-		onLoad(obj) {
-			const ideObj = JSON.parse(obj.ide);
-			
-			// 商品的总价
-			this.payment=ideObj.payment;
-			// 配送费
-			this.delivering=ideObj.delivering;
-			// 用户openid
-			this.openid=ideObj.openid;
-			// 商家标识
-			this.merchantId=ideObj.merchantId;
-			// 商家logo
-			this.logo = ideObj.logo;
-			// 点的商品份数
-			this.allNums=ideObj.allNums;
-			// 商家标识
-			this.merchantId = ideObj.merchantId
-			
-			// 需要渲染的数据(已去重)
-			this.uniqueArr = ideObj.uniqueArr;
-			
-			// 商家名称
-			this.shopname = ideObj.shopname;
 		},
 		methods:{
 			addAddress(){
 				uni.navigateTo({
 					url: '/pages/address/index'
 				})
-				
-				// wx.chooseAddress({
-				// 	success:res=>{
-				// 			this.address = res.cityName + res.countyName + res.detailInfo
-				// 			this.username = res.userName;
-				// 			this.tel = res.telNumber;
-				// 	}
-				// })
 			},
 			
 			// 发起微信支付：
@@ -264,7 +233,53 @@
 						console.log(err)
 					})
 				})
+			},
+			getAllSite(siteArray){
+				for(var i = 0;i<siteArray.length;i++){
+					if(siteArray[i].default){
+						 this.defaultSite = siteArray[i];
+					}
+				}
 			}
+		},
+		onLoad(obj){
+			// 刚进入该页面取出本地的地址缓存的数组
+			const siteArray = uni.getStorageSync('siteArray');
+			// 调用方法for循环检查是否有默认标签的地址，有的话显示默认地址，没有不显示
+			this.getAllSite(siteArray);
+			
+			// 跳转到本页面传过来的订单列表：
+			if(obj.ide){
+				const ideObj = JSON.parse(obj.ide);
+				// 商品的总价
+				this.payment=ideObj.payment;
+				// 配送费
+				this.delivering=ideObj.delivering;
+				// 用户openid
+				this.openid=ideObj.openid;
+				// 商家标识
+				this.merchantId=ideObj.merchantId;
+				// 商家logo
+				this.logo = ideObj.logo;
+				// 点的商品份数
+				this.allNums=ideObj.allNums;
+				// 商家标识
+				this.merchantId = ideObj.merchantId
+				
+				// 需要渲染的数据(已去重)
+				this.uniqueArr = ideObj.uniqueArr;
+				// 为什么要存？因为选择地址后跳转该页面获取不到订单列表，所以先存起来方便取出来
+				uni.setStorageSync('uniqueArr',this.uniqueArr)
+				// 商家名称
+				this.shopname = ideObj.shopname;
+				
+			// 选择地址跳转该页面的传过来的地址
+			}else if(obj.select){
+				this.uniqueArr =uni.getStorageSync('uniqueArr')
+				this.defaultSite = JSON.parse(obj.select);
+			}
+			
+
 		}
 	}
 </script>

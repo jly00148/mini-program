@@ -183,6 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -205,6 +206,19 @@ var _default =
     toAddSite: function toAddSite() {
       uni.navigateTo({
         url: '/pages/address/addSite' });
+
+    },
+    choiceSite: function choiceSite(name, phone, site) {
+      var obj = {
+        name: name,
+        phone: phone,
+        site: site };
+
+
+      var objString = JSON.stringify(obj);
+
+      uni.navigateTo({
+        url: '/pages/placeorder/placeorder?select=' + objString });
 
     } },
 
