@@ -80,7 +80,7 @@ var components
 try {
   components = {
     uLoading: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-loading/u-loading */ "view-ui/uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-loading/u-loading.vue */ 338))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-loading/u-loading */ "view-ui/uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-loading/u-loading.vue */ 331))
     }
   }
 } catch (e) {
