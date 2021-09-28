@@ -43,14 +43,10 @@
   padding: 22rpx;
 }
 .wrap .top .item.data-v-5adf3af8 {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   font-size: 32rpx;
   line-height: 100rpx;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   border-bottom: solid 2rpx #e4e7ed;
 }
 .wrap .top .item .left.data-v-5adf3af8 {
@@ -80,15 +76,9 @@
   padding: 20rpx;
 }
 .wrap .top .site-clipboard .clipboard.data-v-5adf3af8 {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   font-size: 26rpx;
   color: #909399;
   height: 80rpx;
@@ -105,19 +95,14 @@
   font-size: 28rpx;
 }
 .wrap .bottom .tag.data-v-5adf3af8 {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
 }
 .wrap .bottom .tag .left.data-v-5adf3af8 {
   width: 160rpx;
 }
 .wrap .bottom .tag .right.data-v-5adf3af8 {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .wrap .bottom .tag .right .tags.data-v-5adf3af8 {
   width: 140rpx;
@@ -126,27 +111,17 @@
   text-align: center;
   border-radius: 50rpx;
   margin: 0 10rpx 20rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   font-size: 28rpx;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   color: #606266;
   line-height: 1;
 }
 .wrap .bottom .default.data-v-5adf3af8 {
   margin-top: 50rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   border-bottom: solid 2rpx #e4e7ed;
   line-height: 64rpx;
 }

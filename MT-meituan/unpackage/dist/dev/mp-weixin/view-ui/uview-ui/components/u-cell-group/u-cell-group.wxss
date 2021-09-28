@@ -35,9 +35,6 @@
 }
 .u-cell-item-box.data-v-eb3950a6 {
   background-color: #FFFFFF;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 

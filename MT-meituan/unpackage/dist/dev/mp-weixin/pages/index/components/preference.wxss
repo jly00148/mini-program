@@ -12,9 +12,7 @@
 		height: 300rpx;
 }
 .prefer-dis.data-v-0ed85ae4{
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+		display: flex; justify-content: space-between;
 }
 .prefer-view.data-v-0ed85ae4 {
 		padding:8rpx;

@@ -1,7 +1,5 @@
 
 .ordering.data-v-d7961f74{
-display: -webkit-box;
-display: -webkit-flex;
 display: flex;
 position: fixed;
 left: 0;

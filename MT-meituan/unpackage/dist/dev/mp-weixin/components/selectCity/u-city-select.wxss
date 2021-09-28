@@ -31,7 +31,6 @@
 }
 .area-box > view {
   width: 150%;
-  -webkit-transition: -webkit-transform 0.3s ease-in-out 0s;
   transition: -webkit-transform 0.3s ease-in-out 0s;
   transition: transform 0.3s ease-in-out 0s;
   transition: transform 0.3s ease-in-out 0s, -webkit-transform 0.3s ease-in-out 0s;

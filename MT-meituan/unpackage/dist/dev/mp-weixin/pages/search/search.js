@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/search/search"],{
 
-/***/ 87:
+/***/ 88:
 /*!************************************************************************************************************!*\
   !*** C:/Users/ASUS/github_depositories/mini-program/MT-meituan/main.js?{"page":"pages%2Fsearch%2Fsearch"} ***!
   \************************************************************************************************************/
@@ -8,15 +8,15 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 5);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _search = _interopRequireDefault(__webpack_require__(/*! ./pages/search/search.vue */ 88));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _search = _interopRequireDefault(__webpack_require__(/*! ./pages/search/search.vue */ 89));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_search.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 88:
+/***/ 89:
 /*!*****************************************************************************************!*\
   !*** C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue ***!
   \*****************************************************************************************/
@@ -25,11 +25,11 @@ createPage(_search.default);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./search.vue?vue&type=template&id=4cedc0c6& */ 89);
-/* harmony import */ var _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search.vue?vue&type=script&lang=js& */ 91);
+/* harmony import */ var _search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./search.vue?vue&type=template&id=4cedc0c6& */ 90);
+/* harmony import */ var _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search.vue?vue&type=script&lang=js& */ 92);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search.vue?vue&type=style&index=0&lang=css& */ 93);
-/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 10);
+/* harmony import */ var _search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search.vue?vue&type=style&index=0&lang=css& */ 94);
+/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 11);
 
 var renderjs
 
@@ -57,7 +57,7 @@ component.options.__file = "pages/search/search.vue"
 
 /***/ }),
 
-/***/ 89:
+/***/ 90:
 /*!************************************************************************************************************************!*\
   !*** C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=template&id=4cedc0c6& ***!
   \************************************************************************************************************************/
@@ -66,7 +66,7 @@ component.options.__file = "pages/search/search.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=template&id=4cedc0c6& */ 90);
+/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=template&id=4cedc0c6& */ 91);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_template_id_4cedc0c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 90:
+/***/ 91:
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=template&id=4cedc0c6& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uSearch: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 253))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-search/u-search */ "view-ui/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-search/u-search.vue */ 254))
     },
     uLazyLoad: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-lazy-load/u-lazy-load */ "view-ui/uview-ui/components/u-lazy-load/u-lazy-load").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-lazy-load/u-lazy-load.vue */ 260))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-lazy-load/u-lazy-load */ "view-ui/uview-ui/components/u-lazy-load/u-lazy-load").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-lazy-load/u-lazy-load.vue */ 261))
     },
     uEmpty: function() {
-      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 267))
+      return __webpack_require__.e(/*! import() | view-ui/uview-ui/components/u-empty/u-empty */ "view-ui/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! @/view-ui/uview-ui/components/u-empty/u-empty.vue */ 268))
     }
   }
 } catch (e) {
@@ -135,7 +135,7 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ 91:
+/***/ 92:
 /*!******************************************************************************************************************!*\
   !*** C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************/
@@ -144,14 +144,14 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=script&lang=js& */ 92);
+/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=script&lang=js& */ 93);
 /* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 92:
+/***/ 93:
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -229,25 +229,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 48));
-var _request = __webpack_require__(/*! ../../api/request.js */ 49);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = _interopRequireDefault(__webpack_require__(/*! ../../api/api.js */ 49));
+var _request = __webpack_require__(/*! ../../api/request.js */ 50);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -316,37 +299,14 @@ var _request = __webpack_require__(/*! ../../api/request.js */ 49);function _int
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 274));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, tipText: '' };}, methods: { custom: function custom(keyword) {this.searchData(this.keyword);}, // 一：点击右边搜索触发搜索
-    // searchBtn(){
-    // 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
-    // 	this.searchData(this.searchdata)
-    // },
-    // 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
+var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips */ "tips/tips").then((function () {return resolve(__webpack_require__(/*! ../../tips/tips.vue */ 275));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Tip: Tip }, data: function data() {return { keyword: '', searchHistory: [], searchResult: [], showEmptyResult: false, repeatKeyWord: '' };}, methods: { custom: function custom(keyword) {// 防止持续点击搜索按钮频繁向后台请求数据
+      if (this.repeatKeyWord == keyword) return;else {this.searchData(keyword);this.repeatKeyWord = keyword;}}, // 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
     onKeyInput: function onKeyInput(e) {//  获取搜索框输入的关键字：e.detail.value
       this.searchData(e.detail.value);}, searchData: function searchData(keyWord) {var _this = this; // 输入搜索关键字后使其输入框清空;
       this.searchdata = ''; // 三L:判断是否为空字符串,是的话停止执行 (一个或多个空格键)
-      if (keyWord.trim() === '') {return;} // 四：同步存储
-      this.handleStorage(keyWord);var data = { searchdata: keyWord };(0, _api.default)(_request.srarchUrl, 'POST', data).then(function (result) {// 未搜索到目标
-        if (typeof result[1].data === 'string') {/*
-                                                 	this.tipText = '未搜索到'; 注销掉，现在使用的是uVidw UI框架搭建
-                                                 */_this.showEmptyResult = true;_this.searchResult = []; // 记住：
+      if (keyWord.trim() === '') return; // 四：同步存储
+      this.handleStorage(keyWord);var data = { searchdata: keyWord };(0, _api.default)(_request.srarchUrl, 'POST', data).then(function (result) {console.log(result); // 未搜索到目标
+        if (typeof result[1].data === 'string') {_this.showEmptyResult = true;_this.searchResult = []; // 记住：
           // this.$refs.tips:获取组件
           // this.$refs.tips.init()调用组件上的方法
         } else {// 搜索到目标
@@ -356,18 +316,37 @@ var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips *
       var newLocalArr = Array.from(new Set(localArr)); // 八：让获取的数组等于this.searchHistory，输入搜索即可出现搜索历史记录
       this.searchHistory = newLocalArr; // 九：数组存入本地storage
       uni.setStorageSync('search_key', newLocalArr);}, // 清除本地缓存
-    clearSearchHistory: function clearSearchHistory() {// 清除本地缓存
-      uni.removeStorageSync('search_key'); // 删除搜索记录，令其等于空数组
-      this.searchHistory = [];this.showEmptyResult = false;}, // 点击搜索记录再次搜索
-    clickHistory: function clickHistory(items) {// 使其再回到输入框内
-      this.keyword = items;}, choiceShop: function choiceShop(shopOpenid) {uni.navigateTo({ //openid在/pages/takeout/takeout页面内用onload接收
-        url: '/pages/takeout/takeout?openid=' + shopOpenid });} }, mounted: function mounted() {// 页面一加载即从本地获取搜索存入的关键字
-    this.searchHistory = uni.getStorageSync('search_key') || [];} };exports.default = _default;
+    clearSearchHistory: function clearSearchHistory() {
+      // 清除本地缓存
+      uni.removeStorageSync('search_key');
+
+      // 删除搜索记录，令其等于空数组
+      this.searchHistory = [];
+
+      this.showEmptyResult = false;
+    },
+
+    // 点击搜索记录再次搜索
+    clickHistory: function clickHistory(items) {
+      // 使其再回到输入框内
+      this.keyword = items;
+    },
+    choiceShop: function choiceShop(shopOpenid) {
+      uni.navigateTo({
+        //openid在/pages/takeout/takeout页面内用onload接收
+        url: '/pages/takeout/takeout?openid=' + shopOpenid });
+
+    } },
+
+  mounted: function mounted() {
+    // 页面一加载即从本地获取搜索存入的关键字
+    this.searchHistory = uni.getStorageSync('search_key') || [];
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
-/***/ 93:
+/***/ 94:
 /*!**************************************************************************************************************************!*\
   !*** C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=style&index=0&lang=css& ***!
   \**************************************************************************************************************************/
@@ -376,14 +355,14 @@ var Tip = function Tip() {__webpack_require__.e(/*! require.ensure | tips/tips *
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=style&index=0&lang=css& */ 94);
+/* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./search.vue?vue&type=style&index=0&lang=css& */ 95);
 /* harmony import */ var _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_2_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_software_download_hbuildx_HBuilderX_3_2_3_20210825_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 94:
+/***/ 95:
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/ASUS/github_depositories/mini-program/MT-meituan/pages/search/search.vue?vue&type=style&index=0&lang=css& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -396,5 +375,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[87,"common/runtime","common/vendor"]]]);
+},[[88,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/search/search.js.map

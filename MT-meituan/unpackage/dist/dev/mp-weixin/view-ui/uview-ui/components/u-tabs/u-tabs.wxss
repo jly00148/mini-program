@@ -47,7 +47,6 @@ scroll-view.data-v-41cdc8a6 {
   position: relative;
   display: inline-block;
   text-align: center;
-  -webkit-transition-property: background-color, color;
   transition-property: background-color, color;
 }
 .u-tab-bar.data-v-41cdc8a6 {
@@ -56,16 +55,9 @@ scroll-view.data-v-41cdc8a6 {
 }
 .u-tabs-scorll-flex.data-v-41cdc8a6 {
 
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 

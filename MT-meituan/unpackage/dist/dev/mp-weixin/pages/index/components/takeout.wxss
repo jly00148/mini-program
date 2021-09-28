@@ -2,7 +2,7 @@
 .content-view .text.data-v-6e68f5c4{
 	display: block;
 }
-.content-view.data-v-6e68f5c4{display: -webkit-box;display: -webkit-flex;display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+.content-view.data-v-6e68f5c4{display: flex; justify-content: space-between;
 height: 200rpx !important; overflow: hidden;
 border-bottom: 1rpx solid #E4E8EB; padding-bottom: 5rpx;
 color: #898989;
@@ -24,13 +24,11 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 1;
 overflow: hidden;}
-.conteng-monthly.data-v-6e68f5c4{display: -webkit-box;display: -webkit-flex;display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+.conteng-monthly.data-v-6e68f5c4{display: flex; justify-content: space-between;
 height: 50rpx;
 line-height: 50rpx;}
-.conteng-starting.data-v-6e68f5c4{display: -webkit-box;display: -webkit-flex;display: flex;
--webkit-box-align: center;
--webkit-align-items: center;
-        align-items: center;
+.conteng-starting.data-v-6e68f5c4{display: flex;
+align-items: center;
 height: 50rpx;
 line-height: 50rpx;}
 .conteng-starting .text.data-v-6e68f5c4{width: 130rpx;}

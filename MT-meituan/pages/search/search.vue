@@ -1,21 +1,6 @@
 <template>
 	<view>
 		<view class="search-cont">
-			
-			<!-- 			
-				<view class="search">
-				<input 
-				type="text"
-				focus="true"
-				confirm-type="search"
-				v-model="keyword"
-				@confirm="onKeyInput"
-				placeholder="请输入关键字"
-				/>
-				<view class="search-code" @click="searchBtn()">
-					搜索
-				</view>
-			</view> -->
 			<u-search
 				@confirm="onKeyInput"
 				placeholder="请输入关键字"
@@ -25,7 +10,6 @@
 				:show-action="true"
 				@custom="custom(keyword)"
 				action-text="搜索" 
-				:animation="false"
 				>
 			  </u-search>
 	
@@ -51,7 +35,6 @@
 		<!-- 内容展示 -->
 		<view class="content-left">
 			<view class="empty" v-show="showEmptyResult">
-				<!-- <Tip :tipText="tipText" ref="tips"></Tip> -->
 			</view>
 			<block v-for="(items,index) in searchResult" :key="index">
 				<view class="content-view"  v-show="!showEmptyResult" @click="choiceShop(items.openid)">
@@ -100,18 +83,19 @@
 				searchHistory:[],
 				searchResult:[],
 				showEmptyResult:false,
-				tipText:''
+				repeatKeyWord:''
+				
 			}
 		},
 		methods: {
 			custom(keyword){
-				this.searchData(this.keyword)
+				// 防止持续点击搜索按钮频繁向后台请求数据
+				if(this.repeatKeyWord == keyword) return;
+				else{
+					this.searchData(keyword);
+					this.repeatKeyWord = keyword;
+				}
 			},
-			// 一：点击右边搜索触发搜索
-			// searchBtn(){
-			// 	//获取搜索框输入的关键字：this.searchdata 双向数据绑定
-			// 	this.searchData(this.searchdata)
-			// },
 			
 			// 二：不点击右边搜索按钮，按回车键触或者手机键盘完成键盘触发搜索
 			onKeyInput(e){
@@ -124,9 +108,7 @@
 				this.searchdata = '';
 				
 				// 三L:判断是否为空字符串,是的话停止执行 (一个或多个空格键)
-				if(keyWord.trim() === ''){
-					return;
-				}
+				if(keyWord.trim() === '') return;
 				
 				// 四：同步存储
 				this.handleStorage(keyWord);
@@ -136,11 +118,9 @@
 				}
 				allApi(srarchUrl,'POST',data)
 				.then(result=>{
+					console.log(result)
 					// 未搜索到目标
 					if(typeof result[1].data === 'string'){
-						/*
-							this.tipText = '未搜索到'; 注销掉，现在使用的是uVidw UI框架搭建
-						*/
 					   this.showEmptyResult = true;
 					   this.searchResult = [];
 						

@@ -88,11 +88,8 @@
 	color: #666666;
 }
 .wrap-flex.data-v-2b8ce32d{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-justify-content: space-around;
-	        justify-content: space-around;
+	justify-content: space-around;
 	border-top: 1rpx solid #EEEEEE;
 	position: absolute;
 	bottom: 0;
